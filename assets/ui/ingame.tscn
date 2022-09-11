@@ -1,0 +1,351 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
+[ext_resource path="res://assets/characters/portraits.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/ingame.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/ui.theme" type="Theme" id=4]
+[ext_resource path="res://assets/ui/ui_with_header.png" type="Texture" id=5]
+[ext_resource path="res://assets/characters/portraits_green.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 344, 136 )
+margin_left = 20.0
+margin_right = 100.0
+margin_top = 110.0
+margin_bottom = 20.0
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 48, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 48, 32, 48 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "green",
+"speed": 5.0
+} ]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenReader" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 1 )
+logging = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 464.0
+margin_bottom = 580.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 464.0
+margin_bottom = 297.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 11 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+margin_left = 20.0
+margin_top = 110.0
+margin_right = 364.0
+margin_bottom = 277.0
+custom_constants/margin_right = -64
+custom_constants/margin_top = -104
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer"]
+margin_top = -104.0
+margin_right = 408.0
+margin_bottom = 167.0
+custom_constants/separation = 18
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 408.0
+margin_bottom = 29.0
+custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]PERSONNEL FILES[/center]"
+text = "PERSONNEL FILES"
+fit_content_height = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 47.0
+margin_right = 408.0
+margin_bottom = 271.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 8
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 408.0
+margin_bottom = 29.0
+bbcode_enabled = true
+bbcode_text = "GRAHAM"
+text = "GRAHAM"
+fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 408.0
+margin_bottom = 224.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 187.0
+custom_constants/margin_right = 8
+custom_constants/margin_left = 8
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+margin_left = 8.0
+margin_right = 72.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 64, 96 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/Control"]
+scale = Vector2( 2, 2 )
+frames = SubResource( 10 )
+animation = "green"
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 84.0
+margin_right = 408.0
+margin_bottom = 187.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 324.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "NAME: BARROWS, G.S.
+EXPERTISE: GEOLOGY
+BORN: 2041-09-22
+ALLERGIES: PEANUTS
+HOBBIES: VIDEOGAMES"
+text = "NAME: BARROWS, G.S.
+EXPERTISE: GEOLOGY
+BORN: 2041-09-22
+ALLERGIES: PEANUTS
+HOBBIES: VIDEOGAMES"
+fit_content_height = true
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 159.0
+margin_right = 324.0
+margin_bottom = 187.0
+focus_mode = 2
+text = "> BACK"
+underline = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 301.0
+margin_right = 464.0
+margin_bottom = 580.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2"]
+margin_left = 24.0
+margin_top = 80.0
+margin_right = 424.0
+margin_bottom = 259.0
+custom_constants/margin_top = -74
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+margin_top = -74.0
+margin_right = 400.0
+margin_bottom = 179.0
+custom_constants/separation = 24
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 29.0
+custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]CAMERA FEED[/center]"
+text = "CAMERA FEED"
+fit_content_height = true
+
+[node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 53.0
+margin_right = 400.0
+margin_bottom = 253.0
+rect_min_size = Vector2( 400, 200 )
+
+[node name="Viewport" type="Viewport" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/ViewportContainer"]
+size = Vector2( 400, 200 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 468.0
+margin_right = 1004.0
+margin_bottom = 580.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer"]
+margin_left = 24.0
+margin_top = 80.0
+margin_right = 496.0
+margin_bottom = 560.0
+custom_constants/margin_top = -74
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
+margin_top = -74.0
+margin_right = 472.0
+margin_bottom = 480.0
+custom_constants/separation = 22
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 472.0
+margin_bottom = 29.0
+custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]AUDIO LOGS[/center]"
+text = "AUDIO LOGS"
+fit_content_height = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 472.0
+margin_bottom = 554.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 472.0
+margin_bottom = 503.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 381.0
+margin_right = 472.0
+margin_bottom = 439.0
+bbcode_enabled = true
+bbcode_text = "GRAHAM:
+You must be Parker, right?"
+text = "GRAHAM:
+You must be Parker, right?"
+fit_content_height = true
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 443.0
+margin_right = 472.0
+margin_bottom = 471.0
+focus_mode = 2
+text = "> Yes, that's me."
+underline = 2
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 475.0
+margin_right = 472.0
+margin_bottom = 503.0
+focus_mode = 2
+text = "> No, you must have me confused."
+underline = 2

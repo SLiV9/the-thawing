@@ -21,3 +21,6 @@ result.gif
 
 # Godot Accessibility addon
 .godot-accessibility-editor-settings.ini
+
+# Files that are too big
+/raw_assets

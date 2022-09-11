@@ -32,6 +32,12 @@ InputController="*res://assets/ui/input_controller.gd"
 
 enabled=PoolStringArray( "res://addons/godot-accessibility/plugin.cfg" )
 
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -41,4 +47,4 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"
+environment/default_clear_color=Color( 0.211765, 0.180392, 0.12549, 1 )
