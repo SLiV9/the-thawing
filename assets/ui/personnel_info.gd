@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+onready var menu = self.find_node("Menu")
 onready var overview = self.find_node("Overview")
 onready var details = self.find_node("Details")
 onready var headshot = self.find_node("Headshot")
@@ -21,6 +22,8 @@ func _ready():
 	var err = data.load("res://assets/personnel_data.toml")
 	if err != OK:
 		printerr("Failed to load personnel_data")
+	menu.visible = true
+	overview.visible = false
 	details.visible = false
 	workers = data.get_sections()
 	for id in workers:
@@ -40,6 +43,7 @@ func _ready():
 
 
 func _on_selected(id):
+	menu.visible = false
 	overview.visible = false
 	details.visible = true
 	var display_name = DialogueTree.display_name_of_speaker(id)
@@ -60,6 +64,14 @@ func _on_selected(id):
 
 
 func _on_BackButton_pressed():
+	menu.visible = true
+	overview.visible = false
+	details.visible = false
+	$PersonnelHeader.text = "INDEX"
+
+
+func _on_ListButton_pressed():
+	menu.visible = false
 	overview.visible = true
 	details.visible = false
-	$PersonnelHeader.text = "OVERVIEW"
+	$PersonnelHeader.text = "ALL PERSONNEL"

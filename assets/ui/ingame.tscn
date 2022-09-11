@@ -216,22 +216,42 @@ script = ExtResource( 12 )
 [node name="PersonnelHeader" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo"]
 margin_right = 408.0
 margin_bottom = 29.0
-text = "OVERVIEW"
+text = "INDEX"
 fit_content_height = true
 
 [node name="TabContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo"]
 margin_top = 37.0
 margin_right = 408.0
-margin_bottom = 218.0
+margin_bottom = 69.0
+
+[node name="Menu" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer"]
+margin_right = 408.0
+margin_bottom = 32.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu"]
+margin_right = 408.0
+margin_bottom = 32.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 0
+
+[node name="ListButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu/MarginContainer"]
+margin_top = 4.0
+margin_right = 406.0
+margin_bottom = 32.0
+focus_mode = 2
+text = "> ALL PERSONNEL"
+underline = 2
 
 [node name="Overview" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer"]
 margin_right = 408.0
-margin_bottom = 181.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
 [node name="Details" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer"]
+visible = false
 margin_right = 408.0
 margin_bottom = 181.0
 size_flags_vertical = 3
@@ -291,7 +311,7 @@ margin_top = 4.0
 margin_right = 322.0
 margin_bottom = 32.0
 focus_mode = 2
-text = "< BACK TO OVERVIEW"
+text = "< BACK TO INDEX"
 underline = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -366,6 +386,19 @@ margin_bottom = 200.0
 margin_right = 398.0
 margin_bottom = 28.0
 alignment = 2
+
+[node name="StopButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 98.0
+margin_bottom = 28.0
+focus_mode = 2
+text = "[] STOP"
+underline = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 102.0
+margin_right = 258.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
 
 [node name="RewindButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 262.0
@@ -450,6 +483,8 @@ underline = 2
 
 [connection signal="face_cam_disabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Game_face_cam_disabled"]
 [connection signal="face_cam_enabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Game_face_cam_enabled"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu/MarginContainer/ListButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_ListButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Details/VBoxContainer/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/StopButton" to="." method="_on_StopButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" method="_on_RewindButton_pressed"]
 [connection signal="rewind_availability_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" method="_on_Chat_rewind_availability_updated"]

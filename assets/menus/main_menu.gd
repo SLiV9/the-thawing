@@ -30,3 +30,28 @@ func _ready():
 func goto_first_launch_settings_menu():
 	# TODO implement
 	pass
+
+func goto_gameplay():
+	var err = get_tree().change_scene(
+		"res://assets/ui/ingame.tscn")
+	if err != OK:
+		pass
+
+func goto_settings_menu():
+	# TODO implement
+	pass
+
+func quit_game():
+	get_tree().quit()
+
+
+func _on_StartButton_pressed():
+	goto_gameplay()
+
+
+func _on_SettingsButton_pressed():
+	goto_settings_menu()
+
+
+func _on_QuitButton_pressed():
+	quit_game()
