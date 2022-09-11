@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=1]
 [ext_resource path="res://assets/characters/portraits_green.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/worker.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -91,20 +92,53 @@ animations = [ {
 [node name="Camera2D" type="Camera2D"]
 current = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="FaceCam" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="ColorRect" type="ColorRect" parent="FaceCam"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -50.0
-margin_right = 100.0
-margin_bottom = 50.0
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
 color = Color( 0.129412, 0.117647, 0.12549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="FaceCam"]
 frames = SubResource( 10 )
+
+[node name="Snow" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="ColorRect" type="ColorRect" parent="Snow"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Units" type="Node2D" parent="Snow"]
+
+[node name="Parker" type="AnimatedSprite" parent="Snow/Units"]
+position = Vector2( -7, 18 )
+frames = ExtResource( 3 )
+animation = "parker"
+frame = 12
+offset = Vector2( 0, -11 )
+
+[node name="Graham" type="AnimatedSprite" parent="Snow/Units"]
+position = Vector2( 9, 10 )
+frames = ExtResource( 3 )
+animation = "graham"
+offset = Vector2( 0, -11 )
