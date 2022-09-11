@@ -27,6 +27,11 @@ config/icon="res://assets/packaging/icon.png"
 [autoload]
 
 InputController="*res://assets/ui/input_controller.gd"
+DialogueTree="*res://assets/world/dialogue_tree.gd"
+
+[editor]
+
+search_in_file_extensions=PoolStringArray( "gd", "gdshader", "shader", "toml" )
 
 [editor_plugins]
 

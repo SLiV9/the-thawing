@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/characters/portraits_green.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/crt_monitor.gdshader" type="Shader" id=7]
 [ext_resource path="res://assets/world/world.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/ui/camera.gd" type="Script" id=9]
+[ext_resource path="res://assets/ui/chat.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 5 )
@@ -128,7 +130,7 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 1.0
 
-[node name="Control" type="Control"]
+[node name="Game" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 4 )
@@ -168,7 +170,7 @@ __meta__ = {
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_right = 464.0
-margin_bottom = 297.0
+margin_bottom = 295.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 11 )
 
@@ -176,14 +178,14 @@ custom_styles/panel = SubResource( 11 )
 margin_left = 20.0
 margin_top = 110.0
 margin_right = 364.0
-margin_bottom = 277.0
+margin_bottom = 275.0
 custom_constants/margin_right = -64
-custom_constants/margin_top = -104
+custom_constants/margin_top = -102
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer"]
-margin_top = -104.0
+margin_top = -102.0
 margin_right = 408.0
-margin_bottom = 167.0
+margin_bottom = 165.0
 custom_constants/separation = 18
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -199,7 +201,7 @@ fit_content_height = true
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 47.0
 margin_right = 408.0
-margin_bottom = 271.0
+margin_bottom = 267.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 8
@@ -214,19 +216,19 @@ fit_content_height = true
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 37.0
 margin_right = 408.0
-margin_bottom = 224.0
+margin_bottom = 220.0
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 80.0
-margin_bottom = 187.0
+margin_bottom = 183.0
 custom_constants/margin_right = 8
 custom_constants/margin_left = 8
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 margin_left = 8.0
 margin_right = 72.0
-margin_bottom = 187.0
+margin_bottom = 183.0
 rect_min_size = Vector2( 64, 96 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/Control"]
@@ -238,13 +240,13 @@ centered = false
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 84.0
 margin_right = 408.0
-margin_bottom = 187.0
+margin_bottom = 183.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 324.0
-margin_bottom = 155.0
+margin_bottom = 147.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_text = "NAME: GRAHAM BARROWS
@@ -259,16 +261,24 @@ ALLERGIES: PEANUTS
 HOBBIES: VIDEOGAMES"
 fit_content_height = true
 
-[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 159.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 151.0
 margin_right = 324.0
-margin_bottom = 187.0
+margin_bottom = 183.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 0
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+margin_top = 4.0
+margin_right = 322.0
+margin_bottom = 32.0
 focus_mode = 2
 text = "> BACK"
 underline = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 301.0
+margin_top = 299.0
 margin_right = 464.0
 margin_bottom = 580.0
 
@@ -276,13 +286,13 @@ margin_bottom = 580.0
 margin_left = 24.0
 margin_top = 80.0
 margin_right = 424.0
-margin_bottom = 259.0
-custom_constants/margin_top = -74
+margin_bottom = 261.0
+custom_constants/margin_top = -72
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer"]
-margin_top = -74.0
+margin_top = -72.0
 margin_right = 400.0
-margin_bottom = 179.0
+margin_bottom = 181.0
 custom_constants/separation = 24
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
@@ -295,7 +305,7 @@ bbcode_text = "[center]CAMERA FEED[/center]"
 text = "CAMERA FEED"
 fit_content_height = true
 
-[node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Camera" type="ViewportContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 material = SubResource( 22 )
 margin_top = 53.0
 margin_right = 400.0
@@ -303,17 +313,18 @@ margin_bottom = 253.0
 rect_min_size = Vector2( 400, 200 )
 stretch = true
 stretch_shrink = 2
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/ViewportContainer"]
+[node name="Viewport" type="Viewport" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera"]
 size = Vector2( 200, 100 )
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
-[node name="Camera2D" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 8 )]
+[node name="World" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera/Viewport" instance=ExtResource( 8 )]
 position = Vector2( 100, 50 )
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
@@ -328,13 +339,13 @@ margin_left = 24.0
 margin_top = 80.0
 margin_right = 496.0
 margin_bottom = 560.0
-custom_constants/margin_top = -74
+custom_constants/margin_top = -72
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
-margin_top = -74.0
+margin_top = -72.0
 margin_right = 472.0
 margin_bottom = 480.0
-custom_constants/separation = 22
+custom_constants/separation = 24
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 472.0
@@ -347,70 +358,46 @@ text = "AUDIO LOGS"
 fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 51.0
+margin_top = 53.0
 margin_right = 472.0
-margin_bottom = 554.0
+margin_bottom = 552.0
 size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="Chat" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 margin_right = 472.0
-margin_bottom = 503.0
+margin_bottom = 499.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 6
 alignment = 2
+script = ExtResource( 10 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 308.0
+[node name="DummyText" type="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat"]
+margin_top = 403.0
 margin_right = 472.0
-margin_bottom = 395.0
-bbcode_enabled = true
+margin_bottom = 461.0
 bbcode_text = "GRAHAM:
-You must be the new arrival. Parker, right?"
+Hello there!"
 text = "GRAHAM:
-You must be the new arrival. Parker, right?"
+Hello there!"
 fit_content_height = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 399.0
+[node name="DummyButton" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat"]
+margin_top = 467.0
 margin_right = 472.0
-margin_bottom = 431.0
+margin_bottom = 499.0
 custom_constants/margin_top = 2
 custom_constants/margin_bottom = 2
 
-[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer2"]
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat/DummyButton"]
 margin_top = 2.0
 margin_right = 472.0
 margin_bottom = 30.0
 focus_mode = 2
-text = "> Yes."
+text = "> Uhm... hello?"
 underline = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 435.0
-margin_right = 472.0
-margin_bottom = 467.0
-custom_constants/margin_top = 2
-custom_constants/margin_bottom = 2
-
-[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
-margin_top = 2.0
-margin_right = 472.0
-margin_bottom = 30.0
-focus_mode = 2
-text = "> That's me."
-underline = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 471.0
-margin_right = 472.0
-margin_bottom = 503.0
-custom_constants/margin_top = 2
-custom_constants/margin_bottom = 2
-
-[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer3"]
-margin_top = 2.0
-margin_right = 472.0
-margin_bottom = 30.0
-focus_mode = 2
-text = "> Sure."
-underline = 2
+[connection signal="face_cam_disabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera" method="_on_Game_face_cam_disabled"]
+[connection signal="face_cam_enabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera" method="_on_Game_face_cam_enabled"]

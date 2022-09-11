@@ -1,0 +1,9 @@
+[intro.greeting]
+speaker = "graham"
+text = "Hello there!"
+options = [["Uhm... hi?", "intro.arrival"]]
+
+[intro.arrival]
+speaker = "graham"
+text = "You must be the new arrival. Parker, right?"
+options = [["Yes.", "intro.greeting"], ["That's me.", "intro.greeting"], ["I guess so.", "intro.greeting"]]

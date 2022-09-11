@@ -1,6 +1,10 @@
 extends Control
 
 
+signal face_cam_enabled()
+signal face_cam_disabled()
+
+
 var settings = Settings.new()
 
 
@@ -14,3 +18,4 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
+	emit_signal("face_cam_enabled")

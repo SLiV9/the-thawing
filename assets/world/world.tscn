@@ -89,7 +89,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Camera2D" type="Camera2D"]
+[node name="World" type="Camera2D"]
 current = true
 
 [node name="FaceCam" type="Node2D" parent="."]
@@ -113,6 +113,7 @@ __meta__ = {
 frames = SubResource( 10 )
 
 [node name="Snow" type="Node2D" parent="."]
+visible = false
 scale = Vector2( 2, 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Snow"]
