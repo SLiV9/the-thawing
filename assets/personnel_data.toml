@@ -1,0 +1,79 @@
+[graham]
+headshot_frame = 0
+full_name = "BARROWS, G.S."
+expertise = "GEOLOGY"
+born = "2041-09-22"
+allergies = "PEANUTS"
+hobbies = "VIDEOGAMES"
+
+[alex]
+headshot_frame = 8
+full_name = "A.L.L.L.X. 4038-5A"
+expertise = "PESTS"
+born = "N.A."
+allergies = "WATER"
+hobbies = "JOKES"
+
+[rory]
+headshot_frame = 2
+full_name = "BAKER, R."
+expertise = "MECHANICS"
+born = "2045-05-06"
+allergies = "NONE"
+hobbies = "TRAINS"
+
+[hazel]
+headshot_frame = 3
+full_name = "MCADAMS, H."
+expertise = "BIOLOGY"
+born = "2050-11-24"
+allergies = "LACTOSE"
+hobbies = "WRITING"
+
+[vern]
+headshot_frame = 6
+full_name = "DORY, V.I."
+expertise = "PHYSICS"
+born = "2039-11-08"
+allergies = "POLLEN"
+hobbies = "MUSIC"
+
+[prof]
+headshot_frame = 7
+full_name = "KLINE, D.T."
+expertise = "CHEMISTRY"
+born = "2030-08-28"
+allergies = "SHELLFISH"
+hobbies = "CHESS"
+
+[bill]
+headshot_frame = 1
+full_name = "STEVENS, B."
+expertise = "HISTORY"
+born = "2036-03-24"
+allergies = "NONE"
+hobbies = "POETRY"
+
+[marcus]
+headshot_frame = 5
+full_name = "QUINZEL, M."
+expertise = "ELECTRO"
+born = "2047-11-14"
+allergies = "BEES"
+hobbies = "PAINTING"
+
+[john]
+headshot_frame = 4
+full_name = "BELL, J.T."
+expertise = "COMMS"
+born = "2042-06-03"
+allergies = "NONE"
+hobbies = "READING"
+
+[parker]
+headshot_frame = 9
+full_name = "?"
+expertise = "?"
+born = "?"
+allergies = "?"
+hobbies = "?"
