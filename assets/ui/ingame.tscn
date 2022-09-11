@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/world/world.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/ui/camera.gd" type="Script" id=9]
 [ext_resource path="res://assets/ui/chat.gd" type="Script" id=10]
+[ext_resource path="res://assets/ui/rewind_button.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 5 )
@@ -269,12 +270,12 @@ custom_constants/margin_right = 2
 custom_constants/margin_top = 4
 custom_constants/margin_bottom = 0
 
-[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="BackButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
 margin_top = 4.0
 margin_right = 322.0
 margin_bottom = 32.0
 focus_mode = 2
-text = "> BACK"
+text = "< BACK TO OVERVIEW"
 underline = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -305,12 +306,17 @@ bbcode_text = "[center]CAMERA FEED[/center]"
 text = "CAMERA FEED"
 fit_content_height = true
 
-[node name="Camera" type="ViewportContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
-material = SubResource( 22 )
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_top = 53.0
 margin_right = 400.0
 margin_bottom = 253.0
+
+[node name="Camera" type="ViewportContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource( 22 )
+margin_right = 400.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 400, 200 )
+mouse_filter = 2
 stretch = true
 stretch_shrink = 2
 script = ExtResource( 9 )
@@ -318,14 +324,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera"]
+[node name="Viewport" type="Viewport" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera"]
 size = Vector2( 200, 100 )
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
+gui_disable_input = true
 
-[node name="World" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera/Viewport" instance=ExtResource( 8 )]
+[node name="World" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera/Viewport" instance=ExtResource( 8 )]
 position = Vector2( 100, 50 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+margin_right = 400.0
+margin_bottom = 200.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+margin_top = 4.0
+margin_right = 398.0
+margin_bottom = 200.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_right = 398.0
+margin_bottom = 28.0
+alignment = 2
+
+[node name="RewindButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 262.0
+margin_right = 398.0
+margin_bottom = 28.0
+focus_mode = 2
+text = "<< REWIND"
+underline = 2
+script = ExtResource( 11 )
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 468.0
@@ -399,5 +432,7 @@ focus_mode = 2
 text = "> Uhm... hello?"
 underline = 2
 
-[connection signal="face_cam_disabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera" method="_on_Game_face_cam_disabled"]
-[connection signal="face_cam_enabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Camera" method="_on_Game_face_cam_enabled"]
+[connection signal="face_cam_disabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Game_face_cam_disabled"]
+[connection signal="face_cam_enabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Game_face_cam_enabled"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" method="_on_RewindButton_pressed"]
+[connection signal="rewind_availability_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" method="_on_Chat_rewind_availability_updated"]
