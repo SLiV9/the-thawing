@@ -8,7 +8,7 @@ func _ready():
 	settings.load_all()
 	if not settings.has_section("accessibility"):
 		goto_first_launch_settings_menu()
-		#return
+		return
 	if settings.get_value("graphics", "enable_fullscreen", false):
 		OS.window_fullscreen = true
 	if settings.has_section_key("interface", "text_size"):
@@ -16,9 +16,6 @@ func _ready():
 		var main_font = get_font("normal_font", "RichTextLabel")
 		main_font.size = text_size
 		main_font.update_changes()
-		var bold_font = get_font("bold_font", "RichTextLabel")
-		bold_font.size = text_size
-		bold_font.update_changes()
 	if settings.get_value("accessibility", "screen_reader_enabled", true):
 		$ScreenReader.enabled = true
 		$ScreenReader.TTS.speak("Main Menu", true)
@@ -31,8 +28,10 @@ func _ready():
 	randomize()
 
 func goto_first_launch_settings_menu():
-	# TODO implement
-	pass
+	var err = get_tree().change_scene(
+		"res://assets/menus/first_launch_menu.tscn")
+	if err != OK:
+		pass
 
 func goto_gameplay():
 	var err = get_tree().change_scene(
@@ -41,8 +40,10 @@ func goto_gameplay():
 		pass
 
 func goto_settings_menu():
-	# TODO implement
-	pass
+	var err = get_tree().change_scene(
+		"res://assets/menus/settings_menu.tscn")
+	if err != OK:
+		pass
 
 func quit_game():
 	get_tree().quit()
