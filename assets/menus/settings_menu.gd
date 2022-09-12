@@ -23,8 +23,6 @@ func _ready():
 	if $ScreenReader.enabled:
 		if is_submenu:
 			$ScreenReader.TTS.stop()
-		elif not is_first_launch_window:
-			$ScreenReader.TTS.speak("Settings Menu", true)
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
@@ -57,3 +55,7 @@ func _on_ScreenReaderCheckButton_toggled(button_pressed):
 	# This causes the screen reader to read out the value.
 	find_node("SaveAndContinueButton").grab_focus()
 	find_node("ScreenReaderCheckButton").grab_focus()
+
+
+func _on_DiscardAndContinueButton_pressed():
+	exit()
