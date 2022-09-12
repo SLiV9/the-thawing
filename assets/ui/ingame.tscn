@@ -370,6 +370,13 @@ gui_disable_input = true
 [node name="World" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera/Viewport" instance=ExtResource( 8 )]
 position = Vector2( 100, 50 )
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera"]
+margin_left = -6.0
+margin_top = -6.0
+margin_right = 406.0
+margin_bottom = 206.0
+hint_tooltip = "You see Graham's face. He has a beard and is wearing a knit cap."
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 400.0
 margin_bottom = 200.0
