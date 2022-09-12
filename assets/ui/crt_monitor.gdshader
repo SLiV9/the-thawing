@@ -99,13 +99,23 @@ float vignette(vec2 uv){
 
 void fragment()
 {
-	vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV); // Warp the uv. uv will be used in most cases instead of UV to keep the warping
-	vec2 text_uv = uv;
-	vec2 roll_uv = vec2(0.0);
-	float time = roll ? TIME : 0.0;
+	// Warp the uv. uv will be used in most cases instead of UV to keep the warping
+	vec2 uv = warp(UV);
+	if (overlay)
+	{
+		uv = warp(SCREEN_UV);
+	}
 	
-
+	vec2 roll_uv = vec2(0.0);
+	
+	float time = TIME;
+	if (!roll)
+	{
+		time = 0.0;
+	}
+	
 	// Pixelate the texture based on the given resolution.
+	vec2 text_uv = uv;
 	if (pixelate)
 	{
 		text_uv = ceil(uv * resolution) / resolution;
@@ -125,23 +135,42 @@ void fragment()
 	}
 	
 	vec4 text;
-	if (roll)
+	if (roll && overlay)
 	{
 		// If roll is true distort the texture with roll_uv. The texture is split up into RGB to 
 		// make some chromatic aberration. We apply the aberration to the red and green channels accorging to the aberration parameter
 		// and intensify it a bit in the roll distortion.
-		text.r = texture(overlay ? SCREEN_TEXTURE : TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
-		text.g = texture(overlay ? SCREEN_TEXTURE : TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
-		text.b = texture(overlay ? SCREEN_TEXTURE : TEXTURE, text_uv + roll_uv).b;
+		text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
+		text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
+		text.a = 1.0;
+	}
+	else if (roll)
+	{
+		// If roll is true distort the texture with roll_uv. The texture is split up into RGB to 
+		// make some chromatic aberration. We apply the aberration to the red and green channels accorging to the aberration parameter
+		// and intensify it a bit in the roll distortion.
+		text.r = texture(TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
+		text.b = texture(TEXTURE, text_uv + roll_uv).b;
+		text.a = 1.0;
+	}
+	else if (overlay)
+	{
+		// If roll is false only apply the aberration without any distorion. The aberration values are very small so the .1 is only 
+		// to make the slider in the Inspector less sensitive.
+		text.r = texture(SCREEN_TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(SCREEN_TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
+		text.b = texture(SCREEN_TEXTURE, text_uv).b;
 		text.a = 1.0;
 	}
 	else
 	{
 		// If roll is false only apply the aberration without any distorion. The aberration values are very small so the .1 is only 
 		// to make the slider in the Inspector less sensitive.
-		text.r = texture(overlay ? SCREEN_TEXTURE : TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
-		text.g = texture(overlay ? SCREEN_TEXTURE : TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
-		text.b = texture(overlay ? SCREEN_TEXTURE : TEXTURE, text_uv).b;
+		text.r = texture(TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
+		text.b = texture(TEXTURE, text_uv).b;
 		text.a = 1.0;
 	}
 	

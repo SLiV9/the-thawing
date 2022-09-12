@@ -25,6 +25,9 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
+	if OS.has_feature("HTML5"):
+		find_node("QuitButton").visible = false
+		find_node("FakeQuitButton").visible = false
 	randomize()
 
 func goto_first_launch_settings_menu():
