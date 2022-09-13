@@ -14,6 +14,7 @@ The following free assets were used:
 - ["Sci-fi User Interface Elements" by Buch](https://opengameart.org/content/sci-fi-user-interface-elements), modified;
 - ["10 pixel art portraits" by Buch](https://opengameart.org/content/10-pixel-art-portraits), modified;
 - ["Pixel Worker Sprite" by domsson](https://opengameart.org/content/pixel-worker-sprite-fukushima), modified;
+- ["Isometric houses" by Hansjörg Malthaner](https://opengameart.org/content/isometric-houses-64px-raster);
 - ["VHS and CRT monitor effect" shader by pend00](https://godotshaders.com/shader/vhs-and-crt-monitor-effect/), modified;
 - [Retro Gaming font by Daymarius](https://www.dafont.com/retro-gaming.font);
 - [Motorola Screentype font by R P N](https://www.dafont.com/motorola-screentype.font);

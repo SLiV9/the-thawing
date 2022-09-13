@@ -1,0 +1,182 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/world/facility.png" type="Texture" id=1]
+[ext_resource path="res://assets/world/facility_props.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 40, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 50, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Snow" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 100, 50 )
+hint_tooltip = "A drab building looms in the distance. Someone is standing in front of the doors."
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Prop2" type="AnimatedSprite" parent="."]
+position = Vector2( 23.5, -8.5 )
+frames = SubResource( 6 )
+frame = 1
+
+[node name="Prop3" type="AnimatedSprite" parent="."]
+position = Vector2( 28.5, -5.5 )
+frames = SubResource( 6 )
+
+[node name="Prop13" type="AnimatedSprite" parent="."]
+position = Vector2( 14.5, -13.5 )
+frames = SubResource( 6 )
+
+[node name="Prop14" type="AnimatedSprite" parent="."]
+position = Vector2( 12.5, -17.5 )
+frames = SubResource( 6 )
+frame = 2
+
+[node name="Prop15" type="AnimatedSprite" parent="."]
+position = Vector2( 20.5, -7.5 )
+frames = SubResource( 6 )
+frame = 1
+
+[node name="Prop9" type="AnimatedSprite" parent="."]
+position = Vector2( 23.5, -5.5 )
+frames = SubResource( 6 )
+
+[node name="Prop4" type="AnimatedSprite" parent="."]
+position = Vector2( 16.5, -2.5 )
+frames = SubResource( 6 )
+
+[node name="Prop5" type="AnimatedSprite" parent="."]
+position = Vector2( 19.5, -6.5 )
+frames = SubResource( 6 )
+frame = 2
+
+[node name="Prop16" type="AnimatedSprite" parent="."]
+position = Vector2( 14.5, -5.5 )
+frames = SubResource( 6 )
+
+[node name="Prop8" type="AnimatedSprite" parent="."]
+position = Vector2( 22.5, -4.5 )
+frames = SubResource( 6 )
+frame = 2
+
+[node name="Prop6" type="AnimatedSprite" parent="."]
+position = Vector2( 18.5, -9.5 )
+frames = SubResource( 6 )
+frame = 3
+
+[node name="Prop7" type="AnimatedSprite" parent="."]
+position = Vector2( 20.5, -8.5 )
+frames = SubResource( 6 )
+frame = 3
+
+[node name="Prop11" type="AnimatedSprite" parent="."]
+position = Vector2( 36.5, -2.5 )
+frames = SubResource( 6 )
+frame = 3
+
+[node name="Prop12" type="AnimatedSprite" parent="."]
+position = Vector2( 45.5, -3.5 )
+frames = SubResource( 6 )
+frame = 3
+
+[node name="Prop10" type="AnimatedSprite" parent="."]
+position = Vector2( 20.5, -3.5 )
+frames = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 41.5, -24 )
+texture = ExtResource( 1 )
+
+[node name="Footstep" type="AnimatedSprite" parent="."]
+position = Vector2( 6.5, -0.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep2" type="AnimatedSprite" parent="."]
+position = Vector2( 8.5, -1.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep3" type="AnimatedSprite" parent="."]
+position = Vector2( 10.5, -2.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep4" type="AnimatedSprite" parent="."]
+position = Vector2( 12.5, -3.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep5" type="AnimatedSprite" parent="."]
+position = Vector2( 14.5, -4.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep6" type="AnimatedSprite" parent="."]
+position = Vector2( 16.5, -5.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep7" type="AnimatedSprite" parent="."]
+position = Vector2( 18.5, -6.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep8" type="AnimatedSprite" parent="."]
+position = Vector2( 20.5, -7.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep9" type="AnimatedSprite" parent="."]
+position = Vector2( 22.5, -8.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Footstep10" type="AnimatedSprite" parent="."]
+position = Vector2( 24.5, -9.5 )
+frames = SubResource( 6 )
+frame = 5
+
+[node name="Graham" type="AnimatedSprite" parent="."]
+position = Vector2( 4.5, -0.5 )
+frames = SubResource( 6 )
+frame = 4

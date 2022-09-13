@@ -11,7 +11,7 @@ func _ready():
 
 func start():
 	history = []
-	return next("intro.setting")
+	return next("intro.snow")
 
 func next(section):
 	history.append(section)

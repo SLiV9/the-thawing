@@ -1,11 +1,16 @@
-[intro.setting]
+[intro.snow]
 speaker = ""
 text = "The ground here is white and soft. My boots sink into it with each step. \n \n This is apparently the last remaining place on earth with snow. But boy is there a lot of it. \n I'll be glad when it's all gone."
+options = [["", "intro.facility"]]
+
+[intro.facility]
+speaker = ""
+text = "This must be it. Finally."
 options = [["", "intro.walking"]]
 
 [intro.walking]
 speaker = ""
-text = "This must be it. Finally."
+text = ""
 options = [["", "intro.greeting"]]
 
 [intro.greeting]
@@ -19,6 +24,11 @@ text = "I'm Graham, nice to meet you. \n Come on, let's get you out of the cold.
 options = [["", "intro.out_of_the_cold"]]
 
 [intro.out_of_the_cold]
+speaker = ""
+text = ""
+options = [["", "intro.approaching_alex"]]
+
+[intro.approaching_alex]
 speaker = ""
 text = ""
 options = [["", "intro.intruder"]]

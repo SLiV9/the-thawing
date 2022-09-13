@@ -38,11 +38,12 @@ func handle_dialogue(x):
 		emit_signal("speaker_updated", x.speaker)
 		var speaker_name = PersonnelData.display_name_of_speaker(x.speaker)
 		text = "%s:\n%s" % [speaker_name, text]
-	var question = RichTextLabel.new()
-	question.fit_content_height = true
-	question.text = text
-	question.add_to_group("questions")
-	self.add_child(question)
+	if !text.empty():
+		var question = RichTextLabel.new()
+		question.fit_content_height = true
+		question.text = text
+		question.add_to_group("questions")
+		self.add_child(question)
 	if remaining_text_fragments.empty():
 		add_answer_options(x.options)
 	else:
