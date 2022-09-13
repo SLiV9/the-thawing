@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+export var is_online = false
+
 onready var menu = self.find_node("Menu")
 onready var overview = self.find_node("Overview")
 onready var details = self.find_node("Details")
@@ -11,7 +13,7 @@ var selected = null
 var dead_workers = []
 
 func _ready():
-	menu.visible = true
+	menu.visible = is_online
 	overview.visible = false
 	details.visible = false
 	workers = PersonnelData.get_ids()

@@ -1,3 +1,8 @@
+[intro.setting]
+speaker = ""
+text = "The ground you walk on is white and fluffy. Your boots sink into it with each step. \n Although you have never seen snow before, there is plenty of it here. \n You'll be glad when it's all gone."
+options = [["CONTINUE", "intro.greeting"]]
+
 [intro.greeting]
 speaker = "graham"
 text = "Hello there!"
@@ -6,7 +11,12 @@ options = [["Uhm... hi?", "intro.arrival"]]
 [intro.arrival]
 speaker = "graham"
 text = "You must be the new arrival. Parker, right?"
-options = [["Yes.", "intro.alex"], ["That's me.", "intro.alex"], ["I guess so.", "intro.alex"]]
+options = [["Yes.", "intro.alex_approaches"], ["That's me.", "intro.alex_approaches"], ["I guess so.", "intro.alex_approaches"]]
+
+[intro.alex_approaches]
+speaker = ""
+text = "A robot walks up to you."
+options = [["CONTINUE", "intro.alex"]]
 
 [intro.alex]
 speaker = "alex"

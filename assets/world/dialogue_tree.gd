@@ -10,7 +10,8 @@ func _ready():
 		printerr("Failed to load dialogue_tree")
 
 func start():
-	return next("intro.greeting")
+	history = []
+	return next("intro.setting")
 
 func next(section):
 	history.append(section)
@@ -37,6 +38,7 @@ func _load(section):
 			"text": option[0],
 			"next_section": option[1],
 			"current_section": section,
+			"is_implicit": speaker.empty(),
 		})
 	return {
 		"speaker": speaker,

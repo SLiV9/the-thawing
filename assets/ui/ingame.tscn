@@ -216,15 +216,16 @@ script = ExtResource( 12 )
 [node name="PersonnelHeader" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo"]
 margin_right = 408.0
 margin_bottom = 29.0
-text = "INDEX"
+text = "OFFLINE"
 fit_content_height = true
 
 [node name="TabContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo"]
 margin_top = 37.0
 margin_right = 408.0
-margin_bottom = 69.0
+margin_bottom = 37.0
 
 [node name="Menu" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer"]
+visible = false
 margin_right = 408.0
 margin_bottom = 32.0
 
@@ -244,8 +245,8 @@ text = "> ALL PERSONNEL"
 underline = 2
 
 [node name="Overview" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer"]
+visible = false
 margin_right = 408.0
-margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
@@ -491,9 +492,12 @@ focus_mode = 2
 text = "> Uhm... hello?"
 underline = 2
 
+[node name="Timer" type="Timer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat"]
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu/MarginContainer/ListButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_ListButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Details/VBoxContainer/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/StopButton" to="." method="_on_StopButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" method="_on_RewindButton_pressed"]
 [connection signal="rewind_availability_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" method="_on_Chat_rewind_availability_updated"]
 [connection signal="speaker_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Chat_speaker_updated"]
+[connection signal="timeout" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat/Timer" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" method="_on_Timer_timeout"]
