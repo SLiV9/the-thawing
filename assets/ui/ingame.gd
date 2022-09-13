@@ -1,10 +1,6 @@
 extends Control
 
 
-signal face_cam_enabled()
-signal face_cam_disabled()
-
-
 var settings = Settings.new()
 
 
@@ -18,7 +14,10 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
-	emit_signal("face_cam_enabled")
+	if settings.get_value("accessibility", "screen_reader_enabled", true):
+		PersonnelData.data.set_value("alex", "speaker_name", "ALEX")
+	else:
+		PersonnelData.data.set_value("alex", "speaker_name", "AL3X")
 
 
 func _on_StopButton_pressed():

@@ -28,6 +28,7 @@ config/icon="res://assets/packaging/icon.png"
 
 InputController="*res://assets/ui/input_controller.gd"
 DialogueTree="*res://assets/world/dialogue_tree.gd"
+PersonnelData="*res://assets/characters/personnel_data.gd"
 
 [editor]
 

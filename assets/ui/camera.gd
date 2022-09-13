@@ -1,24 +1,16 @@
 extends ViewportContainer
 
+onready var world = self.find_node("World")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Game_face_cam_disabled():
+func switch_to_world():
+	world.switch_to_snow()
 	material.set_shader_param("discolor", true)
 
-
-func _on_Game_face_cam_enabled():
+func switch_to_facecam(id):
+	world.switch_to_facecam(id)
 	material.set_shader_param("discolor", false)
+	$CameraHint.hint_tooltip = PersonnelData.visual_description_of_speaker(id)
+
+
+func _on_Chat_speaker_updated(speaker):
+	return switch_to_facecam(speaker)

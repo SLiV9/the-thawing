@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=1]
 [ext_resource path="res://assets/characters/portraits_green.png" type="Texture" id=2]
 [ext_resource path="res://assets/characters/worker.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://assets/world/world.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -91,6 +92,7 @@ animations = [ {
 
 [node name="World" type="Camera2D"]
 current = true
+script = ExtResource( 4 )
 
 [node name="FaceCam" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
@@ -109,7 +111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="FaceCam"]
+[node name="Face" type="AnimatedSprite" parent="FaceCam"]
 frames = SubResource( 10 )
 
 [node name="Snow" type="Node2D" parent="."]

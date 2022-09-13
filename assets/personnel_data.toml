@@ -1,79 +1,109 @@
 [graham]
 headshot_frame = 0
+speaker_name = "GRAHAM"
+index_name = "GRAHAM"
 full_name = "BARROWS, G.S."
 expertise = "GEOLOGY"
 born = "2041-09-22"
 allergies = "PEANUTS"
 hobbies = "VIDEOGAMES"
+visual_description = "You see Graham's face. He has a beard and is wearing a knit cap."
 
 [alex]
 headshot_frame = 8
+speaker_name = "AL3X"
+index_name = "AL3X"
 full_name = "A.L.L.L.X. 4038-5A"
 expertise = "PESTS"
-born = "N.A."
+born = "2091-06-10"
 allergies = "WATER"
 hobbies = "JOKES"
+visual_description = "You see Alex's face. He is a robot with circular eyes, a round vent for a mouth and a small antenna."
 
 [rory]
 headshot_frame = 2
+speaker_name = "RORY"
+index_name = "RORY"
 full_name = "BAKER, R."
 expertise = "MECHANICS"
 born = "2045-05-06"
 allergies = "NONE"
 hobbies = "TRAINS"
+visual_description = "You see Rory's face. He has a mustache and sideburns. A pair of welder's goggles rest on his forehead."
 
 [hazel]
 headshot_frame = 3
+speaker_name = "HAZEL"
+index_name = "HAZEL"
 full_name = "MCADAMS, H."
 expertise = "BIOLOGY"
 born = "2050-11-24"
 allergies = "LACTOSE"
 hobbies = "WRITING"
+visual_description = "You see Hazel's face. She has long dark hair and wears glasses."
 
 [vern]
 headshot_frame = 6
+speaker_name = "VERN"
+index_name = "VERN"
 full_name = "DORY, V.I."
 expertise = "PHYSICS"
 born = "2039-11-08"
 allergies = "POLLEN"
 hobbies = "MUSIC"
+visual_description = "You see Vern's face. He has chubby cheeks and is balding."
 
 [prof]
 headshot_frame = 7
+speaker_name = "PROFESSOR"
+index_name = "PROFESSOR"
 full_name = "KLINE, D.T."
 expertise = "CHEMISTRY"
 born = "2030-08-28"
 allergies = "SHELLFISH"
 hobbies = "CHESS"
+visual_description = "You see the Professor's face. He wears glasses and is balding, but his remaining hair sticks out in wild angles."
 
 [bill]
 headshot_frame = 1
+speaker_name = "BILL"
+index_name = "BILL"
 full_name = "STEVENS, B."
 expertise = "HISTORY"
 born = "2036-03-24"
 allergies = "NONE"
 hobbies = "POETRY"
+visual_description = "You see Bill's face. He has a chin beard and a bowler hat."
 
 [marcus]
 headshot_frame = 5
+speaker_name = "MARCUS"
+index_name = "MARCUS"
 full_name = "QUINZEL, M."
 expertise = "ELECTRO"
 born = "2047-11-14"
 allergies = "BEES"
 hobbies = "PAINTING"
+visual_description = "You see Marcus's face. He is bald and has a big nose."
 
 [john]
 headshot_frame = 4
+speaker_name = "JOHN"
+index_name = "JOHN"
 full_name = "BELL, J.T."
 expertise = "COMMS"
 born = "2042-06-03"
 allergies = "NONE"
 hobbies = "READING"
+visual_description = "You see John's face. He has a square jaw and a crew cut."
 
 [parker]
 headshot_frame = 9
-full_name = "?"
-expertise = "?"
-born = "?"
-allergies = "?"
-hobbies = "?"
+speaker_name = "YOU"
+index_name = "PARKER"
+full_name = "(EMPTY)"
+expertise = "(EMPTY)"
+born = "(EMPTY)"
+allergies = "(EMPTY)"
+hobbies = "(EMPTY)"
+visual_description = "You see your own face."

@@ -201,7 +201,7 @@ custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]PERSONNEL FILES[/center]"
-text = "[center]PERSONNEL FILES[/center]"
+text = "PERSONNEL FILES"
 fit_content_height = true
 
 [node name="PersonnelInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -339,7 +339,7 @@ custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]CAMERA FEED[/center]"
-text = "[center]CAMERA FEED[/center]"
+text = "CAMERA FEED"
 fit_content_height = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
@@ -370,16 +370,16 @@ gui_disable_input = true
 [node name="World" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera/Viewport" instance=ExtResource( 8 )]
 position = Vector2( 100, 50 )
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera"]
+[node name="CameraHint" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera"]
 margin_left = -6.0
 margin_top = -6.0
 margin_right = 406.0
 margin_bottom = 206.0
-hint_tooltip = "You see Graham's face. He has a beard and is wearing a knit cap."
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 400.0
 margin_bottom = 200.0
+mouse_filter = 2
 custom_constants/margin_right = 2
 custom_constants/margin_top = 4
 custom_constants/margin_bottom = 0
@@ -388,10 +388,12 @@ custom_constants/margin_bottom = 0
 margin_top = 4.0
 margin_right = 398.0
 margin_bottom = 200.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 margin_right = 398.0
 margin_bottom = 28.0
+mouse_filter = 2
 alignment = 2
 
 [node name="StopButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -405,6 +407,7 @@ underline = 2
 margin_left = 102.0
 margin_right = 258.0
 margin_bottom = 28.0
+mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="RewindButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -443,7 +446,7 @@ custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]AUDIO LOGS[/center]"
-text = "[center]AUDIO LOGS[/center]"
+text = "AUDIO LOGS"
 fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -488,10 +491,9 @@ focus_mode = 2
 text = "> Uhm... hello?"
 underline = 2
 
-[connection signal="face_cam_disabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Game_face_cam_disabled"]
-[connection signal="face_cam_enabled" from="." to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Game_face_cam_enabled"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu/MarginContainer/ListButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_ListButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Details/VBoxContainer/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/StopButton" to="." method="_on_StopButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" method="_on_RewindButton_pressed"]
 [connection signal="rewind_availability_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" method="_on_Chat_rewind_availability_updated"]
+[connection signal="speaker_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Chat_speaker_updated"]

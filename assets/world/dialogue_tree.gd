@@ -44,26 +44,3 @@ func _load(section):
 		"options": options,
 		"current_section": section,
 	}
-
-func display_name_of_speaker(speaker):
-	match speaker:
-		"graham":
-			return "GRAHAM"
-		"bill":
-			return "BILL"
-		"rory":
-			return "RORY"
-		"hazel":
-			return "HAZEL"
-		"john":
-			return "JOHN"
-		"marcus":
-			return "MARCUS"
-		"vern":
-			return "VERN"
-		"prof":
-			return "PROFESSOR"
-		"alex":
-			return "AL3X"
-		"parker":
-			return "PARKER"

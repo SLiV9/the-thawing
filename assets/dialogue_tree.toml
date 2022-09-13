@@ -6,4 +6,9 @@ options = [["Uhm... hi?", "intro.arrival"]]
 [intro.arrival]
 speaker = "graham"
 text = "You must be the new arrival. Parker, right?"
-options = [["Yes.", "intro.greeting"], ["That's me.", "intro.greeting"], ["I guess so.", "intro.greeting"]]
+options = [["Yes.", "intro.alex"], ["That's me.", "intro.alex"], ["I guess so.", "intro.alex"]]
+
+[intro.alex]
+speaker = "alex"
+text = "And I am AL3X."
+options = [["Ok.", "intro.greeting"]]

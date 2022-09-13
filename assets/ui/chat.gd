@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 signal rewind_availability_updated(enabled)
+signal speaker_updated(speaker)
 
 onready var scroll = self.get_parent()
 onready var scrollbar = scroll.get_v_scrollbar()
@@ -13,7 +14,8 @@ func _ready():
 	
 func handle_dialogue(x):
 	emit_signal("rewind_availability_updated", DialogueTree.can_rewind())
-	var speaker_name = DialogueTree.display_name_of_speaker(x.speaker)
+	emit_signal("speaker_updated", x.speaker)
+	var speaker_name = PersonnelData.display_name_of_speaker(x.speaker)
 	var question = RichTextLabel.new()
 	question.fit_content_height = true
 	question.text = "%s:\n%s" % [speaker_name, x.text]
