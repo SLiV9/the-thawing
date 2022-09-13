@@ -31,12 +31,12 @@ options = [["Uhm...", "intro.intruder2"], ["Don't shoot!", "intro.just_kidding"]
 [intro.intruder2]
 speaker = "alex"
 text = "2..."
-options = [["", "intro.intruder1"],  ["It's not gonna shoot, is it?", "intro.intruder1"], ["Don't shoot!", "intro.just_kidding"]]
+options = [["", "intro.intruder1"],  ["Graham, some help here?", "intro.intruder1"], ["Don't shoot!", "intro.just_kidding"]]
 
 [intro.intruder1]
 speaker = "alex"
 text = "1..."
-options = [["", "intro.alex_shoots"], ["Graham, some help here?", "intro.alex_shoots"], ["Don't shoot!", "intro.just_kidding"], ["Do it. End me.", "intro.thats_dark"]]
+options = [["", "intro.alex_shoots"], ["Don't shoot!", "intro.just_kidding"], ["Do it. End me.", "intro.thats_dark"]]
 
 [intro.alex_shoots]
 speaker = "alex"

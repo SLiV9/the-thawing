@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=1]
 [ext_resource path="res://assets/characters/portraits_green.png" type="Texture" id=2]
-[ext_resource path="res://assets/characters/worker.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://assets/world/world.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -118,7 +117,7 @@ frames = SubResource( 10 )
 visible = false
 scale = Vector2( 2, 2 )
 
-[node name="ColorRect" type="ColorRect" parent="Snow"]
+[node name="Background" type="ColorRect" parent="Snow"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -127,21 +126,7 @@ margin_left = -50.0
 margin_top = -25.0
 margin_right = 50.0
 margin_bottom = 25.0
+hint_tooltip = "All you see is blinding white snow."
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
-
-[node name="Units" type="Node2D" parent="Snow"]
-
-[node name="Parker" type="AnimatedSprite" parent="Snow/Units"]
-position = Vector2( -7, 18 )
-frames = ExtResource( 3 )
-animation = "parker"
-frame = 12
-offset = Vector2( 0, -11 )
-
-[node name="Graham" type="AnimatedSprite" parent="Snow/Units"]
-position = Vector2( 9, 10 )
-frames = ExtResource( 3 )
-animation = "graham"
-offset = Vector2( 0, -11 )

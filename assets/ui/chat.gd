@@ -1,7 +1,8 @@
 extends VBoxContainer
 
 signal rewind_availability_updated(enabled)
-signal speaker_updated(speaker)
+signal cinematic_started(section_id)
+signal speaker_updated(speaker_id)
 
 onready var scroll = self.get_parent()
 onready var scrollbar = scroll.get_v_scrollbar()
@@ -31,7 +32,7 @@ func handle_dialogue(x):
 				remaining_text_fragments.append(fragment_text)
 		text = first_text
 	if x.speaker.empty():
-		# TODO set scene in camera
+		emit_signal("cinematic_started", x.current_section)
 		text = text
 	else:
 		emit_signal("speaker_updated", x.speaker)
