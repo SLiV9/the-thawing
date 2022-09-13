@@ -38,7 +38,7 @@ func _load(section):
 			"text": option[0],
 			"next_section": option[1],
 			"current_section": section,
-			"is_implicit": speaker.empty(),
+			"is_implicit": option[0].empty() or speaker.empty(),
 		})
 	return {
 		"speaker": speaker,

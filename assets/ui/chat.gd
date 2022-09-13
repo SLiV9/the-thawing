@@ -52,7 +52,10 @@ func handle_dialogue(x):
 func add_answer_options(options):
 	for option in options:
 		var link = LinkButton.new()
-		link.text = "> %s" % [option.text]
+		if option.text.empty():
+			link.text = "> CONTINUE"
+		else:
+			link.text = "> %s" % [option.text]
 		link.underline = LinkButton.UNDERLINE_MODE_NEVER
 		link.focus_mode = Control.FOCUS_ALL
 		link.connect("pressed", self, "_on_answer", [option])
@@ -63,13 +66,13 @@ func add_answer_options(options):
 		answer.add_child(link)
 		answer.add_to_group("available_answers")
 		self.add_child(answer)
-		if option.is_implicit:
+		if option.text.empty() and options.size() == 1:
 			link.grab_click_focus()
 			link.grab_focus()
 
 func add_continuation_option():
 	var option = {
-		"text": "CONTINUE",
+		"text": "",
 		"is_implicit": true,
 	}
 	add_answer_options([option])

@@ -2,6 +2,10 @@
 
 My entry for the Accessibility Jam 2022 (Hand Tremors). Made in Godot.
 
+![Thawing Logo](assets/packaging/assets\packaging\coverart_630x500.png)
+
+**Beware of spoilers in *dialogue_tree.toml*!**
+
 ## Credits
 
 A game by Sander in 't Veld. Code for *input_controller.gd* was written for a previous project.
