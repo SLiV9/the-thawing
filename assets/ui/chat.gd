@@ -9,7 +9,6 @@ onready var dimmed_text_color = self.get_color("font_color", "LinkButton")
 
 var remaining_text_fragments = []
 var stored_options = []
-var stored_next_section = null
 
 func _ready():
 	for child in self.get_children():
@@ -20,11 +19,8 @@ func _ready():
 func handle_dialogue(x):
 	emit_signal("rewind_availability_updated", DialogueTree.can_rewind())
 	var text = x.text
-	print("text = ", text)
 	if "\n" in text:
 		var first_text = ""
-		print(text)
-		print(text.split("\n"))
 		for fragment in text.split("\n"):
 			var fragment_text = fragment.strip_edges()
 			if fragment_text.empty():
@@ -36,7 +32,7 @@ func handle_dialogue(x):
 		text = first_text
 	if x.speaker.empty():
 		# TODO set scene in camera
-		pass
+		text = text
 	else:
 		emit_signal("speaker_updated", x.speaker)
 		var speaker_name = PersonnelData.display_name_of_speaker(x.speaker)
@@ -46,13 +42,12 @@ func handle_dialogue(x):
 	question.text = text
 	question.add_to_group("questions")
 	self.add_child(question)
-	stored_options = x.options
 	if remaining_text_fragments.empty():
-		$Timer.start(0.1)
+		add_answer_options(x.options)
 	else:
-		$Timer.start(2.0)
-	yield(get_tree(), "idle_frame")
-	scroll.scroll_vertical = scrollbar.max_value
+		stored_options = x.options
+		add_continuation_option()
+	scroll_to_bottom()
 
 func add_answer_options(options):
 	for option in options:
@@ -68,8 +63,16 @@ func add_answer_options(options):
 		answer.add_child(link)
 		answer.add_to_group("available_answers")
 		self.add_child(answer)
-	yield(get_tree(), "idle_frame")
-	scroll.scroll_vertical = scrollbar.max_value
+		if option.is_implicit:
+			link.grab_click_focus()
+			link.grab_focus()
+
+func add_continuation_option():
+	var option = {
+		"text": "CONTINUE",
+		"is_implicit": true,
+	}
+	add_answer_options([option])
 
 func add_continuation(text):
 	var continuation = RichTextLabel.new()
@@ -77,11 +80,25 @@ func add_continuation(text):
 	continuation.text = text
 	continuation.add_to_group("continuations")
 	self.add_child(continuation)
+	if remaining_text_fragments.empty():
+		add_answer_options(stored_options)
+	else:
+		add_continuation_option()
+	scroll_to_bottom()
+
+func scroll_to_bottom():
+	yield(get_tree(), "idle_frame")
+	scroll.scroll_vertical = scrollbar.max_value
+
 
 func _on_answer(option):
 	for child in self.get_children():
 		if child.is_in_group("available_answers"):
 			self.remove_child(child)
+	if !remaining_text_fragments.empty():
+		var text = remaining_text_fragments.pop_front()
+		add_continuation(text)
+		return
 	if option.is_implicit:
 		var gap = Control.new()
 		gap.rect_min_size.y = 20
@@ -93,8 +110,7 @@ func _on_answer(option):
 		answer.add_color_override("default_color", dimmed_text_color)
 		answer.add_to_group("given_answers")
 		self.add_child(answer)
-	stored_next_section = option.next_section
-	$Timer.start(0.1)
+	handle_dialogue(DialogueTree.next(option.next_section))
 
 
 func _on_RewindButton_pressed():
@@ -111,15 +127,3 @@ func _on_RewindButton_pressed():
 	for child in current_section_nodes:
 		self.remove_child(child)
 	handle_dialogue(DialogueTree.rewind())
-
-
-func _on_Timer_timeout():
-	if !remaining_text_fragments.empty():
-		var text = remaining_text_fragments.pop_front()
-		add_continuation(text)
-	elif !stored_options.empty():
-		add_answer_options(stored_options)
-		stored_options = []
-	elif stored_next_section != null:
-		handle_dialogue(DialogueTree.next(stored_next_section))
-		stored_next_section = null
