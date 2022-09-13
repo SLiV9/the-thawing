@@ -1,10 +1,9 @@
 # Thawing
 
 My entry for the Accessibility Jam 2022 (Hand Tremors). Made in Godot.
+**Beware of spoilers (*dialogue_tree.toml*)!**
 
-![Thawing Logo](assets/packaging/assets\packaging\coverart_630x500.png)
-
-**Beware of spoilers in *dialogue_tree.toml*!**
+![Thawing Logo](assets/packaging/coverart_630x500.png)
 
 ## Credits
 
