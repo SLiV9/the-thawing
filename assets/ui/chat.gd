@@ -50,6 +50,10 @@ func handle_dialogue(x):
 		question.text = text
 		question.add_to_group("questions")
 		self.add_child(question)
+	else:
+		var gap = Control.new()
+		gap.add_to_group("questions")
+		self.add_child(gap)
 	if remaining_text_fragments.empty():
 		add_answer_options(x.options)
 	else:
@@ -139,4 +143,6 @@ func _on_RewindButton_pressed():
 		self.remove_child(child)
 	for child in current_section_nodes:
 		self.remove_child(child)
+	stored_options = []
+	remaining_text_fragments = []
 	handle_dialogue(DialogueTree.rewind())
