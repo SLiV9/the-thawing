@@ -34,3 +34,31 @@ func goto_main_menu():
 		"res://assets/menus/main_menu.tscn")
 	if err != OK:
 		pass
+
+
+func _on_Camera_cinematic_started(visual_description):
+	if visual_description.empty():
+		return
+	print(visual_description)
+	$ScreenReader.TTS.speak(visual_description, false)
+
+
+func _on_Chat_speaker_introduced(id):
+	var visual_description = PersonnelData.visual_description_of_speaker(id)
+	print(visual_description)
+	$ScreenReader.TTS.speak(visual_description, false)
+
+
+func _on_Chat_text_added(speaker_id, text):
+	if text.empty():
+		return
+	var audio_description = text
+	if not speaker_id.empty():
+		var speaker_name = PersonnelData.display_name_of_speaker(speaker_id)
+		audio_description = "%s: %s" % [speaker_name, audio_description]
+	print(audio_description)
+	$ScreenReader.TTS.speak(audio_description, false)
+
+
+func _on_Chat_speech_interrupted():
+	$ScreenReader.TTS.stop()

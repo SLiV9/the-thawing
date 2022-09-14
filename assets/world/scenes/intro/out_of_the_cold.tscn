@@ -1,9 +1,49 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/characters/worker.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/characters/graham.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://assets/characters/parker.tres" type="SpriteFrames" id=2]
 
 [sub_resource type="Animation" id=1]
+resource_name = "walk"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -7, 18 ), Vector2( -7, 18 ), Vector2( 53, -12 ), Vector2( 63, -18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "idle", "walking" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
 resource_name = "walk"
 length = 3.0
 tracks/0/type = "value"
@@ -16,7 +56,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -57, 43 ), Vector2( -7, 18 ) ]
+"values": [ Vector2( 9, 10 ), Vector2( 69, -20 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:animation")
@@ -55,7 +95,7 @@ margin_left = -50.0
 margin_top = -25.0
 margin_right = 50.0
 margin_bottom = 25.0
-hint_tooltip = "A figure with a white beard and orange knit cap is standing in the snow. You approach them."
+hint_tooltip = "Graham turns and walks towards the facility. You follow them."
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -63,9 +103,9 @@ __meta__ = {
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Parker" type="AnimatedSprite" parent="Units"]
-position = Vector2( -57, 43 )
+position = Vector2( -7, 18 )
 frames = ExtResource( 2 )
-animation = "walking"
+animation = "idle"
 playing = true
 offset = Vector2( 0, -11 )
 
@@ -76,5 +116,11 @@ anims/walk = SubResource( 1 )
 [node name="Graham" type="AnimatedSprite" parent="Units"]
 position = Vector2( 9, 10 )
 frames = ExtResource( 1 )
-animation = "graham"
+animation = "walking"
+frame = 3
+playing = true
 offset = Vector2( 0, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Units/Graham"]
+autoplay = "walk"
+anims/walk = SubResource( 7 )

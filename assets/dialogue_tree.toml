@@ -15,6 +15,7 @@ options = [["", "intro.greeting"]]
 
 [intro.greeting]
 speaker = "graham"
+speaker_is_new = true
 text = "Hello there! \n You must be the new arrival. Parker, right?"
 options = [["Yes.", "intro.im_graham"], ["That's me.", "intro.im_graham"], ["I guess so.", "intro.im_graham"]]
 
@@ -35,8 +36,9 @@ options = [["", "intro.intruder"]]
 
 [intro.intruder]
 speaker = "alex"
+speaker_is_new = true
 text = "Intruder detected! Eliminating in 3..."
-options = [["Uhm...", "intro.intruder2"], ["Don't shoot!", "intro.just_kidding"]]
+options = [["Uhm...", "intro.intruder2"]]
 
 [intro.intruder2]
 speaker = "alex"
@@ -55,7 +57,7 @@ options = [["", "intro.just_kidding"]]
 
 [intro.thats_dark]
 speaker = "alex"
-text = "Woah, that's dark. I was just messing with you."
+text = "Woah, that's dark. \n I was just messing with you."
 options = [["And who are you?", "intro.im_alex"]]
 
 [intro.just_kidding]

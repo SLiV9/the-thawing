@@ -2,7 +2,10 @@ extends VBoxContainer
 
 signal rewind_availability_updated(enabled)
 signal cinematic_started(section_id)
+signal speech_interrupted()
 signal speaker_updated(speaker_id)
+signal speaker_introduced(speaker_id)
+signal text_added(speaker_id, text)
 
 onready var scroll = self.get_parent()
 onready var scrollbar = scroll.get_v_scrollbar()
@@ -37,17 +40,13 @@ func handle_dialogue(x):
 			else:
 				remaining_text_fragments.append(fragment_text)
 		text = first_text
-	if x.speaker.empty():
-		emit_signal("cinematic_started", x.current_section)
-		text = text
-	else:
-		emit_signal("speaker_updated", x.speaker)
-		var speaker_name = PersonnelData.display_name_of_speaker(x.speaker)
-		text = "%s:\n%s" % [speaker_name, text]
 	if !text.empty():
 		var question = RichTextLabel.new()
 		question.fit_content_height = true
 		question.text = text
+		if not x.speaker.empty():
+			var speaker_name = PersonnelData.display_name_of_speaker(x.speaker)
+			question.text = "%s:\n%s" % [speaker_name, text]
 		question.add_to_group("questions")
 		self.add_child(question)
 	else:
@@ -60,6 +59,16 @@ func handle_dialogue(x):
 		stored_options = x.options
 		add_continuation_option()
 	scroll_to_bottom()
+	yield(get_tree(), "idle_frame")
+	emit_signal("speech_interrupted")
+	if x.speaker.empty():
+		emit_signal("cinematic_started", x.current_section)
+		emit_signal("text_added", "", text)
+	else:
+		emit_signal("speaker_updated", x.speaker)
+		if x.speaker_is_new:
+			emit_signal("speaker_introduced", x.speaker)
+		emit_signal("text_added", x.speaker, text)
 
 func add_answer_options(options):
 	for option in options:
@@ -102,6 +111,9 @@ func add_continuation(text):
 	else:
 		add_continuation_option()
 	scroll_to_bottom()
+	yield(get_tree(), "idle_frame")
+	emit_signal("speech_interrupted")
+	emit_signal("text_added", "", text)
 
 func scroll_to_bottom():
 	yield(get_tree(), "idle_frame")

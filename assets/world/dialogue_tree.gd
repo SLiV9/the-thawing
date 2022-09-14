@@ -40,8 +40,10 @@ func _load(section):
 			"current_section": section,
 			"is_implicit": option[0].empty() or speaker.empty(),
 		})
+	var speaker_is_new = data.get_value(section, "speaker_is_new", false)
 	return {
 		"speaker": speaker,
+		"speaker_is_new": speaker_is_new,
 		"text": text,
 		"options": options,
 		"current_section": section,

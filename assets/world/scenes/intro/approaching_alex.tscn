@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/characters/graham.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/characters/parker.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://assets/characters/alex.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://assets/world/tiled_floor.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=7]
+resource_name = "walk"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -67, 38 ), Vector2( -17, 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walking", "idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "walk"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -57, 43 ), Vector2( -7, 18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walking", "idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 9, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "idle", "aiming" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Snow" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+hint_tooltip = "You and Graham walk up to a black robot, who raises their weapons at you."
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Graham" type="AnimatedSprite" parent="Units"]
+position = Vector2( -17, 13 )
+frames = ExtResource( 1 )
+animation = "idle"
+playing = true
+offset = Vector2( 0, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Units/Graham"]
+autoplay = "walk"
+anims/walk = SubResource( 7 )
+
+[node name="Parker" type="AnimatedSprite" parent="Units"]
+position = Vector2( -57, 43 )
+frames = ExtResource( 2 )
+animation = "walking"
+playing = true
+offset = Vector2( 0, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Units/Parker"]
+autoplay = "walk"
+anims/walk = SubResource( 1 )
+
+[node name="Alex" type="AnimatedSprite" parent="Units"]
+position = Vector2( 9, 9 )
+frames = ExtResource( 3 )
+animation = "idle"
+playing = true
+offset = Vector2( 0, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Units/Alex"]
+autoplay = "walk"
+anims/walk = SubResource( 9 )
