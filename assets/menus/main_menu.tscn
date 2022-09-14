@@ -143,28 +143,27 @@ __meta__ = {
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
-margin_right = 433.0
+margin_right = 435.0
 margin_bottom = 66.0
 size_flags_horizontal = 3
 
 [node name="MiddleContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 437.0
-margin_right = 547.0
+margin_left = 439.0
+margin_right = 545.0
 margin_bottom = 66.0
-rect_min_size = Vector2( 110, 0 )
 custom_constants/separation = 10
 alignment = 2
 
 [node name="FakeStartButton" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MiddleContainer"]
 margin_top = 38.0
-margin_right = 110.0
+margin_right = 106.0
 margin_bottom = 66.0
 mouse_default_cursor_shape = 8
 custom_colors/font_color = Color( 0.160784, 0.584314, 0.698039, 1 )
 text = "> START"
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 551.0
+margin_left = 549.0
 margin_right = 780.0
 margin_bottom = 66.0
 size_flags_horizontal = 3
@@ -241,21 +240,20 @@ __meta__ = {
 
 [node name="Control2" type="Control" parent="Buttons/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
-margin_right = 433.0
+margin_right = 435.0
 margin_bottom = 66.0
 size_flags_horizontal = 3
 
 [node name="MiddleContainer" type="VBoxContainer" parent="Buttons/VBoxContainer/HBoxContainer"]
-margin_left = 437.0
-margin_right = 547.0
+margin_left = 439.0
+margin_right = 545.0
 margin_bottom = 66.0
-rect_min_size = Vector2( 110, 0 )
 custom_constants/separation = 10
 alignment = 2
 
 [node name="StartButton" type="LinkButton" parent="Buttons/VBoxContainer/HBoxContainer/MiddleContainer"]
 margin_top = 38.0
-margin_right = 110.0
+margin_right = 106.0
 margin_bottom = 66.0
 focus_mode = 2
 custom_styles/focus = SubResource( 4 )
@@ -263,7 +261,7 @@ text = "> START"
 underline = 2
 
 [node name="Control3" type="Control" parent="Buttons/VBoxContainer/HBoxContainer"]
-margin_left = 551.0
+margin_left = 549.0
 margin_right = 780.0
 margin_bottom = 66.0
 size_flags_horizontal = 3

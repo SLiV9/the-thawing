@@ -17,6 +17,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 is_first_launch_window = true
 
 [node name="ScreenReader" type="Node" parent="."]
@@ -57,29 +60,35 @@ margin_bottom = 522.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
-margin_left = 292.0
-margin_top = 148.0
-margin_right = 692.0
-margin_bottom = 373.0
+margin_left = 215.0
+margin_top = 129.0
+margin_right = 768.0
+margin_bottom = 393.0
 rect_min_size = Vector2( 400, 0 )
 custom_constants/separation = 20
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 400.0
+margin_right = 553.0
 margin_bottom = 29.0
 text = "Accessibility Settings"
 fit_content_height = true
 
 [node name="ScreenReaderCheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 49.0
-margin_right = 400.0
+margin_right = 553.0
 margin_bottom = 89.0
 text = "Menu Narration"
 
-[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="RemovePrefixCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 109.0
-margin_right = 400.0
-margin_bottom = 225.0
+margin_right = 553.0
+margin_bottom = 157.0
+text = "Remove button prefix (>, \"greater\")"
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 177.0
+margin_right = 553.0
+margin_bottom = 264.0
 text = "These settings, as well as additional settings, can be changed later from the Settings menu."
 fit_content_height = true
 
@@ -106,4 +115,6 @@ text = "> SAVE AND CONTINUE"
 underline = 2
 
 [connection signal="toggled" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/ScreenReaderCheckButton" to="." method="_on_ScreenReaderCheckButton_toggled"]
+[connection signal="ready" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_toggled"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MiddleContainer/SaveAndContinueButton" to="." method="_on_SaveAndContinueButton_pressed"]

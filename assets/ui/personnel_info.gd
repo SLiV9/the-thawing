@@ -13,6 +13,8 @@ var selected = null
 var dead_workers = []
 
 func _ready():
+	var settings = Settings.new()
+	settings.load_all()
 	menu.visible = is_online
 	overview.visible = false
 	details.visible = false
@@ -23,6 +25,7 @@ func _ready():
 		link.underline = LinkButton.UNDERLINE_MODE_NEVER
 		link.focus_mode = Control.FOCUS_ALL
 		link.connect("pressed", self, "_on_selected", [id])
+		settings.apply_accessibility_to_button(link)
 		var answer = MarginContainer.new()
 		answer.add_constant_override("margin_top", 2)
 		answer.add_constant_override("margin_bottom", 2)

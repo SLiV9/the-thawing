@@ -18,6 +18,10 @@ func _ready():
 		PersonnelData.data.set_value("alex", "speaker_name", "ALEX")
 	else:
 		PersonnelData.data.set_value("alex", "speaker_name", "AL3X")
+	settings.apply_accessibility_to_button(find_node("ListButton"))
+	settings.apply_accessibility_to_button(find_node("BackButton"))
+	settings.apply_accessibility_to_button(find_node("RewindButton"))
+	settings.apply_accessibility_to_button(find_node("StopButton"))
 
 
 func _on_StopButton_pressed():

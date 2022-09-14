@@ -23,6 +23,7 @@ _global_script_class_icons={
 config/name="Thawing"
 run/main_scene="res://assets/menus/main_menu.tscn"
 config/icon="res://assets/packaging/icon.png"
+config/windows_native_icon="res://assets/packaging/icon.ico"
 
 [autoload]
 

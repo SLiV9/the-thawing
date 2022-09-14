@@ -26,6 +26,8 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
+	settings.apply_accessibility_to_button(find_node("SaveAndContinueButton"))
+	settings.apply_accessibility_to_button(find_node("DiscardAndContinueButton"))
 
 
 func save_and_exit():
@@ -43,6 +45,12 @@ func exit():
 	if err != OK:
 		pass
 
+func initialize_checkbox(section, item, node_name):
+	if settings.get_value(section, item, false):
+		var checkbox = find_node(node_name)
+		if checkbox != null:
+			checkbox.set_pressed_no_signal(true)
+
 
 func _on_SaveAndContinueButton_pressed():
 	save_and_exit()
@@ -59,3 +67,12 @@ func _on_ScreenReaderCheckButton_toggled(button_pressed):
 
 func _on_DiscardAndContinueButton_pressed():
 	exit()
+
+
+func _on_RemovePrefixCheckBox_toggled(button_pressed):
+	settings.set_value("accessibility", "remove_button_prefix", button_pressed)
+
+
+func _on_RemovePrefixCheckBox_ready():
+	initialize_checkbox("accessibility", "remove_button_prefix",
+		"RemovePrefixCheckBox")

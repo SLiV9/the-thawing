@@ -25,6 +25,12 @@ func _ready():
 	if OS.has_feature("HTML5"):
 		find_node("QuitButton").visible = false
 		find_node("FakeQuitButton").visible = false
+	settings.apply_accessibility_to_button(find_node("StartButton"))
+	settings.apply_accessibility_to_button(find_node("SettingsButton"))
+	settings.apply_accessibility_to_button(find_node("QuitButton"))
+	settings.apply_accessibility_to_button(find_node("FakeStartButton"))
+	settings.apply_accessibility_to_button(find_node("FakeSettingsButton"))
+	settings.apply_accessibility_to_button(find_node("FakeQuitButton"))
 	randomize()
 
 func goto_first_launch_settings_menu():
