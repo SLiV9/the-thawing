@@ -28,6 +28,9 @@ func _ready():
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
 	if settings.get_value("accessibility", "input_cooldown_enabled", true):
+		var checkbutton = find_node("InputCooldownCheckButton")
+		if checkbutton != null:
+			checkbutton.set_pressed_no_signal(true)
 		$InputLimiter.is_enabled = true
 		$InputLimiter.trigger()
 	settings.apply_accessibility_to_button(find_node("SaveAndContinueButton"))
@@ -103,8 +106,7 @@ func _on_RemovePeriodsCheckBox_ready():
 
 
 func _on_InputCooldownCheckButton_ready():
-	initialize_checkbox("accessibility", "input_cooldown_enabled",
-		"InputCooldownCheckButton")
+	pass
 
 
 func _on_InputCooldownCheckButton_toggled(button_pressed):

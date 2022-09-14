@@ -94,8 +94,6 @@ animations = [ {
 current = true
 script = ExtResource( 4 )
 
-[node name="Snow" parent="." instance=ExtResource( 3 )]
-
 [node name="FaceCam" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
 
@@ -115,3 +113,5 @@ __meta__ = {
 
 [node name="Face" type="AnimatedSprite" parent="FaceCam"]
 frames = SubResource( 10 )
+
+[node name="Snow" parent="." instance=ExtResource( 3 )]
