@@ -24,6 +24,23 @@ func _ready():
 	settings.apply_accessibility_to_button(find_node("StopButton"))
 
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		var button = find_node("StopButton")
+		button.grab_click_focus()
+		button.grab_focus()
+	elif event.is_action_pressed("focus_rewind_button"):
+		var button = find_node("RewindButton")
+		button.grab_click_focus()
+		button.grab_focus()
+	elif event.is_action_pressed("focus_personnel_files"):
+		var pfiles = find_node("PersonnelInfo")
+		var element = $ScreenReader.find_focusable_control(pfiles)
+		if element != null:
+			element.grab_click_focus()
+			element.grab_focus()
+
+
 func _on_StopButton_pressed():
 	# TODO save progress
 	goto_main_menu()

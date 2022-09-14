@@ -124,7 +124,7 @@ custom_fonts/italics_font = SubResource( 3 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center][i]  [/i]THAWING[/center]"
-text = "  THAWING"
+text = "[center][i]  [/i]THAWING[/center]"
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

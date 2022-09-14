@@ -9,6 +9,7 @@ var settings = Settings.new()
 func _init():
 	settings.load_all()
 
+
 func _ready():
 	if settings.has_section_key("interface", "text_size"):
 		var text_size = settings.get_value("interface", "text_size")
@@ -29,6 +30,12 @@ func _ready():
 	settings.apply_accessibility_to_button(find_node("SaveAndContinueButton"))
 	settings.apply_accessibility_to_button(find_node("DiscardAndContinueButton"))
 
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		var button = find_node("SaveAndContinueButton")
+		button.grab_click_focus()
+		button.grab_focus()
 
 func save_and_exit():
 	settings.set_value("accessibility", "screen_reader_enabled",

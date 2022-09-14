@@ -26,6 +26,32 @@ func _ready():
 			self.remove_child(child)
 	handle_dialogue(DialogueTree.start())
 
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_select") and self.get_focus_owner() == null:
+		select_nth_answer(0)
+	elif event.is_action_pressed("focus_answer1"):
+		select_nth_answer(0)
+	elif event.is_action_pressed("focus_answer2"):
+		select_nth_answer(1)
+	elif event.is_action_pressed("focus_answer3"):
+		select_nth_answer(2)
+
+
+func select_nth_answer(n):
+	for child in self.get_children():
+		if child.is_in_group("available_answers"):
+			if n > 0:
+				n -= 1
+				continue
+			var button = child
+			if not button is Button:
+				button = button.get_child(0)
+			button.grab_click_focus()
+			button.grab_focus()
+			return
+
+
 func handle_dialogue(x):
 	emit_signal("rewind_availability_updated", DialogueTree.can_rewind())
 	var text = x.text

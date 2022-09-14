@@ -4,6 +4,7 @@ signal cinematic_started(visual_description)
 
 onready var world = self.find_node("World")
 
+
 func switch_to_cinematic(section_id):
 	world.switch_to_cinematic(section_id)
 	material.set_shader_param("discolor", true)
