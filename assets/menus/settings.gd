@@ -22,3 +22,5 @@ func apply_accessibility_to_button(button):
 		var text = button.text.replace(">", "").replace("<", "")
 		text = text.replace("[", "").replace("]", "")
 		button.text = text.strip_edges()
+	if self.get_value("accessibility", "remove_button_periods", false):
+		button.text = button.text.replace(".", "")

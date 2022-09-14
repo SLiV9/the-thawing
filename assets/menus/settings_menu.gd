@@ -83,3 +83,12 @@ func _on_RemovePrefixCheckBox_toggled(button_pressed):
 func _on_RemovePrefixCheckBox_ready():
 	initialize_checkbox("accessibility", "remove_button_prefix",
 		"RemovePrefixCheckBox")
+
+
+func _on_RemovePeriodsCheckBox_toggled(button_pressed):
+	settings.set_value("accessibility", "remove_button_periods", button_pressed)
+
+
+func _on_RemovePeriodsCheckBox_ready():
+	initialize_checkbox("accessibility", "remove_button_periods",
+		"RemovePeriodsCheckBox")

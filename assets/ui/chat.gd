@@ -14,13 +14,10 @@ onready var dimmed_text_color = self.get_color("font_color", "LinkButton")
 var remaining_text_fragments = []
 var stored_options = []
 
-var _remove_button_prefix = false
+var settings = Settings.new()
 
 func _ready():
-	var settings = Settings.new()
 	settings.load_all()
-	_remove_button_prefix = settings.get_value(
-		"accessibility", "remove_button_prefix", false)
 	for child in self.get_children():
 		if not child is Timer:
 			self.remove_child(child)
@@ -101,12 +98,13 @@ func add_answer_options(options):
 		var link = LinkButton.new()
 		var text = option.text
 		if text.empty():
-			text = "CONTINUE"
-		if !_remove_button_prefix:
+			text = "> CONTINUE"
+		else:
 			text = "> %s" % [text]
 		link.text = text
 		link.underline = LinkButton.UNDERLINE_MODE_NEVER
 		link.focus_mode = Control.FOCUS_ALL
+		settings.apply_accessibility_to_button(link)
 		link.connect("pressed", self, "_on_answer", [option])
 		var answer = MarginContainer.new()
 		answer.add_constant_override("margin_top", 2)
