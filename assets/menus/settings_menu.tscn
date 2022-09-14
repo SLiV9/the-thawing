@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/menus/settings_menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/ui.theme" type="Theme" id=3]
+[ext_resource path="res://assets/ui/input_limiter.tscn" type="PackedScene" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [node name="SettingsMenu" type="Control"]
 anchor_right = 1.0
@@ -17,6 +24,8 @@ __meta__ = {
 pause_mode = 2
 script = ExtResource( 1 )
 logging = false
+
+[node name="InputLimiter" parent="." instance=ExtResource( 4 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -70,42 +79,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
 margin_right = 920.0
 margin_bottom = 441.0
-size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer"]
+margin_left = 168.0
+margin_right = 752.0
+margin_bottom = 441.0
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 1 )
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer"]
-margin_right = 586.0
-margin_bottom = 177.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 580.0
+margin_bottom = 205.0
 rect_min_size = Vector2( 400, 0 )
 
-[node name="Title" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer"]
-margin_right = 586.0
+[node name="Title" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 576.0
 margin_bottom = 29.0
 text = "Accessibility Settings"
 fit_content_height = true
 
-[node name="ScreenReaderCheckButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer"]
+[node name="ScreenReaderCheckButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 33.0
-margin_right = 586.0
+margin_right = 576.0
 margin_bottom = 73.0
-text = "Menu Narration"
+text = "Menu narration"
 
-[node name="RemovePrefixCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer"]
+[node name="RemovePrefixCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 77.0
-margin_right = 586.0
-margin_bottom = 125.0
+margin_right = 576.0
+margin_bottom = 115.0
 text = "Remove button prefix (>, \"greater\")"
 
-[node name="RemovePeriodsCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer"]
-margin_top = 129.0
-margin_right = 586.0
-margin_bottom = 177.0
+[node name="RemovePeriodsCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 119.0
+margin_right = 576.0
+margin_bottom = 157.0
 text = "Remove noisy periods from buttons (.)"
+
+[node name="InputCooldownCheckButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 161.0
+margin_right = 576.0
+margin_bottom = 201.0
+text = "Input cooldown (0.5 seconds)"
 
 [node name="Details" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
 margin_top = 449.0
@@ -146,10 +170,12 @@ focus_mode = 2
 text = "< BACK"
 underline = 2
 
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer/ScreenReaderCheckButton" to="." method="_on_ScreenReaderCheckButton_toggled"]
-[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_ready"]
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_toggled"]
-[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer/RemovePeriodsCheckBox" to="." method="_on_RemovePeriodsCheckBox_ready"]
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/ScrollContainer/VBoxContainer/RemovePeriodsCheckBox" to="." method="_on_RemovePeriodsCheckBox_toggled"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ScreenReaderCheckButton" to="." method="_on_ScreenReaderCheckButton_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePeriodsCheckBox" to="." method="_on_RemovePeriodsCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePeriodsCheckBox" to="." method="_on_RemovePeriodsCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputCooldownCheckButton" to="." method="_on_InputCooldownCheckButton_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputCooldownCheckButton" to="." method="_on_InputCooldownCheckButton_toggled"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer/SaveAndContinueButton" to="." method="_on_SaveAndContinueButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer2/DiscardAndContinueButton" to="." method="_on_DiscardAndContinueButton_pressed"]

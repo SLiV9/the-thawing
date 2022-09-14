@@ -18,6 +18,9 @@ func _ready():
 		PersonnelData.data.set_value("alex", "speaker_name", "ALEX")
 	else:
 		PersonnelData.data.set_value("alex", "speaker_name", "AL3X")
+	if settings.get_value("accessibility", "input_cooldown_enabled", true):
+		$InputLimiter.is_enabled = true
+		$InputLimiter.trigger()
 	settings.apply_accessibility_to_button(find_node("ListButton"))
 	settings.apply_accessibility_to_button(find_node("BackButton"))
 	settings.apply_accessibility_to_button(find_node("RewindButton"))
@@ -54,17 +57,23 @@ func goto_main_menu():
 
 
 func _on_Camera_cinematic_started(visual_description):
+	if not $ScreenReader.enabled:
+		return
 	if visual_description.empty():
 		return
 	$ScreenReader.TTS.speak(visual_description, false)
 
 
 func _on_Chat_speaker_introduced(id):
+	if not $ScreenReader.enabled:
+		return
 	var visual_description = PersonnelData.visual_description_of_speaker(id)
 	$ScreenReader.TTS.speak(visual_description, false)
 
 
 func _on_Chat_text_added(speaker_id, text):
+	if not $ScreenReader.enabled:
+		return
 	if text.empty():
 		return
 	var audio_description = text
@@ -75,4 +84,6 @@ func _on_Chat_text_added(speaker_id, text):
 
 
 func _on_Chat_speech_interrupted():
+	if not $ScreenReader.enabled:
+		return
 	$ScreenReader.TTS.stop()

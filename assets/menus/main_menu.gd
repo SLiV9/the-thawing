@@ -22,6 +22,9 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
+	if settings.get_value("accessibility", "input_cooldown_enabled", true):
+		$InputLimiter.is_enabled = true
+		$InputLimiter.trigger()
 	if OS.has_feature("HTML5"):
 		find_node("QuitButton").visible = false
 		find_node("FakeQuitButton").visible = false
@@ -57,11 +60,14 @@ func quit_game():
 
 func _on_StartButton_pressed():
 	goto_gameplay()
+	$InputLimiter.trigger()
 
 
 func _on_SettingsButton_pressed():
 	goto_settings_menu()
+	$InputLimiter.trigger()
 
 
 func _on_QuitButton_pressed():
 	quit_game()
+	$InputLimiter.trigger()

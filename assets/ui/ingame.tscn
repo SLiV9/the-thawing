@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/ui/chat.gd" type="Script" id=10]
 [ext_resource path="res://assets/ui/rewind_button.gd" type="Script" id=11]
 [ext_resource path="res://assets/ui/personnel_info.gd" type="Script" id=12]
+[ext_resource path="res://assets/ui/input_limiter.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 5 )
@@ -149,6 +150,8 @@ __meta__ = {
 pause_mode = 2
 script = ExtResource( 1 )
 logging = false
+
+[node name="InputLimiter" parent="." instance=ExtResource( 13 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

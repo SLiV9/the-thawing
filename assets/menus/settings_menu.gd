@@ -27,6 +27,9 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
+	if settings.get_value("accessibility", "input_cooldown_enabled", true):
+		$InputLimiter.is_enabled = true
+		$InputLimiter.trigger()
 	settings.apply_accessibility_to_button(find_node("SaveAndContinueButton"))
 	settings.apply_accessibility_to_button(find_node("DiscardAndContinueButton"))
 
@@ -61,6 +64,7 @@ func initialize_checkbox(section, item, node_name):
 
 func _on_SaveAndContinueButton_pressed():
 	save_and_exit()
+	$InputLimiter.trigger()
 
 
 func _on_ScreenReaderCheckButton_toggled(button_pressed):
@@ -70,14 +74,17 @@ func _on_ScreenReaderCheckButton_toggled(button_pressed):
 	# This causes the screen reader to read out the value.
 	find_node("SaveAndContinueButton").grab_focus()
 	find_node("ScreenReaderCheckButton").grab_focus()
+	$InputLimiter.trigger()
 
 
 func _on_DiscardAndContinueButton_pressed():
 	exit()
+	$InputLimiter.trigger()
 
 
 func _on_RemovePrefixCheckBox_toggled(button_pressed):
 	settings.set_value("accessibility", "remove_button_prefix", button_pressed)
+	$InputLimiter.trigger()
 
 
 func _on_RemovePrefixCheckBox_ready():
@@ -87,8 +94,20 @@ func _on_RemovePrefixCheckBox_ready():
 
 func _on_RemovePeriodsCheckBox_toggled(button_pressed):
 	settings.set_value("accessibility", "remove_button_periods", button_pressed)
+	$InputLimiter.trigger()
 
 
 func _on_RemovePeriodsCheckBox_ready():
 	initialize_checkbox("accessibility", "remove_button_periods",
 		"RemovePeriodsCheckBox")
+
+
+func _on_InputCooldownCheckButton_ready():
+	initialize_checkbox("accessibility", "input_cooldown_enabled",
+		"InputCooldownCheckButton")
+
+
+func _on_InputCooldownCheckButton_toggled(button_pressed):
+	settings.set_value("accessibility", "input_cooldown_enabled", button_pressed)
+	$InputLimiter.is_enabled = button_pressed
+	$InputLimiter.trigger()
