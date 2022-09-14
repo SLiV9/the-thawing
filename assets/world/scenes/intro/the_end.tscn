@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/menus/flag_of_antarctica.png" type="Texture" id=1]
+
+[node name="Snow" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+hint_tooltip = "Thank you for playing this unfinished game."
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
