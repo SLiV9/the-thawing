@@ -7,6 +7,8 @@ signal speaker_updated(speaker_id)
 signal speaker_introduced(speaker_id)
 signal text_added(speaker_id, text)
 signal button_created(button)
+signal rewind_activated()
+signal activation_failed()
 
 onready var scroll = self.get_parent()
 onready var scrollbar = scroll.get_v_scrollbar()
@@ -41,6 +43,11 @@ func _unhandled_input(event):
 		select_nth_answer(1)
 	elif event.is_action_pressed("focus_answer3"):
 		select_nth_answer(2)
+	elif event.is_action_pressed("rewind"):
+		if DialogueTree.can_rewind():
+			do_rewind()
+		else:
+			emit_signal("activation_failed")
 
 
 func select_nth_answer(n):
@@ -187,6 +194,11 @@ func _on_answer(option):
 
 
 func _on_RewindButton_pressed():
+	do_rewind()
+
+
+func do_rewind():
+	emit_signal("rewind_activated")
 	var current_section_nodes = []
 	var previous_section_nodes = []
 	for child in self.get_children():

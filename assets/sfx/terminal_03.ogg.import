@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/terminal_03.ogg-8759bd8834c706681e1f7815ecba7181.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/terminal_03.ogg"
+dest_files=[ "res://.import/terminal_03.ogg-8759bd8834c706681e1f7815ecba7181.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

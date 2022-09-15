@@ -30,10 +30,6 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_escape"):
 		save_and_exit()
-	elif event.is_action_pressed("focus_rewind_button"):
-		var button = find_node("RewindButton")
-		button.grab_click_focus()
-		button.grab_focus()
 	elif event.is_action_pressed("focus_personnel_files"):
 		var pfiles = find_node("PersonnelInfo")
 		var element = $ScreenReader.find_focusable_control(pfiles)
@@ -76,9 +72,10 @@ func _on_Chat_speaker_introduced(id):
 
 
 func _on_Chat_text_added(speaker_id, text):
-	if not $ScreenReader.enabled:
-		return
 	if text.empty():
+		return
+	if not $ScreenReader.enabled:
+		$NewChatSfx.play()
 		return
 	var audio_description = text
 	if not speaker_id.empty():
@@ -99,3 +96,11 @@ func _on_PersonnelInfo_button_created(button):
 
 func _on_Chat_button_created(button):
 	settings.apply_accessibility_to_button(button, $InputLimiter)
+
+
+func _on_Chat_rewind_activated():
+	$UndoSfx.play()
+
+
+func _on_Chat_activation_failed():
+	$ButtonFailSfx.play()
