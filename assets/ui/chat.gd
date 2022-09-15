@@ -20,7 +20,16 @@ func _ready():
 	for child in self.get_children():
 		if not child is Timer:
 			self.remove_child(child)
-	handle_dialogue(DialogueTree.start())
+	if DialogueTree.can_fast_forward():
+		var section = DialogueTree.fast_forward_start()
+		while DialogueTree.can_fast_forward():
+			var answer_offset = DialogueTree.fast_forward_answer_offset()
+			handle_dialogue(section, answer_offset)
+			section = DialogueTree.fast_forward_next()
+		DialogueTree.fast_forward_end()
+		handle_dialogue(section)
+	else:
+		handle_dialogue(DialogueTree.start())
 
 
 func _unhandled_input(event):
@@ -48,7 +57,7 @@ func select_nth_answer(n):
 			return
 
 
-func handle_dialogue(x):
+func handle_dialogue(x, fast_forward_answer_offset = null):
 	emit_signal("rewind_availability_updated", DialogueTree.can_rewind())
 	var text = x.text
 	if "\n" in text:
@@ -75,6 +84,13 @@ func handle_dialogue(x):
 		var gap = Control.new()
 		gap.add_to_group("questions")
 		self.add_child(gap)
+	if fast_forward_answer_offset != null:
+		for fragment in remaining_text_fragments:
+			add_continuation(fragment, true)
+		remaining_text_fragments = []
+		var option = x.options[fast_forward_answer_offset]
+		add_answer_from_option(option)
+		return
 	if remaining_text_fragments.empty():
 		add_answer_options(x.options)
 	else:
@@ -123,13 +139,15 @@ func add_continuation_option():
 	}
 	add_answer_options([option])
 
-func add_continuation(text):
+func add_continuation(text, is_fast_forward = false):
 	var continuation = RichTextLabel.new()
 	continuation.fit_content_height = true
 	continuation.text = text
 	continuation.add_to_group("continuations")
 	self.add_child(continuation)
-	if remaining_text_fragments.empty():
+	if is_fast_forward:
+		return
+	elif remaining_text_fragments.empty():
 		add_answer_options(stored_options)
 	else:
 		add_continuation_option()
@@ -137,6 +155,19 @@ func add_continuation(text):
 	yield(get_tree(), "idle_frame")
 	emit_signal("speech_interrupted")
 	emit_signal("text_added", "", text)
+
+func add_answer_from_option(option):
+	if option.is_implicit:
+		var gap = Control.new()
+		gap.rect_min_size.y = 20
+		self.add_child(gap)
+	else:
+		var answer = RichTextLabel.new()
+		answer.fit_content_height = true
+		answer.text = "YOU:\n%s" % [option.text]
+		answer.add_color_override("default_color", dimmed_text_color)
+		answer.add_to_group("given_answers")
+		self.add_child(answer)
 
 func scroll_to_bottom():
 	yield(get_tree(), "idle_frame")
@@ -151,18 +182,8 @@ func _on_answer(option):
 		var text = remaining_text_fragments.pop_front()
 		add_continuation(text)
 		return
-	if option.is_implicit:
-		var gap = Control.new()
-		gap.rect_min_size.y = 20
-		self.add_child(gap)
-	else:
-		var answer = RichTextLabel.new()
-		answer.fit_content_height = true
-		answer.text = "YOU:\n%s" % [option.text]
-		answer.add_color_override("default_color", dimmed_text_color)
-		answer.add_to_group("given_answers")
-		self.add_child(answer)
-	handle_dialogue(DialogueTree.next(option.next_section))
+	add_answer_from_option(option)
+	handle_dialogue(DialogueTree.next(option))
 
 
 func _on_RewindButton_pressed():

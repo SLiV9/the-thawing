@@ -26,6 +26,9 @@ func _ready():
 	if OS.has_feature("HTML5"):
 		find_node("QuitButton").visible = false
 		find_node("FakeQuitButton").visible = false
+	if DialogueTree.can_fast_forward():
+		find_node("StartButton").text = "> CONTINUE"
+		find_node("FakeStartButton").text = "> CONTINUE"
 	settings.apply_accessibility_to_button(find_node("StartButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("SettingsButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("QuitButton"), $InputLimiter)

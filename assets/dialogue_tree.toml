@@ -5,7 +5,7 @@ options = [["", "intro.facility"]]
 
 [intro.facility]
 speaker = ""
-text = "This must be it. Finally."
+text = "This must be it."
 options = [["", "intro.walking"]]
 
 [intro.walking]
@@ -16,7 +16,7 @@ options = [["", "intro.greeting"]]
 [intro.greeting]
 speaker = "graham"
 speaker_is_new = true
-text = "Hello there! \n You must be the new arrival. Parker, right?"
+text = "Hello there! \n You must be our new security officer. Parker, right?"
 options = [["Yes.", "intro.im_graham"], ["That's me.", "intro.im_graham"], ["I guess so.", "intro.im_graham"]]
 
 [intro.im_graham]
