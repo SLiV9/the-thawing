@@ -98,7 +98,7 @@ scroll_horizontal_enabled = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 580.0
-margin_bottom = 193.0
+margin_bottom = 269.0
 rect_min_size = Vector2( 400, 0 )
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
@@ -130,6 +130,18 @@ margin_top = 155.0
 margin_right = 576.0
 margin_bottom = 189.0
 text = "Input cooldown (0.5 seconds)"
+
+[node name="InputBlockedNotifierCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 193.0
+margin_right = 576.0
+margin_bottom = 227.0
+text = "Show \"INPUT BLOCKED\" on screen"
+
+[node name="DisableKeyEchoCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 231.0
+margin_right = 576.0
+margin_bottom = 265.0
+text = "Disable key repeat"
 
 [node name="Details" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
 margin_top = 469.0
@@ -177,5 +189,9 @@ underline = 2
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePeriodsCheckBox" to="." method="_on_RemovePeriodsCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputCooldownCheckButton" to="." method="_on_InputCooldownCheckButton_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputCooldownCheckButton" to="." method="_on_InputCooldownCheckButton_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputBlockedNotifierCheckBox" to="." method="_on_InputBlockedNotifierCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputBlockedNotifierCheckBox" to="." method="_on_InputBlockedNotifierCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/DisableKeyEchoCheckBox" to="." method="_on_DisableKeyEchoCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/DisableKeyEchoCheckBox" to="." method="_on_DisableKeyEchoCheckBox_toggled"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer/SaveAndContinueButton" to="." method="_on_SaveAndContinueButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer2/DiscardAndContinueButton" to="." method="_on_DiscardAndContinueButton_pressed"]

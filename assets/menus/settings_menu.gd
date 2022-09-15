@@ -27,10 +27,6 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
-	if settings.get_value("accessibility", "input_cooldown_enabled", true):
-		var checkbutton = find_node("InputCooldownCheckButton")
-		if checkbutton != null:
-			checkbutton.set_pressed_no_signal(true)
 	$InputLimiter.configure(settings)
 	settings.apply_accessibility_to_button(
 		find_node("SaveAndContinueButton"), $InputLimiter)
@@ -59,8 +55,8 @@ func exit():
 	if err != OK:
 		pass
 
-func initialize_checkbox(section, item, node_name):
-	if settings.get_value(section, item, false):
+func initialize_checkbox(section, item, node_name, default = false):
+	if settings.get_value(section, item, default):
 		var checkbox = find_node(node_name)
 		if checkbox != null:
 			checkbox.set_pressed_no_signal(true)
@@ -107,10 +103,41 @@ func _on_RemovePeriodsCheckBox_ready():
 
 
 func _on_InputCooldownCheckButton_ready():
-	pass
+	initialize_checkbox("accessibility", "input_cooldown_enabled",
+		"InputCooldownCheckButton", true)
 
 
 func _on_InputCooldownCheckButton_toggled(button_pressed):
 	settings.set_value("accessibility", "input_cooldown_enabled", button_pressed)
 	$InputLimiter.is_cooldown_enabled = button_pressed
 	$InputLimiter.trigger()
+
+
+func _on_InputBlockedNotifierCheckBox_ready():
+	initialize_checkbox("accessibility", "show_input_blocked",
+		"InputBlockedNotifierCheckBox", true)
+
+
+func _on_InputBlockedNotifierCheckBox_toggled(button_pressed):
+	settings.set_value("accessibility", "show_input_blocked", button_pressed)
+	$InputLimiter.show_input_blocked = button_pressed
+
+
+func _on_DisableKeyEchoCheckBox_ready():
+	initialize_checkbox("accessibility", "disable_key_echo",
+		"DisableKeyEchoCheckBox")
+
+
+func _on_DisableKeyEchoCheckBox_toggled(button_pressed):
+	settings.set_value("accessibility", "disable_key_echo", button_pressed)
+	$InputLimiter.disable_key_echo = button_pressed
+
+
+func _on_FullSettingsButton_ready():
+	settings.apply_accessibility_to_button(
+		find_node("FullSettingsButton"), $InputLimiter)
+
+
+func _on_FullSettingsButton_pressed():
+	self.is_submenu = true
+	save_and_exit()

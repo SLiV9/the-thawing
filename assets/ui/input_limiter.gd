@@ -3,6 +3,8 @@ extends Node
 
 var is_cooldown_enabled = false
 var cooldown_duration = 0.5
+var show_input_blocked = false
+var disable_key_echo = false
 
 var _is_functional = true
 var _cooldown_end_delay = 0
@@ -17,19 +19,26 @@ func _ready():
 
 
 func _input(event):
+	if event.is_echo():
+		if self.disable_key_echo:
+			get_tree().set_input_as_handled()
+			return
 	if not self.is_cooldown_enabled or not self._is_functional:
 		return
 	if _cooldown_end_delay > 0 and not _was_disabled_this_frame:
 		if event is InputEventKey:
-			_info_highlight_end_delay = INFO_HIGHLIGHT_DURATION
+			if event.pressed:
+				_info_highlight_end_delay = INFO_HIGHLIGHT_DURATION
 			get_tree().set_input_as_handled()
 		if event is InputEventJoypadButton:
-			_info_highlight_end_delay = INFO_HIGHLIGHT_DURATION
+			if event.pressed:
+				_info_highlight_end_delay = INFO_HIGHLIGHT_DURATION
 			get_tree().set_input_as_handled()
 		if event is InputEventMouseButton:
-			_info_highlight_end_delay = INFO_HIGHLIGHT_DURATION
-			$Info.rect_position = (get_viewport().get_mouse_position() +
-				Vector2(20, 0))
+			if event.pressed:
+				_info_highlight_end_delay = INFO_HIGHLIGHT_DURATION
+				$Info.rect_position = (get_viewport().get_mouse_position() +
+					Vector2(20, 0))
 			get_tree().set_input_as_handled()
 		return
 	if event.is_action_pressed("ui_focus_next"):
@@ -58,7 +67,7 @@ func _input(event):
 
 func _process(delta):
 	if _cooldown_end_delay > 0:
-		if _info_highlight_end_delay != null:
+		if _info_highlight_end_delay != null and self.show_input_blocked:
 			$Info.visible = true
 			$Info/Bar.rect_size.x = $Info/Label.rect_size.x * min(1,
 				_cooldown_end_delay / (0.8 * self.cooldown_duration))
@@ -69,10 +78,8 @@ func _process(delta):
 				_info_highlight_end_delay -= delta
 			else:
 				$Info.modulate.a = 0.5
-		else:
-			$Info.visible = false
 		_cooldown_end_delay -= delta
-	else:
+	elif $Info.visible:
 		$Info.visible = false
 		_info_highlight_end_delay = null
 		$Info.rect_position = Vector2(10, 10)
@@ -91,6 +98,10 @@ func _disable_input():
 func configure(settings):
 	self.is_cooldown_enabled = settings.get_value(
 		"accessibility", "input_cooldown_enabled", true)
+	self.show_input_blocked = settings.get_value(
+		"accessibility", "show_input_blocked", true)
+	self.disable_key_echo = settings.get_value(
+		"accessibility", "disable_key_echo", false)
 	if self.is_cooldown_enabled:
 		_disable_input()
 	else:
