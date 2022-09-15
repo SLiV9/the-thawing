@@ -19,6 +19,8 @@ func _ready():
 	else:
 		PersonnelData.data.set_value("alex", "speaker_name", "AL3X")
 	$InputLimiter.configure(settings)
+	find_node("RewindContainer").visible = settings.get_value(
+		"accessibility", "show_undo_button", false)
 	settings.apply_accessibility_to_button(find_node("ListButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("BackButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("RewindButton"), $InputLimiter)
@@ -26,10 +28,8 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		var button = find_node("StopButton")
-		button.grab_click_focus()
-		button.grab_focus()
+	if event.is_action_pressed("ui_escape"):
+		save_and_exit()
 	elif event.is_action_pressed("focus_rewind_button"):
 		var button = find_node("RewindButton")
 		button.grab_click_focus()
@@ -43,11 +43,17 @@ func _unhandled_input(event):
 
 
 func _on_StopButton_pressed():
-	# TODO save progress
-	goto_main_menu()
-	
+	save_and_exit()
 
-func goto_main_menu():
+
+func save_and_exit():
+	# TODO save progress
+	exit()
+
+
+func exit():
+	if $ScreenReader.enabled:
+		$ScreenReader.TTS.stop()
 	var err = get_tree().change_scene(
 		"res://assets/menus/main_menu.tscn")
 	if err != OK:

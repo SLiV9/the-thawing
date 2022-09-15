@@ -35,7 +35,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_escape"):
 		var button = find_node("SaveAndContinueButton")
 		button.grab_click_focus()
 		button.grab_focus()
@@ -186,3 +186,12 @@ func _on_InputCooldownRadio050_toggled(button_pressed):
 		var value = 0.50
 		settings.set_value("accessibility", "input_cooldown_duration", value)
 		$InputLimiter.cooldown_duration = value
+
+
+func _on_ShowUndoCheckBox_ready():
+	initialize_checkbox("accessibility", "show_undo_button",
+		"ShowUndoCheckBox")
+
+
+func _on_ShowUndoCheckBox_toggled(button_pressed):
+	settings.set_value("accessibility", "show_undo_button", button_pressed)

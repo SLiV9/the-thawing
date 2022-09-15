@@ -100,7 +100,7 @@ scroll_horizontal_enabled = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 580.0
-margin_bottom = 395.0
+margin_bottom = 437.0
 rect_min_size = Vector2( 400, 0 )
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
@@ -175,13 +175,19 @@ text = "0.50 seconds"
 margin_top = 319.0
 margin_right = 576.0
 margin_bottom = 353.0
-text = "Show \"INPUT BLOCKED\" on screen"
+text = "Show \"Input Blocked\" on screen"
 
 [node name="DisableKeyEchoCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 357.0
 margin_right = 576.0
 margin_bottom = 391.0
 text = "Disable key repeat"
+
+[node name="ShowUndoCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 395.0
+margin_right = 576.0
+margin_bottom = 433.0
+text = "Show \"Undo\" button"
 
 [node name="Details" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
 margin_top = 469.0
@@ -238,5 +244,7 @@ underline = 2
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputBlockedNotifierCheckBox" to="." method="_on_InputBlockedNotifierCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/DisableKeyEchoCheckBox" to="." method="_on_DisableKeyEchoCheckBox_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/DisableKeyEchoCheckBox" to="." method="_on_DisableKeyEchoCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ShowUndoCheckBox" to="." method="_on_ShowUndoCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ShowUndoCheckBox" to="." method="_on_ShowUndoCheckBox_toggled"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer/SaveAndContinueButton" to="." method="_on_SaveAndContinueButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer2/DiscardAndContinueButton" to="." method="_on_DiscardAndContinueButton_pressed"]
