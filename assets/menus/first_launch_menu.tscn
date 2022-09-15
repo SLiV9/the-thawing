@@ -63,23 +63,23 @@ margin_bottom = 522.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
-margin_left = 256.0
-margin_top = 133.0
-margin_right = 727.0
-margin_bottom = 389.0
+margin_left = 259.0
+margin_top = 139.0
+margin_right = 724.0
+margin_bottom = 383.0
 rect_min_size = Vector2( 400, 0 )
 custom_constants/separation = 20
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 471.0
+margin_right = 465.0
 margin_bottom = 29.0
 text = "Accessibility Settings"
 fit_content_height = true
 
 [node name="ScreenReaderCheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 49.0
-margin_right = 471.0
-margin_bottom = 89.0
+margin_right = 465.0
+margin_bottom = 83.0
 text = "Menu narration"
 
 [node name="RemovePrefixCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
@@ -97,15 +97,15 @@ margin_bottom = 147.0
 text = "Remove noisy periods from buttons (.)"
 
 [node name="InputCooldownCheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 109.0
-margin_right = 471.0
-margin_bottom = 149.0
+margin_top = 103.0
+margin_right = 465.0
+margin_bottom = 137.0
 text = "Input cooldown (0.5 seconds)"
 
 [node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 169.0
-margin_right = 471.0
-margin_bottom = 256.0
+margin_top = 157.0
+margin_right = 465.0
+margin_bottom = 244.0
 text = "Additional accessibility settings are available in the Settings menu."
 fit_content_height = true
 

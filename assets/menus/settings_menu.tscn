@@ -98,7 +98,7 @@ scroll_horizontal_enabled = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 580.0
-margin_bottom = 205.0
+margin_bottom = 193.0
 rect_min_size = Vector2( 400, 0 )
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
@@ -110,25 +110,25 @@ fit_content_height = true
 [node name="ScreenReaderCheckButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 33.0
 margin_right = 576.0
-margin_bottom = 73.0
+margin_bottom = 67.0
 text = "Menu narration"
 
 [node name="RemovePrefixCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 77.0
+margin_top = 71.0
 margin_right = 576.0
-margin_bottom = 115.0
+margin_bottom = 109.0
 text = "Remove button prefix (>, \"greater\")"
 
 [node name="RemovePeriodsCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 119.0
+margin_top = 113.0
 margin_right = 576.0
-margin_bottom = 157.0
+margin_bottom = 151.0
 text = "Remove noisy periods from buttons (.)"
 
 [node name="InputCooldownCheckButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 161.0
+margin_top = 155.0
 margin_right = 576.0
-margin_bottom = 201.0
+margin_bottom = 189.0
 text = "Input cooldown (0.5 seconds)"
 
 [node name="Details" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
