@@ -496,12 +496,14 @@ focus_mode = 2
 text = "[] STOP"
 underline = 2
 
+[connection signal="button_created" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_button_created"]
 [connection signal="cinematic_started" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Chat_cinematic_started"]
 [connection signal="rewind_availability_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/RewindButton" method="_on_Chat_rewind_availability_updated"]
 [connection signal="speaker_introduced" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_speaker_introduced"]
 [connection signal="speaker_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Chat_speaker_updated"]
 [connection signal="speech_interrupted" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_speech_interrupted"]
 [connection signal="text_added" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_text_added"]
+[connection signal="button_created" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" to="." method="_on_PersonnelInfo_button_created"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu/MarginContainer/ListButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_ListButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Details/VBoxContainer/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
 [connection signal="cinematic_started" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" to="." method="_on_Camera_cinematic_started"]

@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Timer",
+"class": "InputLimiter",
+"language": "GDScript",
+"path": "res://assets/ui/input_limiter.gd"
+}, {
 "base": "ConfigFile",
 "class": "Settings",
 "language": "GDScript",
 "path": "res://assets/menus/settings.gd"
 } ]
 _global_script_class_icons={
+"InputLimiter": "",
 "Settings": ""
 }
 

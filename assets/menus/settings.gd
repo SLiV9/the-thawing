@@ -15,7 +15,7 @@ func save_all():
 	if err != OK:
 		print_debug("Failed to save '", _filename, "': ", err)
 
-func apply_accessibility_to_button(button):
+func apply_accessibility_to_button(button, input_limiter: InputLimiter):
 	if button == null:
 		return
 	if self.get_value("accessibility", "remove_button_prefix", false):
@@ -24,3 +24,8 @@ func apply_accessibility_to_button(button):
 		button.text = text.strip_edges()
 	if self.get_value("accessibility", "remove_button_periods", false):
 		button.text = button.text.replace(".", "")
+	if not (button is Button or button is LinkButton
+			or button is CheckButton or button is CheckBox):
+		return
+	if self.get_value("accessibility", "input_cooldown_enabled", false):
+		button.connect("pressed", input_limiter, "_on_any_button_pressed")

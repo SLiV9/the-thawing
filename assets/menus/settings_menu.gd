@@ -31,10 +31,11 @@ func _ready():
 		var checkbutton = find_node("InputCooldownCheckButton")
 		if checkbutton != null:
 			checkbutton.set_pressed_no_signal(true)
-		$InputLimiter.is_enabled = true
-		$InputLimiter.trigger()
-	settings.apply_accessibility_to_button(find_node("SaveAndContinueButton"))
-	settings.apply_accessibility_to_button(find_node("DiscardAndContinueButton"))
+	$InputLimiter.configure(settings)
+	settings.apply_accessibility_to_button(
+		find_node("SaveAndContinueButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(
+		find_node("DiscardAndContinueButton"), $InputLimiter)
 
 
 func _unhandled_input(event):
@@ -111,5 +112,5 @@ func _on_InputCooldownCheckButton_ready():
 
 func _on_InputCooldownCheckButton_toggled(button_pressed):
 	settings.set_value("accessibility", "input_cooldown_enabled", button_pressed)
-	$InputLimiter.is_enabled = button_pressed
+	$InputLimiter.is_cooldown_enabled = button_pressed
 	$InputLimiter.trigger()

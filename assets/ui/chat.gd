@@ -6,18 +6,17 @@ signal speech_interrupted()
 signal speaker_updated(speaker_id)
 signal speaker_introduced(speaker_id)
 signal text_added(speaker_id, text)
+signal button_created(button)
 
 onready var scroll = self.get_parent()
 onready var scrollbar = scroll.get_v_scrollbar()
 onready var dimmed_text_color = self.get_color("font_color", "LinkButton")
+onready var input_limiter = self.get_tree().root.find_node("InputLimiter")
 
 var remaining_text_fragments = []
 var stored_options = []
 
-var settings = Settings.new()
-
 func _ready():
-	settings.load_all()
 	for child in self.get_children():
 		if not child is Timer:
 			self.remove_child(child)
@@ -42,7 +41,7 @@ func select_nth_answer(n):
 				n -= 1
 				continue
 			var button = child
-			if not button is Button:
+			if not button is LinkButton:
 				button = button.get_child(0)
 			button.grab_click_focus()
 			button.grab_focus()
@@ -104,7 +103,7 @@ func add_answer_options(options):
 		link.text = text
 		link.underline = LinkButton.UNDERLINE_MODE_NEVER
 		link.focus_mode = Control.FOCUS_ALL
-		settings.apply_accessibility_to_button(link)
+		emit_signal("button_created", link)
 		link.connect("pressed", self, "_on_answer", [option])
 		var answer = MarginContainer.new()
 		answer.add_constant_override("margin_top", 2)

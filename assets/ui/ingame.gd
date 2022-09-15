@@ -18,13 +18,11 @@ func _ready():
 		PersonnelData.data.set_value("alex", "speaker_name", "ALEX")
 	else:
 		PersonnelData.data.set_value("alex", "speaker_name", "AL3X")
-	if settings.get_value("accessibility", "input_cooldown_enabled", true):
-		$InputLimiter.is_enabled = true
-		$InputLimiter.trigger()
-	settings.apply_accessibility_to_button(find_node("ListButton"))
-	settings.apply_accessibility_to_button(find_node("BackButton"))
-	settings.apply_accessibility_to_button(find_node("RewindButton"))
-	settings.apply_accessibility_to_button(find_node("StopButton"))
+	$InputLimiter.configure(settings)
+	settings.apply_accessibility_to_button(find_node("ListButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("BackButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("RewindButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("StopButton"), $InputLimiter)
 
 
 func _unhandled_input(event):
@@ -87,3 +85,11 @@ func _on_Chat_speech_interrupted():
 	if not $ScreenReader.enabled:
 		return
 	$ScreenReader.TTS.stop()
+
+
+func _on_PersonnelInfo_button_created(button):
+	settings.apply_accessibility_to_button(button, $InputLimiter)
+
+
+func _on_Chat_button_created(button):
+	settings.apply_accessibility_to_button(button, $InputLimiter)

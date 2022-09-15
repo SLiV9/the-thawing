@@ -22,18 +22,16 @@ func _ready():
 		$ScreenReader.set_initial_screen_focus()
 	elif InputController.prefer_joypad_over_keyboard:
 		$ScreenReader.set_initial_screen_focus()
-	if settings.get_value("accessibility", "input_cooldown_enabled", true):
-		$InputLimiter.is_enabled = true
-		$InputLimiter.trigger()
+	$InputLimiter.configure(settings)
 	if OS.has_feature("HTML5"):
 		find_node("QuitButton").visible = false
 		find_node("FakeQuitButton").visible = false
-	settings.apply_accessibility_to_button(find_node("StartButton"))
-	settings.apply_accessibility_to_button(find_node("SettingsButton"))
-	settings.apply_accessibility_to_button(find_node("QuitButton"))
-	settings.apply_accessibility_to_button(find_node("FakeStartButton"))
-	settings.apply_accessibility_to_button(find_node("FakeSettingsButton"))
-	settings.apply_accessibility_to_button(find_node("FakeQuitButton"))
+	settings.apply_accessibility_to_button(find_node("StartButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("SettingsButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("QuitButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("FakeStartButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("FakeSettingsButton"), $InputLimiter)
+	settings.apply_accessibility_to_button(find_node("FakeQuitButton"), $InputLimiter)
 	randomize()
 
 func goto_first_launch_settings_menu():
