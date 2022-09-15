@@ -89,6 +89,18 @@ func _basebutton_button_down():
 	TTS.stop()
 
 
+func _radiobutton_focused():
+	var tokens = PoolStringArray([])
+	if node.text:
+		tokens.append(node.text)
+	if node.pressed:
+		tokens.append("checked")
+	else:
+		tokens.append("unchecked")
+	tokens.append(" radio button")
+	TTS.speak(tokens.join(" "), false)
+
+
 func checkbox_focused():
 	var tokens = PoolStringArray([])
 	if node.text:
@@ -617,6 +629,8 @@ func focused():
 		menu_button_focused()
 	elif node is AcceptDialog:
 		_accept_dialog_focused()
+	elif node is CheckBox and node.group != null:
+		_radiobutton_focused()
 	elif node is CheckBox:
 		checkbox_focused()
 	elif node is CheckButton:

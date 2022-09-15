@@ -98,6 +98,8 @@ func _disable_input():
 func configure(settings):
 	self.is_cooldown_enabled = settings.get_value(
 		"accessibility", "input_cooldown_enabled", true)
+	self.cooldown_duration = settings.get_value(
+		"accessibility", "input_cooldown_duration", 0.5)
 	self.show_input_blocked = settings.get_value(
 		"accessibility", "show_input_blocked", true)
 	self.disable_key_echo = settings.get_value(

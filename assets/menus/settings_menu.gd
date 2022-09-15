@@ -141,3 +141,48 @@ func _on_FullSettingsButton_ready():
 func _on_FullSettingsButton_pressed():
 	self.is_submenu = true
 	save_and_exit()
+
+
+func _on_InputCooldownRadio003_ready():
+	var value = settings.get_value(
+		"accessibility", "input_cooldown_duration", 0.5)
+	var node_name = "InputCooldownRadio050"
+	if value < 0.030 + 0.01:
+		node_name = "InputCooldownRadio003"
+	elif value < 0.10 + 0.01:
+		node_name = "InputCooldownRadio010"
+	elif value < 0.25 + 0.01:
+		node_name = "InputCooldownRadio025"
+	else:
+		node_name = "InputCooldownRadio050"
+	var checkbox = find_node(node_name)
+	if checkbox != null:
+		checkbox.set_pressed_no_signal(true)
+
+
+func _on_InputCooldownRadio003_toggled(button_pressed):
+	if button_pressed:
+		var value = 0.03
+		settings.set_value("accessibility", "input_cooldown_duration", value)
+		$InputLimiter.cooldown_duration = value
+
+
+func _on_InputCooldownRadio010_toggled(button_pressed):
+	if button_pressed:
+		var value = 0.10
+		settings.set_value("accessibility", "input_cooldown_duration", value)
+		$InputLimiter.cooldown_duration = value
+
+
+func _on_InputCooldownRadio025_toggled(button_pressed):
+	if button_pressed:
+		var value = 0.25
+		settings.set_value("accessibility", "input_cooldown_duration", value)
+		$InputLimiter.cooldown_duration = value
+
+
+func _on_InputCooldownRadio050_toggled(button_pressed):
+	if button_pressed:
+		var value = 0.50
+		settings.set_value("accessibility", "input_cooldown_duration", value)
+		$InputLimiter.cooldown_duration = value

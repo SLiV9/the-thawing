@@ -196,7 +196,7 @@ custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]AUDIO LOGS[/center]"
-text = "AUDIO LOGS"
+text = "[center]AUDIO LOGS[/center]"
 fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -276,7 +276,7 @@ custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]PERSONNEL FILES[/center]"
-text = "PERSONNEL FILES"
+text = "[center]PERSONNEL FILES[/center]"
 fit_content_height = true
 
 [node name="PersonnelInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -415,7 +415,7 @@ custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]CAMERA FEED[/center]"
-text = "CAMERA FEED"
+text = "[center]CAMERA FEED[/center]"
 fit_content_height = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
