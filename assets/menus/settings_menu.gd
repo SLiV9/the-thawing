@@ -32,6 +32,8 @@ func _ready():
 		find_node("SaveAndContinueButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(
 		find_node("DiscardAndContinueButton"), $InputLimiter)
+	if Mixer.running:
+		Mixer.enter_settings_menu()
 
 
 func _unhandled_input(event):

@@ -36,6 +36,7 @@ config/windows_native_icon="res://assets/packaging/icon.ico"
 InputController="*res://assets/ui/input_controller.gd"
 DialogueTree="*res://assets/world/dialogue_tree.gd"
 PersonnelData="*res://assets/characters/personnel_data.gd"
+Mixer="*res://assets/music/mixer.gd"
 
 [editor]
 

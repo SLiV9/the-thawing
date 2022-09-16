@@ -78,9 +78,11 @@ func _load(section):
 		})
 		answer_offset += 1
 	var speaker_is_new = data.get_value(section, "speaker_is_new", false)
+	var tensity = data.get_value(section, "tensity", -1)
 	return {
 		"speaker": speaker,
 		"speaker_is_new": speaker_is_new,
+		"tensity": tensity,
 		"text": text,
 		"options": options,
 		"current_section": section,

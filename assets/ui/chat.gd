@@ -103,6 +103,8 @@ func handle_dialogue(x, fast_forward_answer_offset = null):
 	else:
 		stored_options = x.options
 		add_continuation_option()
+	if x.tensity > -1:
+		Mixer.tensity = x.tensity
 	scroll_to_bottom()
 	yield(get_tree(), "idle_frame")
 	emit_signal("speech_interrupted")

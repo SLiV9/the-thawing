@@ -35,6 +35,11 @@ func _ready():
 	settings.apply_accessibility_to_button(find_node("FakeStartButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("FakeSettingsButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("FakeQuitButton"), $InputLimiter)
+	if Mixer.running:
+		Mixer.enter_main_menu()
+	else:
+		var tracks = $ResourcePreloader.get_resource("tracks")
+		Mixer.run(tracks)
 	randomize()
 
 func goto_first_launch_settings_menu():

@@ -1,5 +1,6 @@
 [intro.snow]
 speaker = ""
+tensity = 0
 text = "The ground here is white and soft. My boots sink into it with each step. \n \n This is apparently the last remaining place on earth with snow. But boy is there a lot of it. \n I'll be glad when it's all gone."
 options = [["", "intro.facility"]]
 
@@ -31,52 +32,62 @@ options = [["", "intro.approaching_alex"]]
 
 [intro.approaching_alex]
 speaker = ""
+tensity = 0.5
 text = ""
 options = [["", "intro.intruder"]]
 
 [intro.intruder]
 speaker = "alex"
 speaker_is_new = true
+tensity = 1
 text = "Intruder detected! Eliminating in 3..."
 options = [["Uhm...", "intro.intruder2"]]
 
 [intro.intruder2]
 speaker = "alex"
+tensity = 1
 text = "2..."
 options = [["", "intro.intruder1"],  ["Graham, some help here?", "intro.intruder1"], ["Don't shoot!", "intro.just_kidding"]]
 
 [intro.intruder1]
 speaker = "alex"
+tensity = 1
 text = "1..."
 options = [["", "intro.alex_shoots"], ["Don't shoot!", "intro.just_kidding"], ["Do it. End me.", "intro.thats_dark"]]
 
 [intro.alex_shoots]
 speaker = "alex"
+tensity = 1
 text = "BANG!"
 options = [["", "intro.just_kidding"]]
 
 [intro.thats_dark]
 speaker = "alex"
+tensity = 0.5
 text = "Woah, that's dark. \n I was just messing with you."
 options = [["And who are you?", "intro.im_alex"]]
 
 [intro.just_kidding]
 speaker = "alex"
 text = "Just kidding."
+tensity = 0.5
 options = [["Not funny.", "intro.dont_mind"], ["Good one.", "intro.dont_mind"], ["What are you, a comedy robot?", "intro.im_alex"]]
 
 [intro.dont_mind]
 speaker = "graham"
+tensity = 0.4
 text = "Don't mind him, he's just excited to see a new face."
 options = [["He?", "intro.im_alex"]]
 
 [intro.im_alex]
 speaker = "alex"
+tensity = 0.2
 text = "I am AL3X, the Artificial Living, Learning and Locating Exterminator. \n Most people here call me Alex."
 options = [["Nice to meet you, Alex.", "intro.dont_worry"], ["That sounds dangerous.", "intro.dont_worry"]]
 
 [intro.dont_worry]
 speaker = "alex"
+tensity = 0
 text = "Don't worry, my programming forbids me from harming humans. I've never killed anything larger than a rat."
 options = [["That's comforting.", "intro.the_end"], ["Are there rats in Antarctica?", "intro.no_rats"]]
 

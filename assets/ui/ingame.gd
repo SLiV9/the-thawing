@@ -25,6 +25,8 @@ func _ready():
 	settings.apply_accessibility_to_button(find_node("BackButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("RewindButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("StopButton"), $InputLimiter)
+	if Mixer.running:
+		Mixer.enter_game()
 
 
 func _unhandled_input(event):
@@ -57,9 +59,10 @@ func exit():
 
 
 func _on_Camera_cinematic_started(visual_description):
-	if not $ScreenReader.enabled:
-		return
 	if visual_description.empty():
+		return
+	if not $ScreenReader.enabled:
+		Mixer.start_hum()
 		return
 	$ScreenReader.TTS.speak(visual_description, false)
 
@@ -75,6 +78,7 @@ func _on_Chat_text_added(speaker_id, text):
 	if text.empty():
 		return
 	if not $ScreenReader.enabled:
+		Mixer.end_hum()
 		$NewChatSfx.play()
 		return
 	var audio_description = text

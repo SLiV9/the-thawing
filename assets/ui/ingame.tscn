@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=2]
@@ -20,9 +20,6 @@
 [ext_resource path="res://assets/sfx/terminal_05.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/sfx/terminal_08.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/sfx/terminal_03.ogg" type="AudioStream" id=20]
-[ext_resource path="res://assets/music/Brandon Morris - Last Stand in Space.ogg" type="AudioStream" id=21]
-[ext_resource path="res://assets/music/Brandon Morris - Osare (Unrest Theme).ogg" type="AudioStream" id=22]
-[ext_resource path="res://assets/sfx/electric_hum.ogg" type="AudioStream" id=23]
 
 [sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 5 )
@@ -555,19 +552,6 @@ volume_db = -10.0
 [node name="ButtonFailSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
 volume_db = -10.0
-
-[node name="Hum" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 23 )
-volume_db = -7.866
-autoplay = true
-
-[node name="CalmMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 22 )
-autoplay = true
-
-[node name="TenseMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
-autoplay = true
 
 [connection signal="activation_failed" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_activation_failed"]
 [connection signal="button_created" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_button_created"]
