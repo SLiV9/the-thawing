@@ -100,7 +100,7 @@ scroll_horizontal_enabled = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 580.0
-margin_bottom = 943.0
+margin_bottom = 985.0
 rect_min_size = Vector2( 400, 0 )
 theme = ExtResource( 3 )
 __meta__ = {
@@ -255,34 +255,40 @@ margin_right = 576.0
 margin_bottom = 733.0
 text = "Play sound on Undo"
 
-[node name="TitleMusicCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ComputerSfxCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 737.0
 margin_right = 576.0
-margin_bottom = 771.0
+margin_bottom = 775.0
+text = "Play sound on Undo"
+
+[node name="TitleMusicCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 779.0
+margin_right = 576.0
+margin_bottom = 813.0
 text = "Play title theme"
 
 [node name="TitleAmbienceCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 775.0
-margin_right = 576.0
-margin_bottom = 813.0
-text = "Play ambient sounds on main menu"
-
-[node name="CalmMusicCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 817.0
 margin_right = 576.0
 margin_bottom = 855.0
-text = "Play in-game music (track 1)"
+text = "Play ambient sounds on main menu"
 
-[node name="TenseMusicCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="CalmMusicCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 859.0
 margin_right = 576.0
 margin_bottom = 897.0
-text = "Play in-game music (track 2)"
+text = "Play in-game music (track 1)"
 
-[node name="MonitorHumCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="TenseMusicCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 901.0
 margin_right = 576.0
 margin_bottom = 939.0
+text = "Play in-game music (track 2)"
+
+[node name="MonitorHumCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 943.0
+margin_right = 576.0
+margin_bottom = 981.0
 text = "Play monitor hum"
 
 [node name="Details" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
@@ -350,6 +356,8 @@ underline = 2
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ChatSfxCheckBox" to="." method="_on_ChatSfxCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/UndoSfxCheckBox" to="." method="_on_UndoSfxCheckBox_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/UndoSfxCheckBox" to="." method="_on_UndoSfxCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ComputerSfxCheckBox" to="." method="_on_ComputerSfxCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ComputerSfxCheckBox" to="." method="_on_ComputerSfxCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleMusicCheckBox" to="." method="_on_TitleMusicCheckBox_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleMusicCheckBox" to="." method="_on_TitleMusicCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleAmbienceCheckBox" to="." method="_on_TitleAmbienceCheckBox_ready"]

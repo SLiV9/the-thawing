@@ -2,6 +2,7 @@ extends Node
 
 var data: ConfigFile
 var history = []
+var flags = []
 var first_section
 
 var _fast_forward_offset = 0
@@ -55,7 +56,9 @@ func fast_forward_end():
 
 func rewind():
 	_fast_forward_offset = 0
-	history.pop_back()
+	var discarded = history.pop_back()
+	for flag in data.get_value(discarded, "flags", []):
+		flags.remove(flag)
 	var previous = history.back()
 	if previous != null:
 		return _load(previous.section)
@@ -72,14 +75,20 @@ func _load(section):
 	var options = []
 	var answer_offset = 0
 	for option in raw_options:
+		var is_implicit = option[0].empty() or speaker.empty()
+		var answer_text = option[0].trim_prefix("!")
+		var is_action = (answer_text != option[0])
 		options.append({
 			"answer_offset": answer_offset,
-			"text": option[0],
+			"text": answer_text,
 			"next_section": option[1],
 			"current_section": section,
-			"is_implicit": option[0].empty() or speaker.empty(),
+			"is_implicit": is_implicit,
+			"is_action": is_action,
 		})
 		answer_offset += 1
+	for flag in data.get_value(section, "flags", []):
+		self.flags.append(flag)
 	var speaker_is_new = data.get_value(section, "speaker_is_new", false)
 	var tensity = data.get_value(section, "tensity", -1)
 	return {
@@ -90,3 +99,6 @@ func _load(section):
 		"options": options,
 		"current_section": section,
 	}
+
+func has_personnel_files():
+	return flags.has("personnel_online")

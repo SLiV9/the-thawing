@@ -97,14 +97,36 @@ options = [["Nice to meet you, Alex.", "intro.dont_worry"], ["That sounds danger
 speaker = "alex"
 tensity = 0
 text = "Don't worry, my programming forbids me from harming humans. I've never killed anything larger than a rat."
-options = [["That's comforting.", "intro.the_end"], ["Are there rats in Antarctica?", "intro.no_rats"]]
+options = [["That's comforting.", "intro.tired"], ["Are there rats in Antarctica?", "intro.no_rats"]]
 
 [intro.no_rats]
 speaker = "alex"
 text = "Not anymore!"
-options = [["Ok.", "intro.the_end"]]
+options = [["Right.", "intro.tired"]]
 
-[intro.the_end]
+[intro.tired]
+speaker = "graham"
+text = "You must be tired. \n Alex will show you to your room. We'll talk shop in the morning."
+options = [["I'm exhausted.", "intro.one_last_thing"], ["Sounds good.", "intro.one_last_thing"]]
+
+[intro.one_last_thing]
+speaker = "graham"
+text = "Oh, one last thing. \n Here's a portable computer. It should contain all the files you need."
+options = [["!TAKE THE DEVICE", "intro.goodnight"]]
+
+[intro.goodnight]
+speaker = "graham"
+text = "Good night!"
+flags = ["personnel_online"]
+options = [["Good night.", "intro.following_alex"]]
+
+[intro.following_alex]
 speaker = ""
+text = ""
+options = [["", "the_end"]]
+
+[the_end]
+speaker = ""
+tensity = 0
 text = "THE END"
 options = [["", "intro.greeting"]]

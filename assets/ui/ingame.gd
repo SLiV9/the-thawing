@@ -111,3 +111,9 @@ func _on_Chat_rewind_activated():
 func _on_Chat_activation_failed():
 	if Mixer.undo_sfx_enabled:
 		$ButtonFailSfx.play()
+
+
+func _on_PersonnelInfo_screen_changed():
+	if not $ScreenReader.enabled:
+		if Mixer.computer_sfx_enabled:
+			$ComputerSfx.play()

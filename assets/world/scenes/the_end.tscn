@@ -14,7 +14,7 @@ margin_left = -50.0
 margin_top = -25.0
 margin_right = 50.0
 margin_bottom = 25.0
-hint_tooltip = "Thank you for playing this unfinished game."
+hint_tooltip = "Thank you for playing."
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": true

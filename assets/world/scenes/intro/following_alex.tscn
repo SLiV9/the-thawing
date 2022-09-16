@@ -2,12 +2,12 @@
 
 [ext_resource path="res://assets/characters/graham.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://assets/characters/parker.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://assets/characters/alex.tres" type="SpriteFrames" id=3]
-[ext_resource path="res://assets/world/tiled_floor.png" type="Texture" id=4]
+[ext_resource path="res://assets/world/tiled_floor.png" type="Texture" id=3]
+[ext_resource path="res://assets/characters/alex.tres" type="SpriteFrames" id=4]
 
 [sub_resource type="Animation" id=7]
 resource_name = "walk"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -15,10 +15,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -67, 38 ), Vector2( -17, 13 ) ]
+"values": [ Vector2( -17, 13 ), Vector2( 43, -17 ), Vector2( 67, -29 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:animation")
@@ -27,10 +27,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "walking", "idle" ]
+"values": [ "walking" ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:playing")
@@ -47,7 +47,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "walk"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -55,10 +55,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -57, 43 ), Vector2( -7, 18 ) ]
+"values": [ Vector2( -7, 18 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:animation")
@@ -67,10 +67,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "walking", "idle" ]
+"values": [ "idle" ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:playing")
@@ -85,7 +85,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "walk"
 length = 4.0
 tracks/0/type = "value"
@@ -107,10 +107,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "idle", "aiming" ]
+"values": [ "idle" ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:playing")
@@ -137,8 +137,8 @@ margin_left = -50.0
 margin_top = -25.0
 margin_right = 50.0
 margin_bottom = 25.0
-hint_tooltip = "You and Graham walk up to a black robot, who raises their weapons at you."
-texture = ExtResource( 4 )
+hint_tooltip = "Graham walks away, leaving you alone with Alex."
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,9 +146,10 @@ __meta__ = {
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Graham" type="AnimatedSprite" parent="Units"]
-position = Vector2( -67, 38 )
+position = Vector2( 67, -29 )
 frames = ExtResource( 1 )
 animation = "walking"
+frame = 3
 playing = true
 offset = Vector2( 0, -11 )
 
@@ -157,10 +158,9 @@ autoplay = "walk"
 anims/walk = SubResource( 7 )
 
 [node name="Parker" type="AnimatedSprite" parent="Units"]
-position = Vector2( -57, 43 )
+position = Vector2( -7, 18 )
 frames = ExtResource( 2 )
-animation = "walking"
-frame = 2
+animation = "idle"
 playing = true
 offset = Vector2( 0, -11 )
 
@@ -170,11 +170,11 @@ anims/walk = SubResource( 1 )
 
 [node name="Alex" type="AnimatedSprite" parent="Units"]
 position = Vector2( 9, 9 )
-frames = ExtResource( 3 )
+frames = ExtResource( 4 )
 animation = "idle"
 playing = true
 offset = Vector2( 0, -11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Units/Alex"]
 autoplay = "walk"
-anims/walk = SubResource( 9 )
+anims/walk = SubResource( 8 )

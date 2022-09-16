@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-signal rewind_availability_updated(enabled)
+signal dialogue_tree_updated()
 signal cinematic_started(section_id)
 signal speech_interrupted()
 signal speaker_updated(speaker_id)
@@ -65,7 +65,7 @@ func select_nth_answer(n):
 
 
 func handle_dialogue(x, fast_forward_answer_offset = null):
-	emit_signal("rewind_availability_updated", DialogueTree.can_rewind())
+	emit_signal("dialogue_tree_updated")
 	var text = x.text
 	if "\n" in text:
 		var first_text = ""
@@ -145,6 +145,7 @@ func add_continuation_option():
 	var option = {
 		"text": "",
 		"is_implicit": true,
+		"is_action": false,
 	}
 	add_answer_options([option])
 
@@ -170,6 +171,13 @@ func add_answer_from_option(option):
 		var gap = Control.new()
 		gap.rect_min_size.y = 20
 		self.add_child(gap)
+	elif option.is_action:
+		var answer = RichTextLabel.new()
+		answer.fit_content_height = true
+		answer.text = "YOU %s" % [option.text]
+		answer.add_color_override("default_color", dimmed_text_color)
+		answer.add_to_group("given_answers")
+		self.add_child(answer)
 	else:
 		var answer = RichTextLabel.new()
 		answer.fit_content_height = true

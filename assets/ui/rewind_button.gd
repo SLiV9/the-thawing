@@ -7,5 +7,5 @@ func _unhandled_input(event):
 		self.grab_focus()
 
 
-func _on_Chat_rewind_availability_updated(enabled):
-	self.visible = enabled
+func _on_Chat_dialogue_tree_updated():
+	self.visible = DialogueTree.can_rewind()

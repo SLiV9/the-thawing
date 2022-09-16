@@ -304,3 +304,13 @@ func _on_UndoSfxCheckBox_ready():
 func _on_UndoSfxCheckBox_toggled(button_pressed):
 	settings.set_value("audio", "undo_sfx_enabled", button_pressed)
 	Mixer.undo_sfx_enabled = button_pressed
+
+
+func _on_ComputerSfxCheckBox_ready():
+	initialize_checkbox("audio", "computer_sfx_enabled",
+		"ComputerSfxCheckBox", true)
+
+
+func _on_ComputerSfxCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "computer_sfx_enabled", button_pressed)
+	Mixer.computer_sfx_enabled = button_pressed

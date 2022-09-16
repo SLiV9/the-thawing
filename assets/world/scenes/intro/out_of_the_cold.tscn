@@ -117,7 +117,7 @@ anims/walk = SubResource( 1 )
 position = Vector2( 9, 10 )
 frames = ExtResource( 1 )
 animation = "walking"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( 0, -11 )
 

@@ -21,6 +21,7 @@ var hum_enabled = true
 
 var chat_sfx_enabled = true
 var undo_sfx_enabled = true
+var computer_sfx_enabled = true
 
 
 func run(tracks_resource):
@@ -42,6 +43,7 @@ func configure(settings):
 	hum_enabled = settings.get_value("audio", "hum_enabled", true)
 	chat_sfx_enabled = settings.get_value("audio", "chat_sfx_enabled", true)
 	undo_sfx_enabled = settings.get_value("audio", "undo_sfx_enabled", true)
+	computer_sfx_enabled = settings.get_value("audio", "computer_sfx_enabled", true)
 
 func enter_main_menu():
 	_on_main_menu = true

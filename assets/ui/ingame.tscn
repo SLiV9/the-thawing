@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/portraits.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/sfx/terminal_05.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/sfx/terminal_08.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/sfx/terminal_03.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/sfx/terminal_06.ogg" type="AudioStream" id=21]
 
 [sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 5 )
@@ -553,17 +554,23 @@ volume_db = -10.0
 stream = ExtResource( 20 )
 volume_db = -10.0
 
+[node name="ComputerSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -20.0
+
 [connection signal="activation_failed" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_activation_failed"]
 [connection signal="button_created" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_button_created"]
 [connection signal="cinematic_started" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Chat_cinematic_started"]
+[connection signal="dialogue_tree_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RewindContainer/RewindButton" method="_on_Chat_dialogue_tree_updated"]
+[connection signal="dialogue_tree_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_Chat_dialogue_tree_updated"]
 [connection signal="rewind_activated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_rewind_activated"]
-[connection signal="rewind_availability_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RewindContainer/RewindButton" method="_on_Chat_rewind_availability_updated"]
 [connection signal="speaker_introduced" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_speaker_introduced"]
 [connection signal="speaker_updated" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" method="_on_Chat_speaker_updated"]
 [connection signal="speech_interrupted" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_speech_interrupted"]
 [connection signal="text_added" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" to="." method="_on_Chat_text_added"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RewindContainer/RewindButton" to="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Chat" method="_on_RewindButton_pressed"]
 [connection signal="button_created" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" to="." method="_on_PersonnelInfo_button_created"]
+[connection signal="screen_changed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" to="." method="_on_PersonnelInfo_screen_changed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Menu/MarginContainer/ListButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_ListButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/TabContainer/Details/VBoxContainer/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
 [connection signal="cinematic_started" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" to="." method="_on_Camera_cinematic_started"]
