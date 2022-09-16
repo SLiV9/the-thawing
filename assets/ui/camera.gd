@@ -7,16 +7,21 @@ onready var world = self.find_node("World")
 
 func switch_to_cinematic(section_id):
 	world.switch_to_cinematic(section_id)
-	material.set_shader_param("discolor", true)
+	if material != null:
+		material.set_shader_param("discolor", true)
 	var visual_description = world.visual_description_of_cinematic()
 	emit_signal("cinematic_started", visual_description)
 	$CameraHint.hint_tooltip = visual_description
 
 func switch_to_facecam(id):
 	world.switch_to_facecam(id)
-	material.set_shader_param("discolor", false)
+	if material != null:
+		material.set_shader_param("discolor", false)
 	var visual_description = PersonnelData.visual_description_of_speaker(id)
 	$CameraHint.hint_tooltip = visual_description
+
+func turn_off_monitor_effect():
+	self.material = null
 
 
 func _on_Chat_cinematic_started(section_id):

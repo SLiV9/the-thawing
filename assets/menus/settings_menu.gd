@@ -48,6 +48,10 @@ func save_and_exit():
 	settings.save_all()
 	exit()
 
+func discard_and_exit():
+	settings.load_all()
+	exit()
+
 func exit():
 	var err
 	if is_submenu:
@@ -69,6 +73,10 @@ func _on_SaveAndContinueButton_pressed():
 	$InputLimiter.trigger()
 
 
+func _on_ScreenReaderCheckButton_ready():
+	pass
+
+
 func _on_ScreenReaderCheckButton_toggled(button_pressed):
 	$ScreenReader.enabled = button_pressed
 	settings.set_value("accessibility", "screen_reader_enabled", button_pressed)
@@ -80,7 +88,7 @@ func _on_ScreenReaderCheckButton_toggled(button_pressed):
 
 
 func _on_DiscardAndContinueButton_pressed():
-	exit()
+	discard_and_exit()
 	$InputLimiter.trigger()
 
 
@@ -197,3 +205,102 @@ func _on_ShowUndoCheckBox_ready():
 
 func _on_ShowUndoCheckBox_toggled(button_pressed):
 	settings.set_value("accessibility", "show_undo_button", button_pressed)
+
+
+
+func _on_FullscreenCheckBox_ready():
+	initialize_checkbox("graphics", "fullscreen_enabled",
+		"FullscreenCheckBox")
+
+
+func _on_FullscreenCheckBox_toggled(button_pressed):
+	settings.set_value("graphics", "fullscreen_enabled", button_pressed)
+	OS.window_fullscreen = button_pressed
+
+
+func _on_MonitorEffectCheckBox_ready():
+	initialize_checkbox("visual", "monitor_effect_enabled",
+		"MonitorEffectCheckBox", true)
+
+
+func _on_MonitorEffectCheckBox_toggled(button_pressed):
+	settings.set_value("visual", "monitor_effect_enabled", button_pressed)
+
+
+func _on_CameraEffectCheckBox_ready():
+	initialize_checkbox("visual", "camera_effect_enabled",
+		"CameraEffectCheckBox", true)
+
+
+func _on_CameraEffectCheckBox_toggled(button_pressed):
+	settings.set_value("visual", "camera_effect_enabled", button_pressed)
+
+
+func _on_TitleMusicCheckBox_ready():
+	initialize_checkbox("audio", "title_music_enabled",
+		"TitleMusicCheckBox", true)
+
+
+func _on_TitleMusicCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "title_music_enabled", button_pressed)
+	Mixer.title_music_enabled = button_pressed
+
+
+func _on_TitleAmbienceCheckBox_ready():
+	initialize_checkbox("audio", "title_ambience_enabled",
+		"TitleAmbienceCheckBox", true)
+
+
+func _on_TitleAmbienceCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "title_ambience_enabled", button_pressed)
+	Mixer.title_ambience_enabled = button_pressed
+
+
+func _on_CalmMusicCheckBox_ready():
+	initialize_checkbox("audio", "calm_music_enabled",
+		"CalmMusicCheckBox", true)
+
+
+func _on_CalmMusicCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "calm_music_enabled", button_pressed)
+	Mixer.calm_music_enabled = button_pressed
+
+
+func _on_TenseMusicCheckBox_ready():
+	initialize_checkbox("audio", "tense_music_enabled",
+		"TenseMusicCheckBox", true)
+
+
+func _on_TenseMusicCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "tense_music_enabled", button_pressed)
+	Mixer.tense_music_enabled = button_pressed
+
+
+func _on_MonitorHumCheckBox_ready():
+	initialize_checkbox("audio", "hum_enabled",
+		"MonitorHumCheckBox", true)
+
+
+func _on_MonitorHumCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "hum_enabled", button_pressed)
+	Mixer.hum_enabled = button_pressed
+
+
+func _on_ChatSfxCheckBox_ready():
+	initialize_checkbox("audio", "chat_sfx_enabled",
+		"ChatSfxCheckBox", true)
+
+
+func _on_ChatSfxCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "chat_sfx_enabled", button_pressed)
+	Mixer.chat_sfx_enabled = button_pressed
+
+
+func _on_UndoSfxCheckBox_ready():
+	initialize_checkbox("audio", "undo_sfx_enabled",
+		"UndoSfxCheckBox", true)
+
+
+func _on_UndoSfxCheckBox_toggled(button_pressed):
+	settings.set_value("audio", "undo_sfx_enabled", button_pressed)
+	Mixer.undo_sfx_enabled = button_pressed

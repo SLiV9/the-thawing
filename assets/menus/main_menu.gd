@@ -9,8 +9,8 @@ func _ready():
 	if not settings.has_section("accessibility"):
 		goto_first_launch_settings_menu()
 		return
-	if settings.get_value("graphics", "enable_fullscreen", false):
-		OS.window_fullscreen = true
+	OS.window_fullscreen = settings.get_value(
+		"graphics", "fullscreen_enabled", false)
 	if settings.has_section_key("interface", "text_size"):
 		var text_size = settings.get_value("interface", "text_size")
 		var main_font = get_font("normal_font", "RichTextLabel")
@@ -35,11 +35,14 @@ func _ready():
 	settings.apply_accessibility_to_button(find_node("FakeStartButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("FakeSettingsButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("FakeQuitButton"), $InputLimiter)
+	if not settings.get_value("visual", "monitor_effect_enabled", true):
+		$Monitor.visible = false
 	if Mixer.running:
 		Mixer.enter_main_menu()
 	else:
 		var tracks = $ResourcePreloader.get_resource("tracks")
 		Mixer.run(tracks)
+	Mixer.configure(settings)
 	randomize()
 
 func goto_first_launch_settings_menu():

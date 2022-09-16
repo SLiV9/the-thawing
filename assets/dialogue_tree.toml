@@ -39,7 +39,7 @@ options = [["", "intro.intruder"]]
 [intro.intruder]
 speaker = "alex"
 speaker_is_new = true
-tensity = 1
+tensity = 0.7
 text = "Intruder detected! Eliminating in 3..."
 options = [["Uhm...", "intro.intruder2"]]
 

@@ -88,8 +88,8 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer"]
-margin_left = 178.0
-margin_right = 762.0
+margin_left = 172.0
+margin_right = 768.0
 margin_bottom = 461.0
 size_flags_vertical = 3
 custom_styles/bg = SubResource( 1 )
@@ -100,10 +100,14 @@ scroll_horizontal_enabled = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 580.0
-margin_bottom = 437.0
+margin_bottom = 943.0
 rect_min_size = Vector2( 400, 0 )
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Title" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="AccessibilityHeader" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
 margin_right = 576.0
 margin_bottom = 29.0
 text = "Accessibility Settings"
@@ -189,6 +193,98 @@ margin_right = 576.0
 margin_bottom = 433.0
 text = "Show \"Undo\" button"
 
+[node name="Gap" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 437.0
+margin_right = 576.0
+margin_bottom = 447.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="VisualHeader" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 451.0
+margin_right = 576.0
+margin_bottom = 480.0
+text = "Visual Settings"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullscreenCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 484.0
+margin_right = 576.0
+margin_bottom = 518.0
+text = "Fullscreen"
+
+[node name="MonitorEffectCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 522.0
+margin_right = 576.0
+margin_bottom = 560.0
+text = "Monitor effect on main menu"
+
+[node name="CameraEffectCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 564.0
+margin_right = 576.0
+margin_bottom = 602.0
+text = "Monitor effect on camera feed"
+
+[node name="Gap2" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 606.0
+margin_right = 576.0
+margin_bottom = 616.0
+rect_min_size = Vector2( 0, 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioHeader" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 620.0
+margin_right = 576.0
+margin_bottom = 649.0
+text = "Audio Settings"
+fit_content_height = true
+
+[node name="ChatSfxCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 653.0
+margin_right = 576.0
+margin_bottom = 691.0
+text = "Play sound for new audio log entry"
+
+[node name="UndoSfxCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 695.0
+margin_right = 576.0
+margin_bottom = 733.0
+text = "Play sound on Undo"
+
+[node name="TitleMusicCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 737.0
+margin_right = 576.0
+margin_bottom = 771.0
+text = "Play title theme"
+
+[node name="TitleAmbienceCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 775.0
+margin_right = 576.0
+margin_bottom = 813.0
+text = "Play ambient sounds on main menu"
+
+[node name="CalmMusicCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 817.0
+margin_right = 576.0
+margin_bottom = 855.0
+text = "Play in-game music (track 1)"
+
+[node name="TenseMusicCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 859.0
+margin_right = 576.0
+margin_bottom = 897.0
+text = "Play in-game music (track 2)"
+
+[node name="MonitorHumCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 901.0
+margin_right = 576.0
+margin_bottom = 939.0
+text = "Play monitor hum"
+
 [node name="Details" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents"]
 margin_top = 469.0
 margin_right = 940.0
@@ -228,6 +324,7 @@ focus_mode = 2
 text = "< BACK"
 underline = 2
 
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ScreenReaderCheckButton" to="." method="_on_ScreenReaderCheckButton_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ScreenReaderCheckButton" to="." method="_on_ScreenReaderCheckButton_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_toggled"]
@@ -237,14 +334,31 @@ underline = 2
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputCooldownCheckButton" to="." method="_on_InputCooldownCheckButton_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/InputCooldownRadio003" to="." method="_on_InputCooldownRadio003_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/InputCooldownRadio003" to="." method="_on_InputCooldownRadio003_toggled"]
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/InputCooldownRadio010" to="." method="_on_InputCooldownRadio010_toggled"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/InputCooldownRadio025" to="." method="_on_InputCooldownRadio025_toggled"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/InputCooldownRadio050" to="." method="_on_InputCooldownRadio050_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputBlockedNotifierCheckBox" to="." method="_on_InputBlockedNotifierCheckBox_ready"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/InputBlockedNotifierCheckBox" to="." method="_on_InputBlockedNotifierCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/DisableKeyEchoCheckBox" to="." method="_on_DisableKeyEchoCheckBox_ready"]
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/DisableKeyEchoCheckBox" to="." method="_on_DisableKeyEchoCheckBox_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ShowUndoCheckBox" to="." method="_on_ShowUndoCheckBox_ready"]
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ShowUndoCheckBox" to="." method="_on_ShowUndoCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/FullscreenCheckBox" to="." method="_on_FullscreenCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/FullscreenCheckBox" to="." method="_on_FullscreenCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MonitorEffectCheckBox" to="." method="_on_MonitorEffectCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MonitorEffectCheckBox" to="." method="_on_MonitorEffectCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/CameraEffectCheckBox" to="." method="_on_CameraEffectCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/CameraEffectCheckBox" to="." method="_on_CameraEffectCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ChatSfxCheckBox" to="." method="_on_ChatSfxCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ChatSfxCheckBox" to="." method="_on_ChatSfxCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/UndoSfxCheckBox" to="." method="_on_UndoSfxCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/UndoSfxCheckBox" to="." method="_on_UndoSfxCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleMusicCheckBox" to="." method="_on_TitleMusicCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleMusicCheckBox" to="." method="_on_TitleMusicCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleAmbienceCheckBox" to="." method="_on_TitleAmbienceCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TitleAmbienceCheckBox" to="." method="_on_TitleAmbienceCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/CalmMusicCheckBox" to="." method="_on_CalmMusicCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/CalmMusicCheckBox" to="." method="_on_CalmMusicCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TenseMusicCheckBox" to="." method="_on_TenseMusicCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/TenseMusicCheckBox" to="." method="_on_TenseMusicCheckBox_toggled"]
+[connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MonitorHumCheckBox" to="." method="_on_MonitorHumCheckBox_ready"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/MonitorHumCheckBox" to="." method="_on_MonitorHumCheckBox_toggled"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer/SaveAndContinueButton" to="." method="_on_SaveAndContinueButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/Details/MarginContainer2/DiscardAndContinueButton" to="." method="_on_DiscardAndContinueButton_pressed"]

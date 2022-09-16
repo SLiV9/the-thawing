@@ -6,8 +6,6 @@ var settings = Settings.new()
 
 func _ready():
 	settings.load_all()
-	if settings.get_value("graphics", "enable_fullscreen", false):
-		OS.window_fullscreen = true
 	if settings.get_value("accessibility", "screen_reader_enabled", true):
 		$ScreenReader.enabled = true
 		$ScreenReader.TTS.speak("In Game", true)
@@ -25,6 +23,8 @@ func _ready():
 	settings.apply_accessibility_to_button(find_node("BackButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("RewindButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("StopButton"), $InputLimiter)
+	if not settings.get_value("visual", "camera_effect_enabled", true):
+		find_node("Camera").turn_off_monitor_effect()
 	if Mixer.running:
 		Mixer.enter_game()
 
@@ -79,7 +79,8 @@ func _on_Chat_text_added(speaker_id, text):
 		return
 	if not $ScreenReader.enabled:
 		Mixer.end_hum()
-		$NewChatSfx.play()
+		if Mixer.chat_sfx_enabled:
+			$NewChatSfx.play()
 		return
 	var audio_description = text
 	if not speaker_id.empty():
@@ -103,8 +104,10 @@ func _on_Chat_button_created(button):
 
 
 func _on_Chat_rewind_activated():
-	$UndoSfx.play()
+	if Mixer.undo_sfx_enabled:
+		$UndoSfx.play()
 
 
 func _on_Chat_activation_failed():
-	$ButtonFailSfx.play()
+	if Mixer.undo_sfx_enabled:
+		$ButtonFailSfx.play()
