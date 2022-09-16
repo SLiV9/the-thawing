@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/menus/settings_menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/ui.theme" type="Theme" id=3]
 [ext_resource path="res://assets/ui/input_limiter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/music/Ruskerdax - Pondering the Cosmos.ogg" type="AudioStream" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 content_margin_left = 4.0
@@ -227,6 +228,11 @@ margin_bottom = 32.0
 focus_mode = 2
 text = "< BACK"
 underline = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -12.235
+autoplay = true
 
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/ScreenReaderCheckButton" to="." method="_on_ScreenReaderCheckButton_toggled"]
 [connection signal="ready" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Contents/HBoxContainer/ScrollContainer/VBoxContainer/RemovePrefixCheckBox" to="." method="_on_RemovePrefixCheckBox_ready"]

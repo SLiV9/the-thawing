@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/godot-accessibility/ScreenReader.gd" type="Script" id=1]
 [ext_resource path="res://assets/menus/main_menu.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://assets/menus/flag_of_antarctica.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/input_limiter.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/fonts/MotorolaScreentype/MotorolaScreentype.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/sfx/electric_hum.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/dark_ambience.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/music/Ruskerdax - Pondering the Cosmos.ogg" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
@@ -127,7 +130,7 @@ custom_fonts/italics_font = SubResource( 3 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center][i]  [/i]THAWING[/center]"
-text = "[center][i]  [/i]THAWING[/center]"
+text = "  THAWING"
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -290,6 +293,21 @@ margin_bottom = 66.0
 focus_mode = 2
 text = "> QUIT GAME"
 underline = 2
+
+[node name="Hum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -18.353
+autoplay = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = 7.866
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -5.243
+autoplay = true
 
 [connection signal="pressed" from="Buttons/VBoxContainer/HBoxContainer/MiddleContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

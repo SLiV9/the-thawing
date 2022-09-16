@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ruskerdax - Pondering the Cosmos.ogg-f7625d3659ac2960fa647722f4878520.oggstr"
+
+[deps]
+
+source_file="res://assets/music/Ruskerdax - Pondering the Cosmos.ogg"
+dest_files=[ "res://.import/Ruskerdax - Pondering the Cosmos.ogg-f7625d3659ac2960fa647722f4878520.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
