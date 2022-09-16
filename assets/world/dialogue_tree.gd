@@ -2,7 +2,7 @@ extends Node
 
 var data: ConfigFile
 var history = []
-var flags = []
+var flags = FlagCounter.new()
 var first_section
 
 var _fast_forward_offset = 0
@@ -24,6 +24,7 @@ func start():
 	history.append({
 		"section": section,
 		"originating_answer_offset": 0,
+		"flags_added": null,
 	})
 	return _load(section)
 
@@ -32,6 +33,7 @@ func next(answer):
 	history.append({
 		"section": answer.next_section,
 		"originating_answer_offset": answer.answer_offset,
+		"flags_added": null,
 	})
 	return _load(answer.next_section)
 
@@ -57,8 +59,8 @@ func fast_forward_end():
 func rewind():
 	_fast_forward_offset = 0
 	var discarded = history.pop_back()
-	for flag in data.get_value(discarded, "flags", []):
-		flags.remove(flag)
+	for flag in discarded.flags_added:
+		self.flags.pop(flag)
 	var previous = history.back()
 	if previous != null:
 		return _load(previous.section)
@@ -87,8 +89,11 @@ func _load(section):
 			"is_action": is_action,
 		})
 		answer_offset += 1
-	for flag in data.get_value(section, "flags", []):
-		self.flags.append(flag)
+	if history.back().flags_added == null:
+		var section_flags = data.get_value(section, "flags", [])
+		for flag in section_flags:
+			flags.push(flag)
+		history.back().flags_added = section_flags
 	var speaker_is_new = data.get_value(section, "speaker_is_new", false)
 	var tensity = data.get_value(section, "tensity", -1)
 	return {
@@ -101,4 +106,4 @@ func _load(section):
 	}
 
 func has_personnel_files():
-	return flags.has("personnel_online")
+	return flags.count_difference("pc_online", "pc_offline") > 0

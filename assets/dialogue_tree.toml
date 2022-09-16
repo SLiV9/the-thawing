@@ -117,13 +117,73 @@ options = [["!TAKE THE DEVICE", "intro.goodnight"]]
 [intro.goodnight]
 speaker = "graham"
 text = "Good night!"
-flags = ["personnel_online"]
+flags = ["pc_online"]
 options = [["Good night.", "intro.following_alex"]]
 
 [intro.following_alex]
 speaker = ""
 text = ""
-options = [["", "the_end"]]
+options = [["", "intro.follow_me"]]
+
+[intro.follow_me]
+speaker = "alex"
+text = "Ok, follow me. Our rooms are opposite each other. Isn't that funny?"
+options = [["Yeah.", "intro.trick"], ["Is it?", "intro.guess_not"], ["You have a bedroom?", "intro.about_bedroom"]]
+
+[intro.trick]
+speaker = "alex"
+text = "Here we are."
+options = [["!OPEN THE DOOR", "intro.live_laugh_learn"]]
+
+[intro.guess_not]
+speaker = "alex"
+text = "I guess not."
+flags = ["alex_sad"]
+options = [["", "intro.on_the_right"]]
+
+[intro.on_the_right]
+speaker = "alex"
+text = "Your room is the one on the right."
+options = [["!OPEN THE DOOR", "intro.leave_you"]]
+
+[intro.about_bedroom]
+speaker = "alex"
+text = "Yeah, so to speak. It doesn't have a bed, but I recharge there a few hours each night. \n Do you want to see it?"
+options = [["Sure.", "intro.live_laugh_learn"], ["Not really.", "intro.nevermind"]]
+
+[intro.nevermind]
+speaker = "alex"
+text = "Nevermind."
+flags = ["alex_sad"]
+options = [["", "intro.other_door"]]
+
+[intro.live_laugh_learn]
+speaker = ""
+text = ""
+flags = ["alex_happy"]
+options = [["", "intro.other_door"]]
+
+[intro.other_door]
+speaker = "alex"
+text = "Your room is the one on the right."
+options = [["!OPEN THE OTHER DOOR", "intro.leave_you"]]
+
+[intro.leave_you]
+speaker = "alex"
+text = "I'll leave you to it, then."
+options = [["Thanks. Good night.", "intro.sleep_tight"], ["!SHUT THE DOOR", "intro.sleep"]]
+
+[intro.sleep_tight]
+speaker = "alex"
+text = "Sleep tight."
+flags = ["alex_happy"]
+options = [["!CLOSE THE DOOR", "intro.sleep"]]
+
+[intro.sleep]
+speaker = ""
+text = ""
+flags = ["pc_offline"]
+options = [["!GO TO SLEEP", "the_end"]]
 
 [the_end]
 speaker = ""

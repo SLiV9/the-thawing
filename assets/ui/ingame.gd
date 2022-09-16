@@ -19,8 +19,6 @@ func _ready():
 	$InputLimiter.configure(settings)
 	find_node("RewindContainer").visible = settings.get_value(
 		"accessibility", "show_undo_button", false)
-	settings.apply_accessibility_to_button(find_node("ListButton"), $InputLimiter)
-	settings.apply_accessibility_to_button(find_node("BackButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("RewindButton"), $InputLimiter)
 	settings.apply_accessibility_to_button(find_node("StopButton"), $InputLimiter)
 	if not settings.get_value("visual", "camera_effect_enabled", true):

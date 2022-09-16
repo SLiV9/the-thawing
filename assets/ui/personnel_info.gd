@@ -8,6 +8,7 @@ signal screen_changed()
 onready var menu = self.find_node("Menu")
 onready var overview = self.find_node("Overview")
 onready var details = self.find_node("Details")
+onready var laws = self.find_node("Laws")
 onready var headshot = self.find_node("Headshot")
 onready var detailstext = self.find_node("DetailsText")
 onready var header = self.find_node("PersonnelHeader")
@@ -17,9 +18,16 @@ var selected = null
 var dead_workers = []
 
 func _ready():
+	emit_signal("button_created", self.find_node("ListButton"))
+	emit_signal("button_created", self.find_node("LawsButton"))
+	for screen in [overview, details, laws]:
+		var backbutton = screen.find_node("BackButton")
+		if backbutton:
+			emit_signal("button_created", backbutton)
 	menu.visible = is_online
 	overview.visible = false
 	details.visible = false
+	laws.visible = false
 	workers = PersonnelData.get_ids()
 	for id in workers:
 		var link = LinkButton.new()
@@ -42,6 +50,7 @@ func _on_selected(id):
 	menu.visible = false
 	overview.visible = false
 	details.visible = true
+	laws.visible = false
 	var display_name = PersonnelData.index_name(id)
 	if dead_workers.has(id):
 		header.text = "%s (DECEASED)" % [display_name]
@@ -62,6 +71,7 @@ func to_index():
 	menu.visible = true
 	overview.visible = false
 	details.visible = false
+	laws.visible = false
 	emit_signal("screen_changed")
 	focus_first_button(menu)
 
@@ -75,20 +85,22 @@ func to_overview():
 	menu.visible = false
 	overview.visible = true
 	details.visible = false
+	laws.visible = false
 	emit_signal("screen_changed")
 	focus_first_button(overview)
 
 
 func _on_Chat_dialogue_tree_updated():
-	print(DialogueTree.has_personnel_files(), " vs ", is_online)
-	if DialogueTree.has_personnel_files() and not is_online:
-		is_online = true
-		to_index()
+	if DialogueTree.has_personnel_files():
+		if not is_online:
+			is_online = true
+			to_index()
 	elif is_online:
 		is_online = false
 		menu.visible = false
 		overview.visible = false
 		details.visible = false
+		laws.visible = false
 		header.text = "OFFLINE"
 
 
@@ -112,3 +124,17 @@ func find_focusable_control(node):
 		if result:
 			return result
 	return null
+
+
+func _on_LawsButton_pressed():
+	to_laws()
+
+
+func to_laws():
+	header.text = "RULES OF ROBOTICS"
+	menu.visible = false
+	overview.visible = false
+	details.visible = false
+	laws.visible = true
+	emit_signal("screen_changed")
+	focus_first_button(laws)
