@@ -11,7 +11,10 @@ func _ready():
 	var err = data.load("res://assets/dialogue_tree.toml")
 	if err != OK:
 		printerr("Failed to load dialogue_tree")
-	first_section = data.get_sections()[0]
+	for section in data.get_sections():
+		if section != null and not section.empty():
+			first_section = section
+			break
 
 func start():
 	_fast_forward_offset = 0

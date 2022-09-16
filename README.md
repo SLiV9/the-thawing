@@ -1,7 +1,6 @@
 # Thawing
 
 My entry for the Accessibility Jam 2022 (Hand Tremors). Made in Godot.
-**Beware of spoilers (*dialogue_tree.toml*)!**
 
 ![Thawing Logo](assets/packaging/coverart_630x500.png)
 
@@ -15,6 +14,12 @@ The following free assets were used:
 - ["Pixel Worker Sprite" by domsson](https://opengameart.org/content/pixel-worker-sprite-fukushima), modified;
 - ["Isometric houses" by Hansjörg Malthaner](https://opengameart.org/content/isometric-houses-64px-raster);
 - ["VHS and CRT monitor effect" shader by pend00](https://godotshaders.com/shader/vhs-and-crt-monitor-effect/), modified;
+- ["Pondering the Cosmos" by Ruskerdax](https://opengameart.org/content/pondering-the-cosmos);
+- ["Osare (Unrest Theme)" by Brandon Morris](https://opengameart.org/content/osare-unrest-theme);
+- ["Last stand in space" by Brandon Morris](https://opengameart.org/content/last-stand-in-space);
+- ["Dark Ambience" (chewing gum) by SpringySpringo](https://opengameart.org/content/dark-ambience-0);
+- ["Force field electrim hum" by Varkalandar](https://opengameart.org/content/force-field-electric-hum), modified;
+- ["50 CC0 Sci-Fi SFX" by rubberduck](https://opengameart.org/content/50-cc0-sci-fi-sfx);
 - [Retro Gaming font by Daymarius](https://www.dafont.com/retro-gaming.font);
 - [Motorola Screentype font by R P N](https://www.dafont.com/motorola-screentype.font);
 - [Controller buttons by Arks](https://arks.itch.io/ps4-buttons);
