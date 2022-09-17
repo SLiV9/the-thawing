@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/world/tiled_floor.png" type="Texture" id=1]
+
+[node name="Snow" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+hint_tooltip = "You see the boring tiled floor of the facility."
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
