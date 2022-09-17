@@ -371,6 +371,78 @@ options = [["Ok. Thanks for telling me.", "day2.marcus_leaves"]]
 [day2.marcus_leaves]
 speaker = ""
 text = ""
+options = [["", "day2.gameroom"]]
+
+[day2.gameroom]
+speaker = ""
+text = "I enter the lounge. An old man is sitting behind a chess board."
+options = [["Hello.", "day2.old_man"], ["Playing with yourself?", "day2.excuse_me"]]
+
+[day2.old_man]
+speaker = "prof"
+speaker_is_new = true
+text = "Hello again! \n Have you seen Vern? It's his turn and he's about to lose."
+options = [["Vern?", "day2.who_is_vern"]]
+
+[day2.excuse_me]
+speaker = "prof"
+speaker_is_new = true
+text = "Excuse me? How rude."
+flags = ["human_sad"]
+options = [["Have you seen Graham?", "day2.seen_graham"], ["Nevermind. I'll leave.", "day2.leave_gameroom"]]
+
+[day2.who_is_vern]
+speaker = "prof"
+text = "You know who I mean. Big guy, always a smile on his face."
+options = [["Never met him.", "day2.never_met"], ["Right. Vern.", "day2.right_vern"]]
+
+[day2.never_met]
+speaker = "prof"
+text = "Oh, I thought I saw you talk to him last night. \n I must be losing my mind."
+options = [["", "day2.awkward_silence"], ["Seems that way.", "day2.going_mad"], ["Have you seen Graham?", "day2.seen_graham"]]
+
+[day2.right_vern]
+speaker = "prof"
+text = "I saw you talk to him last night. \n I might be getting older, but my mind is still has sharp as a knife."
+flags = ["human_happy"]
+options = [["", "day2.awkward_silence"], ["Good for you.", "day2.manners"], ["Have you seen Graham?", "day2.seen_graham"]]
+
+[day2.awkward_silence]
+speaker = "prof"
+text = "Well, if you see him, tell him 'Knight takes Rook'."
+flags = ["knight_takes_rook"]
+options = [["Will do.", "day2.leave_gameroom"]]
+
+[day2.going_mad]
+speaker = "prof"
+text = "But I'm still as quick witted as ever. If you do see him, tell him 'Knight takes Rook'."
+flags = ["knight_takes_rook", "human_sad"]
+options = [["Will do.", "day2.leave_gameroom"]]
+
+[day2.seen_graham]
+speaker = "prof"
+text = "Now that you mention it..."
+options = [["What?", "day2.mention_it"]]
+
+[day2.mention_it]
+speaker = "prof"
+text = "What?"
+options = [["Have you seen him?", "day2.have_you"]]
+
+[day2.have_you]
+speaker = "prof"
+text = "Oh, right. No, I haven't. \n He usually brings me my morning tea, but he hasn't been round this morning. \n Young people are always so unreliable."
+options = [["I'll keep looking, then.", "day2.leave_gameroom"], ["Ok, thanks for nothing.", "day2.manners"]]
+
+[day2.manners]
+speaker = "prof"
+text = "Mind your manners. Now leave me alone."
+flags = ["human_sad"]
+options = [["Will do.", "day2.leave_gameroom"]]
+
+[day2.leave_gameroom]
+speaker = ""
+text = ""
 options = [["", "to_be_continued"]]
 
 
