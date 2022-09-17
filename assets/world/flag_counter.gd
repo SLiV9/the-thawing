@@ -21,3 +21,9 @@ func count(flag):
 
 func count_difference(pos, neg):
 	return count(pos) - count(neg)
+
+func get_save_data():
+	return self.data
+
+func load_from_data(d):
+	self.data = d

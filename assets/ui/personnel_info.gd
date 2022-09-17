@@ -94,6 +94,7 @@ func _on_Chat_dialogue_tree_updated():
 	if DialogueTree.has_personnel_files():
 		if not is_online:
 			is_online = true
+			yield(get_tree(), "idle_frame")
 			to_index()
 	elif is_online:
 		is_online = false

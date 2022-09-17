@@ -183,10 +183,104 @@ options = [["!CLOSE THE DOOR", "intro.sleep"]]
 speaker = ""
 text = ""
 flags = ["pc_offline"]
-options = [["!GO TO SLEEP", "the_end"]]
+options = [["!GO TO SLEEP", "day2.wake_up"]]
+
+[day2.wake_up]
+speaker = ""
+tensity = 0
+text = "I wake up from a restless night. \n It's so cold, I feel like I barely slept. \n I get up and make my way to the canteen."
+options = [["", "day2.canteen"]]
+
+[day2.canteen]
+speaker = ""
+text = "The food doesn't look very appetizing, so I walk up to a table where three people are seated."
+options = [["", "day2.hazel"]]
+
+[day2.hazel]
+speaker = "hazel"
+speaker_is_new = true
+text = "Hi there stranger! \n Rough night?"
+options = [["You could say that.", "day2.first_night"], ["I slept fine.", "day2.unusual"]]
+
+[day2.first_night]
+speaker = "hazel"
+text = "All of us had trouble sleeping on our first night. \n I think it's the silence. No cars, no jam ads. It freaks people out. \n Did you know that 50 years ago there were no jam ads? Hadn't been invented yet. \n Crazy, right? \n Of course back then there were mosquitoes buzzing all night and birds chirping all day. \n Luckily we got rid of those. \n I'm Hazel by the way."
+options = [["Right.", "day2.rude"], ["I'm Parker.", "day2.nice"]]
+
+[day2.unusual]
+speaker = "hazel"
+text = "Huh, lucky you. \n I'm Hazel. And this is Rory, and Bill."
+flags = ["human_suspicious"]
+options = [["", "day2.rory"]]
+
+[day2.rude]
+speaker = "hazel"
+text = "... \n Oh, this is Rory, and Bill."
+flags = ["human_sad"]
+options = [["", "day2.rory"]]
+
+[day2.nice]
+speaker = "hazel"
+text = "And this is Rory, and Bill."
+flags = ["human_happy"]
+options = [["", "day2.rory"]]
+
+[day2.rory]
+speaker = "rory"
+speaker_is_new = true
+text = "Howdy!"
+options = [["", "day2.bill"]]
+
+[day2.bill]
+speaker = "bill"
+speaker_is_new = true
+text = "Good morning."
+options = [["", "day2.want_to_stay"]]
+
+[day2.want_to_stay]
+speaker = "hazel"
+text = "Sit down, tell us a little about yourself."
+options = [["!SIT DOWN", "day2.stay"], ["I have work to do.", "day2.leave"]]
+
+[day2.leave]
+speaker = "hazel"
+text = "Oh, of course you do."
+flags = ["human_sad"]
+options = [["Where can I find Graham?", "day2.where_graham"]]
+
+[day2.stay]
+speaker = "hazel"
+text = "So you're our new security officer, right? \n Makes sense that they hire someone, what with the big discovery and all the secrecy around it."
+flags = ["human_happy"]
+options = [["What discovery?", "day2.what_discovery"]]
+
+[day2.what_discovery]
+speaker = "hazel"
+text = "The micro-organisms in the..."
+flags = ["unknown_micro_organisms"]
+options = [["", "day2.shush"]]
+
+[day2.shush]
+speaker = "rory"
+text = "Hazel! \n Sorry hoss, we were instructed not to tell you unless you already know."
+options = [["", "to_be_continued"]]
+
+
+
+[day2.where_graham]
+speaker = "rory"
+text = "Oh, he's around somewhere."
+options = [["I'll go look for him.", "to_be_continued"]]
+
+
+
+[to_be_continued]
+speaker = ""
+text = "TO BE CONTINUED"
+options = [["", "the_end"]]
 
 [the_end]
 speaker = ""
 tensity = 0
 text = "THE END"
-options = [["", "intro.greeting"]]
+options = [["!REPLAY FROM START", "intro.snow"]]

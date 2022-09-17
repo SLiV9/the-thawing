@@ -16,6 +16,7 @@ func _ready():
 		if section != null and not section.empty():
 			first_section = section
 			break
+	load_history()
 
 func start():
 	_fast_forward_offset = 0
@@ -35,7 +36,9 @@ func next(answer):
 		"originating_answer_offset": answer.answer_offset,
 		"flags_added": null,
 	})
-	return _load(answer.next_section)
+	var loaded = _load(answer.next_section)
+	save_history()
+	return loaded
 
 func can_fast_forward():
 	return _fast_forward_offset < history.size()
@@ -107,3 +110,24 @@ func _load(section):
 
 func has_personnel_files():
 	return flags.count_difference("pc_online", "pc_offline") > 0
+
+func save_history():
+	var file = File.new()
+	file.open("user://progress.save", File.WRITE)
+	var save_data = {
+		"history": history,
+		"flags": flags.get_save_data(),
+	}
+	var json = to_json(save_data)
+	file.store_line(json)
+	file.close()
+
+func load_history():
+	var file = File.new()
+	file.open("user://progress.save", File.READ)
+	var line = file.get_line()
+	file.close()
+	var save_data = parse_json(line)
+	history = save_data.history
+	flags.load_from_data(save_data.flags)
+	_fast_forward_offset = 0
