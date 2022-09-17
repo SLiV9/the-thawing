@@ -257,20 +257,50 @@ options = [["What discovery?", "day2.what_discovery"]]
 [day2.what_discovery]
 speaker = "hazel"
 text = "The micro-organisms in the..."
-flags = ["unknown_micro_organisms"]
+flags = ["heard_micro_organisms"]
 options = [["", "day2.shush"]]
 
 [day2.shush]
 speaker = "rory"
 text = "Hazel! \n Sorry hoss, we were instructed not to tell you unless you already know."
-options = [["", "to_be_continued"]]
+options = [["Nevermind.", "day2.from_city"], ["Oh, that discovery.", "day2.did_graham"]]
 
+[day2.did_graham]
+speaker = "hazel"
+text = "See, it's fine. Graham already told him. \n So yeah when we told the head office about micro-organisms in the soil, they went nuts. \n Sent us a million messages reminding us about the NDA we signed, reiterated that we weren't allowed to leave the facility without approval, yada yada yada. \n We even got a message from Joseph Vanderroost. Can you believe it? \n He wanted to congratulate us in person, but he was on a different continent. \n So then they told us they were sending a security officer from the big city. \n And now here you are."
+flags = ["human_suspicious", "heard_vanderroost"]
+options = [["", "day2.from_city"]]
 
+[day2.from_city]
+speaker = "hazel"
+text = "So you're from Exomobilia, yeah?"
+options = [["What?", "day2.what_city"], ["Yes.", "day2.exo"], ["Yup, the big E.", "day2.exo"]]
+
+[day2.what_city]
+speaker = "hazel"
+text = "Exomobilia? The biggest city in Antarctica? \n Head office told us that's where you used to live."
+flags = ["human_suspicious"]
+options = [["Oh, that's right.", "day2.morning_head"]]
+
+[day2.morning_head]
+speaker = "hazel"
+text = "Must have been a long trip. \n Anyway, here's me yapping your ear off. \n You should probably go find Graham."
+options = [["Where can I find him?", "day2.where_graham"]]
+
+[day2.exo]
+speaker = "hazel"
+text = "The biggest city in Antarctica... \n I'd love to visit someday. \n But you'll have to tell me all about it another time. \n You should probably go find Graham."
+options = [["Where can I find him?", "day2.where_graham"]]
 
 [day2.where_graham]
 speaker = "rory"
 text = "Oh, he's around somewhere."
-options = [["I'll go look for him.", "to_be_continued"]]
+options = [["I'll go look for him.", "day2.walk_away"]]
+
+[day2.walk_away]
+speaker = ""
+text = ""
+options = [["", "to_be_continued"]]
 
 
 

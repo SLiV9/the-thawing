@@ -3,7 +3,8 @@ extends Node
 var data: ConfigFile
 var history = []
 var flags = FlagCounter.new()
-var first_section
+var first_section = null
+var all_sections = []
 
 var _fast_forward_offset = 0
 
@@ -12,11 +13,19 @@ func _ready():
 	var err = data.load("res://assets/dialogue_tree.toml")
 	if err != OK:
 		printerr("Failed to load dialogue_tree")
+	all_sections = []
 	for section in data.get_sections():
 		if section != null and not section.empty():
-			first_section = section
-			break
+			if first_section == null:
+				first_section = section
+			all_sections.append(section)
+	if OS.has_feature("editor"):
+		test_all_sections()
 	load_history()
+
+func test_all_sections():
+	for section in all_sections:
+			var _discarded = _load(section)
 
 func start():
 	_fast_forward_offset = 0
@@ -83,16 +92,18 @@ func _load(section):
 		var is_implicit = option[0].empty() or speaker.empty()
 		var answer_text = option[0].trim_prefix("!")
 		var is_action = (answer_text != option[0])
+		var next_section = option[1]
+		assert(all_sections.has(next_section))
 		options.append({
 			"answer_offset": answer_offset,
 			"text": answer_text,
-			"next_section": option[1],
+			"next_section": next_section,
 			"current_section": section,
 			"is_implicit": is_implicit,
 			"is_action": is_action,
 		})
 		answer_offset += 1
-	if history.back().flags_added == null:
+	if not history.empty() and history.back().flags_added == null:
 		var section_flags = data.get_value(section, "flags", [])
 		for flag in section_flags:
 			flags.push(flag)
