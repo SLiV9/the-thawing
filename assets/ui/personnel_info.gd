@@ -13,15 +13,17 @@ onready var perimeter = self.find_node("Perimeter")
 onready var headshot = self.find_node("Headshot")
 onready var detailstext = self.find_node("DetailsText")
 onready var header = self.find_node("PersonnelHeader")
+onready var list_button = self.find_node("ListButton")
+onready var laws_button = self.find_node("LawsButton")
+onready var perimeter_button = self.find_node("PerimeterButton")
 
 var workers = []
 var selected = null
-var dead_workers = []
 
 func _ready():
-	emit_signal("button_created", self.find_node("ListButton"))
-	emit_signal("button_created", self.find_node("LawsButton"))
-	emit_signal("button_created", self.find_node("PerimeterButton"))
+	emit_signal("button_created", list_button)
+	emit_signal("button_created", laws_button)
+	emit_signal("button_created", perimeter_button)
 	for screen in [overview, details, laws]:
 		var backbutton = screen.find_node("BackButton")
 		if backbutton:
@@ -31,6 +33,8 @@ func _ready():
 	details.visible = false
 	laws.visible = false
 	perimeter.visible = false
+	laws_button.visible = false
+	perimeter_button.visible = false
 	workers = PersonnelData.get_ids()
 	for id in workers:
 		var link = LinkButton.new()
@@ -50,13 +54,17 @@ func _ready():
 
 
 func _on_selected(id):
+	to_profile(id)
+
+
+func to_profile(id):
 	menu.visible = false
 	overview.visible = false
 	details.visible = true
 	laws.visible = false
 	perimeter.visible = false
 	var display_name = PersonnelData.index_name(id)
-	if dead_workers.has(id):
+	if DialogueTree.is_dead(id):
 		header.text = "%s (DECEASED)" % [display_name]
 	else:
 		header.text = display_name
@@ -109,6 +117,9 @@ func _on_Chat_dialogue_tree_updated():
 		laws.visible = false
 		perimeter.visible = false
 		header.text = "OFFLINE"
+	if menu:
+		laws_button.visible = DialogueTree.has_rules_of_robotics()
+		perimeter_button.visible = DialogueTree.has_perimeter_logs()
 
 
 func open_for_first_time():

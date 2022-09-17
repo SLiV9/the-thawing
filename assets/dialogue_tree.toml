@@ -112,7 +112,7 @@ options = [["I'm exhausted.", "intro.one_last_thing"], ["Sounds good.", "intro.o
 [intro.one_last_thing]
 speaker = "graham"
 text = "Oh, one last thing. \n Here's a portable computer. It should contain all the files you need."
-options = [["!TAKE THE DEVICE", "intro.goodnight"]]
+options = [["~TAKE THE DEVICE", "intro.goodnight"]]
 
 [intro.goodnight]
 speaker = "graham"
@@ -133,7 +133,7 @@ options = [["Yeah.", "intro.trick"], ["Is it?", "intro.guess_not"], ["You have a
 [intro.trick]
 speaker = "alex"
 text = "Here we are."
-options = [["!OPEN THE DOOR", "intro.live_laugh_learn"]]
+options = [["~OPEN THE DOOR", "intro.live_laugh_learn"]]
 
 [intro.guess_not]
 speaker = "alex"
@@ -144,7 +144,7 @@ options = [["", "intro.on_the_right"]]
 [intro.on_the_right]
 speaker = "alex"
 text = "Your room is the one on the right."
-options = [["!OPEN THE DOOR", "intro.leave_you"]]
+options = [["~OPEN THE DOOR", "intro.leave_you"]]
 
 [intro.about_bedroom]
 speaker = "alex"
@@ -166,24 +166,24 @@ options = [["", "intro.other_door"]]
 [intro.other_door]
 speaker = "alex"
 text = "Your room is the one on the right."
-options = [["!OPEN THE OTHER DOOR", "intro.leave_you"]]
+options = [["~OPEN THE OTHER DOOR", "intro.leave_you"]]
 
 [intro.leave_you]
 speaker = "alex"
 text = "I'll leave you to it, then."
-options = [["Thanks. Good night.", "intro.sleep_tight"], ["!SHUT THE DOOR", "intro.sleep"]]
+options = [["Thanks. Good night.", "intro.sleep_tight"], ["~SHUT THE DOOR", "intro.sleep"]]
 
 [intro.sleep_tight]
 speaker = "alex"
 text = "Sleep tight."
 flags = ["alex_happy"]
-options = [["!CLOSE THE DOOR", "intro.sleep"]]
+options = [["~CLOSE THE DOOR", "intro.sleep"]]
 
 [intro.sleep]
 speaker = ""
 text = ""
 flags = ["pc_offline"]
-options = [["!GO TO SLEEP", "day2.wake_up"]]
+options = [["~GO TO SLEEP", "day2.wake_up"]]
 
 [day2.wake_up]
 speaker = ""
@@ -223,7 +223,7 @@ options = [["", "day2.rory"]]
 [day2.nice]
 speaker = "hazel"
 text = "And this is Rory, and Bill."
-flags = ["human_happy"]
+flags = ["human_happy", "rory_knows_name"]
 options = [["", "day2.rory"]]
 
 [day2.rory]
@@ -241,7 +241,7 @@ options = [["", "day2.want_to_stay"]]
 [day2.want_to_stay]
 speaker = "hazel"
 text = "Sit down, tell us a little about yourself."
-options = [["!SIT DOWN", "day2.stay"], ["I have work to do.", "day2.leave"]]
+options = [["~SIT DOWN", "day2.stay"], ["I have work to do.", "day2.leave"]]
 
 [day2.leave]
 speaker = "hazel"
@@ -443,8 +443,182 @@ options = [["Will do.", "day2.leave_gameroom"]]
 [day2.leave_gameroom]
 speaker = ""
 text = ""
+options = [["", "day2.rory_parker", ["rory_knows_name"]], ["", "day2.rory_newguy", ["!rory_knows_name"]]]
+
+[day2.rory_parker]
+speaker = "rory"
+text = "Parker! \n Follow me to the courtyard. Quickly!"
+options = [["~FOLLOW HIM", "day2.courtyard"]]
+
+[day2.rory_newguy]
+speaker = "rory"
+text = "Hey, new guy! \n Follow me to the courtyard. Quickly!"
+options = [["~FOLLOW HIM", "day2.courtyard"]]
+
+[day2.courtyard]
+speaker = ""
+text = ""
+options = [["", "day2.jesus"]]
+
+[day2.jesus]
+speaker = "bill"
+text = "Jesus."
+options = [["What happened?", "day2.its_graham"], ["Is that...", "day2.its_graham"]]
+
+[day2.its_graham]
+speaker = "rory"
+text = "It's Graham. Someone killed him and burned his corpse."
+flags = ["dead_graham"]
+options = [["", "day2.who_would_do"]]
+
+[day2.who_would_do]
+speaker = "marcus"
+text = "Who would do such a thing?"
+options = [["", "day2.and_how"]]
+
+[day2.and_how]
+speaker = "rory"
+text = "Uhm guys..."
+options = [["", "day2.poor_graham"], ["What is it?", "day2.these_burns"]]
+
+[day2.poor_graham]
+speaker = "marcus"
+text = "Poor Graham."
+options = [["", "day2.cant_be"]]
+
+[day2.cant_be]
+speaker = "hazel"
+text = "This can't be happening."
+options = [["", "day2.guys"]]
+
+[day2.guys]
+speaker = "rory"
+text = "Guys!"
+options = [["Yeah?", "day2.these_burns"], ["Spit it out, Rory.", "day2.these_burns"]]
+
+[day2.these_burns]
+speaker = "rory"
+text = "I've seen these kinds of burns before. \n They look just like the ones on the cockroaches, after Alex is done with them. \n Smell just like 'em, too."
+options = [["", "day2.jesus_rory"]]
+
+[day2.jesus_rory]
+speaker = "bill"
+text = "Jesus, Rory. Have some respect."
+options = [["What are you implying?", "day2.implying"], ["So Alex did this?", "day2.accuse_alex"]]
+
+[day2.implying]
+speaker = "rory"
+text = "Fine I'll say it. \n Alex killed Graham."
+options = [["", "day2.accuse_alex"]]
+
+[day2.accuse_alex]
+speaker = "marcus"
+text = "That's impossible. Robots cannot kill people. \n The science we do here might not be strictly speaking legal, but no one would be crazy enough to break the principal law of robotics. \n Especially after the Great Collapse."
+options = [["What law?", "day2.five_rules"]]
+
+[day2.five_rules]
+speaker = "alex"
+text = "My programming is governed by 5 rules, as specified by our employer. \n The first rule, which trumps all others, forbids me from harming humans. \n Marcus is quite correct: it is impossible for me to have killed Graham."
+options = [["Can I see them?", "day2.see_rules"], ["Can they be altered?", "day2.altered"]]
+
+[day2.altered]
+speaker = "alex"
+text = "My programming has not been altered with. Marcus can verify this."
+options = [["", "day2.see_rules"]]
+
+[day2.see_rules]
+speaker = "alex"
+text = "I have uploaded the Rules of Robotics to your portable computer."
+flags = ["rules_of_robotics"]
+options = [["", "day2.looks_good"]]
+
+[day2.looks_good]
+speaker = "marcus"
+text = "Alex's data core is tamper proof. \n If someone tries to open him up, it fries up all his circuits. Company policy."
+options = [["", "day2.who_else"]]
+
+[day2.who_else]
+speaker = "hazel"
+text = "So if Alex didn't do it, who did?"
+options = [["", "day2.rory_torch"]]
+
+[day2.rory_torch]
+speaker = "bill"
+text = "Rory, don't you keep a welding torch in the garage? \n Couldn't that be used to burn someone?"
+options = [["", "day2.tool_chest"]]
+
+[day2.tool_chest]
+speaker = "rory"
+text = "Yeah but it's in my tool chest, which is locked. \n And I have the key right here."
+options = [["Give me the key.", "day2.hell_no", ["human_suspicious"]], ["Give me the key.", "day2.get_key", ["!human_suspicious"]], ["Keep it.", "day2.keep_it"]]
+
+[day2.hell_no]
+speaker = "rory"
+text = "Hell no. Do whatever you need to do, but this stays with me."
+options = [["I'll investigate the garage.", "day2.investigate"], ["I'll search the facility.", "day2.search"], ["I'll do a perimeter sweep.", "day2.sweep"]]
+
+[day2.get_key]
+speaker = "rory"
+text = "Sure. What are you gonna do?"
+options = [["I'll investigate the garage.", "day2.investigate"], ["I'll search the facility.", "day2.search"], ["I'll do a perimeter sweep.", "day2.sweep"]]
+
+[day2.keep_it]
+speaker = "rory"
+text = "Damn straight."
+options = [["I'll investigate the garage.", "day2.investigate"], ["I'll search the facility.", "day2.search"], ["I'll do a perimeter sweep.", "day2.sweep"]]
+
+[day2.investigate]
+speaker = "alex"
+text = "I'll accompany you."
+flags = ["investigate_garage"]
+options = [["", "day2.and_us"]]
+
+[day2.sweep]
+speaker = "alex"
+text = "No need. The perimeter is monitored 24/7. I have uploaded the latest logs to your device."
+flags = ["perimeter_logs"]
+options = [["I'll search the facility.", "day2.search"]]
+
+[day2.search]
+speaker = "alex"
+text = "I'll accompany you."
+flags = ["search_facility"]
+options = [["", "day2.and_us"]]
+
+[day2.and_us]
+speaker = "hazel"
+text = "And what about us?"
+options = [["Find the others.", "day2.split_up"], ["Go to your rooms.", "day2.split_up"]]
+
+[day2.split_up]
+speaker = "bill"
+text = "Should we split up?"
+options = [["Yeah that's smart.", "day2.nope"], ["No. Stay as a group.", "day2.stick_together"]]
+
+[day2.nope]
+speaker = "marcus"
+text = "Oh, hell no. If there is a killer on the loose, we should stick together until we find him."
+options = [["Fine.", "day2.stick_together"], ["What if it's one of you?", "day2.one_of_you"]]
+
+[day2.one_of_you]
+speaker = "marcus"
+text = "What if it's not?"
+options = [["Suit yourself.", "day2.stick_together"]]
+
+[day2.stick_together]
+speaker = ""
+text = ""
+options = [["", "garage.arrival", ["investigate_garage"]], ["", "search.arrival", ["search_facility"]]]
+
+[garage.arrival]
+speaker = ""
+text = "Alex and I make our way to the garage. "
 options = [["", "to_be_continued"]]
 
+[search.arrival]
+speaker = ""
+text = "Alex shows me around the entire facility. It takes hours. "
+options = [["", "to_be_continued"]]
 
 [to_be_continued]
 speaker = ""
@@ -455,4 +629,4 @@ options = [["", "the_end"]]
 speaker = ""
 tensity = 0
 text = "THE END"
-options = [["!REPLAY FROM START", "intro.snow"]]
+options = [["~REPLAY FROM START", "intro.snow"]]

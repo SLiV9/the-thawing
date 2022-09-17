@@ -66,6 +66,7 @@ __meta__ = {
 position = Vector2( -57, 43 )
 frames = ExtResource( 2 )
 animation = "walking"
+frame = 2
 playing = true
 offset = Vector2( 0, -11 )
 

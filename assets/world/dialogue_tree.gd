@@ -39,6 +39,8 @@ func start():
 	return _load(section)
 
 func next(answer):
+	if answer.next_section == first_section:
+		return start()
 	_fast_forward_offset = 0
 	history.append({
 		"section": answer.next_section,
@@ -95,9 +97,14 @@ func _load(section):
 	var options = []
 	var answer_offset = 0
 	for option in raw_options:
+		if option.size() >= 3:
+			var conditions = option[2]
+			if not flags.meets_conditions(conditions):
+				continue
 		var is_implicit = option[0].empty() or speaker.empty()
-		var answer_text = option[0].trim_prefix("!")
-		var is_action = (answer_text != option[0])
+		assert(not option[0].begins_with("!"))
+		var is_action = option[0].begins_with("~")
+		var answer_text = option[0].trim_prefix("~")
 		var next_section = option[1]
 		assert(all_sections.has(next_section))
 		options.append({
@@ -139,6 +146,15 @@ func has_personnel_files():
 
 func has_personnel_files_for_first_time():
 	return (flags.count("pc_online") == 1)
+
+func is_dead(id):
+	return flags.count("dead_%s" % [id]) > 0
+
+func has_rules_of_robotics():
+	return flags.count("rules_of_robotics") > 0
+
+func has_perimeter_logs():
+	return flags.count("perimeter_logs") > 0
 
 func save_history():
 	var file = File.new()
