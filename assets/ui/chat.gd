@@ -66,6 +66,9 @@ func select_nth_answer(n):
 
 func handle_dialogue(x, fast_forward_answer_offset = null):
 	emit_signal("dialogue_tree_updated")
+	if x.is_new_chapter:
+		for child in self.get_children():
+			self.remove_child(child)
 	var text = x.text
 	if "\n" in text:
 		var first_text = ""

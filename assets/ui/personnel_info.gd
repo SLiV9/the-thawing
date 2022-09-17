@@ -9,6 +9,7 @@ onready var menu = self.find_node("Menu")
 onready var overview = self.find_node("Overview")
 onready var details = self.find_node("Details")
 onready var laws = self.find_node("Laws")
+onready var perimeter = self.find_node("Perimeter")
 onready var headshot = self.find_node("Headshot")
 onready var detailstext = self.find_node("DetailsText")
 onready var header = self.find_node("PersonnelHeader")
@@ -20,6 +21,7 @@ var dead_workers = []
 func _ready():
 	emit_signal("button_created", self.find_node("ListButton"))
 	emit_signal("button_created", self.find_node("LawsButton"))
+	emit_signal("button_created", self.find_node("PerimeterButton"))
 	for screen in [overview, details, laws]:
 		var backbutton = screen.find_node("BackButton")
 		if backbutton:
@@ -28,6 +30,7 @@ func _ready():
 	overview.visible = false
 	details.visible = false
 	laws.visible = false
+	perimeter.visible = false
 	workers = PersonnelData.get_ids()
 	for id in workers:
 		var link = LinkButton.new()
@@ -51,6 +54,7 @@ func _on_selected(id):
 	overview.visible = false
 	details.visible = true
 	laws.visible = false
+	perimeter.visible = false
 	var display_name = PersonnelData.index_name(id)
 	if dead_workers.has(id):
 		header.text = "%s (DECEASED)" % [display_name]
@@ -72,6 +76,7 @@ func to_index():
 	overview.visible = false
 	details.visible = false
 	laws.visible = false
+	perimeter.visible = false
 	emit_signal("screen_changed")
 	focus_first_button(menu)
 
@@ -86,6 +91,7 @@ func to_overview():
 	overview.visible = true
 	details.visible = false
 	laws.visible = false
+	perimeter.visible = false
 	emit_signal("screen_changed")
 	focus_first_button(overview)
 
@@ -94,15 +100,28 @@ func _on_Chat_dialogue_tree_updated():
 	if DialogueTree.has_personnel_files():
 		if not is_online:
 			is_online = true
-			yield(get_tree(), "idle_frame")
-			to_index()
+			open_for_first_time()
 	elif is_online:
 		is_online = false
 		menu.visible = false
 		overview.visible = false
 		details.visible = false
 		laws.visible = false
+		perimeter.visible = false
 		header.text = "OFFLINE"
+
+
+func open_for_first_time():
+	yield(get_tree(), "idle_frame")
+	header.text = "INDEX"
+	menu.visible = true
+	overview.visible = false
+	details.visible = false
+	laws.visible = false
+	perimeter.visible = false
+	if DialogueTree.has_personnel_files_for_first_time():
+		emit_signal("screen_changed")
+		focus_first_button(menu)
 
 
 func focus_first_button(screen):
@@ -137,5 +156,21 @@ func to_laws():
 	overview.visible = false
 	details.visible = false
 	laws.visible = true
+	perimeter.visible = false
 	emit_signal("screen_changed")
 	focus_first_button(laws)
+
+
+func _on_PerimeterButton_pressed():
+	to_perimeter()
+
+
+func to_perimeter():
+	header.text = "PERIMETER LOGS"
+	menu.visible = false
+	overview.visible = false
+	details.visible = false
+	laws.visible = false
+	perimeter.visible = true
+	emit_signal("screen_changed")
+	focus_first_button(perimeter)

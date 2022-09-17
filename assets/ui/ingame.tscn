@@ -304,8 +304,8 @@ margin_bottom = 29.0
 custom_colors/default_color = Color( 0.270588, 0.235294, 0.168627, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]PERSONNEL FILES[/center]"
-text = "PERSONNEL FILES"
+bbcode_text = "[center]PORTABLE COMPUTER[/center]"
+text = "PORTABLE COMPUTER"
 fit_content_height = true
 
 [node name="PersonnelInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -335,6 +335,7 @@ margin_bottom = 220.0
 size_flags_vertical = 3
 
 [node name="Menu" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs"]
+visible = false
 margin_right = 408.0
 margin_bottom = 183.0
 custom_constants/margin_right = 2
@@ -350,13 +351,21 @@ margin_bottom = 183.0
 margin_right = 406.0
 margin_bottom = 28.0
 focus_mode = 2
-text = "> ALL PERSONNEL"
+text = "> PERSONNEL FILES"
 underline = 2
 
-[node name="LawsButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Menu/Buttons"]
+[node name="PerimeterButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Menu/Buttons"]
 margin_top = 32.0
 margin_right = 406.0
 margin_bottom = 60.0
+focus_mode = 2
+text = "> PERIMETER LOGS"
+underline = 2
+
+[node name="LawsButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Menu/Buttons"]
+margin_top = 64.0
+margin_right = 406.0
+margin_bottom = 92.0
 focus_mode = 2
 text = "> RULES OF ROBOTICS"
 underline = 2
@@ -434,6 +443,7 @@ text = "< BACK TO INDEX"
 underline = 2
 
 [node name="Laws" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs"]
+visible = false
 margin_right = 408.0
 margin_bottom = 183.0
 
@@ -445,7 +455,7 @@ follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Laws/ScrollContainer"]
-margin_right = 396.0
+margin_right = 408.0
 margin_bottom = 596.0
 size_flags_horizontal = 3
 
@@ -497,6 +507,61 @@ custom_constants/margin_top = 4
 custom_constants/margin_bottom = 0
 
 [node name="BackButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Laws/MarginContainer"]
+margin_top = 4.0
+margin_right = 406.0
+margin_bottom = 32.0
+focus_mode = 2
+text = "< BACK TO INDEX"
+underline = 2
+
+[node name="Perimeter" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs"]
+margin_right = 408.0
+margin_bottom = 183.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter"]
+margin_right = 408.0
+margin_bottom = 147.0
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter/ScrollContainer"]
+margin_right = 396.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+
+[node name="Log1" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter/ScrollContainer/VBoxContainer"]
+margin_right = 396.0
+margin_bottom = 58.0
+focus_mode = 2
+text = "2093-04-25: Rory leaves facility. Reason: supply run."
+fit_content_height = true
+
+[node name="Log2" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter/ScrollContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 396.0
+margin_bottom = 91.0
+focus_mode = 2
+text = "2093-05-03: Rory returns."
+fit_content_height = true
+
+[node name="Log3" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter/ScrollContainer/VBoxContainer"]
+margin_top = 95.0
+margin_right = 396.0
+margin_bottom = 182.0
+focus_mode = 2
+text = "2093-09-18: New arrival enters facility. Identified by Graham as Parker."
+fit_content_height = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter"]
+margin_top = 151.0
+margin_right = 408.0
+margin_bottom = 183.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 0
+
+[node name="BackButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter/MarginContainer"]
 margin_top = 4.0
 margin_right = 406.0
 margin_bottom = 32.0
@@ -652,8 +717,10 @@ volume_db = -20.0
 [connection signal="button_created" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" to="." method="_on_PersonnelInfo_button_created"]
 [connection signal="screen_changed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" to="." method="_on_PersonnelInfo_screen_changed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Menu/Buttons/ListButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_ListButton_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Menu/Buttons/PerimeterButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_PerimeterButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Menu/Buttons/LawsButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_LawsButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Details/VBoxContainer/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Laws/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo/Tabs/Perimeter/MarginContainer/BackButton" to="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PersonnelInfo" method="_on_BackButton_pressed"]
 [connection signal="cinematic_started" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Camera" to="." method="_on_Camera_cinematic_started"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/StopButton" to="." method="_on_StopButton_pressed"]

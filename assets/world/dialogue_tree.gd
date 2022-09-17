@@ -55,6 +55,10 @@ func can_fast_forward():
 func fast_forward_start():
 	var section = history[0].section
 	_fast_forward_offset = 1
+	var last_section = history.back().section
+	while not are_same_chapter(section, last_section):
+		section = history[_fast_forward_offset].section
+		_fast_forward_offset += 1
 	return _load(section)
 
 func fast_forward_answer_offset():
@@ -80,7 +84,9 @@ func rewind():
 		return start()
 
 func can_rewind():
-	return history.size() >= 2
+	return history.size() >= 2 and are_same_chapter(
+			history[history.size() - 2].section,
+			history[history.size() - 1].section)
 
 func _load(section):
 	var speaker = data.get_value(section, "speaker")
@@ -110,6 +116,9 @@ func _load(section):
 		history.back().flags_added = section_flags
 	var speaker_is_new = data.get_value(section, "speaker_is_new", false)
 	var tensity = data.get_value(section, "tensity", -1)
+	var is_new_chapter = history.size() < 2 or not are_same_chapter(
+			history[history.size() - 2].section,
+			history[history.size() - 1].section)
 	return {
 		"speaker": speaker,
 		"speaker_is_new": speaker_is_new,
@@ -117,10 +126,19 @@ func _load(section):
 		"text": text,
 		"options": options,
 		"current_section": section,
+		"is_new_chapter": is_new_chapter,
 	}
+
+func are_same_chapter(a, b):
+	var aa = a.rsplit(".", false, 1)[0]
+	var bb = b.rsplit(".", false, 1)[0]
+	return aa == bb
 
 func has_personnel_files():
 	return flags.count_difference("pc_online", "pc_offline") > 0
+
+func has_personnel_files_for_first_time():
+	return (flags.count("pc_online") == 1)
 
 func save_history():
 	var file = File.new()

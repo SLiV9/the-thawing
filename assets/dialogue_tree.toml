@@ -189,6 +189,7 @@ options = [["!GO TO SLEEP", "day2.wake_up"]]
 speaker = ""
 tensity = 0
 text = "I wake up from a restless night. \n It's so cold, I feel like I barely slept. \n I get up and make my way to the canteen."
+flags = ["pc_online"]
 options = [["", "day2.canteen"]]
 
 [day2.canteen]
@@ -300,8 +301,77 @@ options = [["I'll go look for him.", "day2.walk_away"]]
 [day2.walk_away]
 speaker = ""
 text = ""
-options = [["", "to_be_continued"]]
+options = [["", "day2.marcus"]]
 
+[day2.marcus]
+speaker = "marcus"
+speaker_is_new = true
+text = "Hey! \n You're the new guy, right? \n Can I talk to you?"
+options = [["Sure, what about?", "day2.what_about"], ["Not right now.", "day2.security_matter"], ["And who are you?", "day2.can_you"]]
+
+[day2.what_about]
+speaker = "marcus"
+text = "It's a security matter."
+flag = ["human_happy"]
+options = [["", "day2.cameras"]]
+
+[day2.security_matter]
+speaker = "marcus"
+text = "It's a security matter."
+options = [["", "day2.cameras"]]
+
+[day2.can_you]
+speaker = "marcus"
+text = "I'm Marcus. It's a security matter."
+flag = ["human_sad"]
+options = [["", "day2.cameras"]]
+
+[day2.cameras]
+speaker = "marcus"
+text = "I wake up every morning before the lights go on, to make coffee for the rest of the crew. \n I use the faint red glow of the security cameras to guide me. \n But this morning, it was pitch black out. \n So I checked: almost all of the security cameras throughout the facility are turned off. \n Did you..."
+options = [["No, why would I?", "day2.why_would_i"], ["Are you accusing me?", "day2.accusing_me"]]
+
+[day2.why_would_i]
+speaker = "marcus"
+text = "I don't know, man. \n It's just, you and Alex are the only ones with access to the security feed. \n And Alex wouldn't do that unless you told him to."
+options = [["Could anyone hack them?", "day2.hack"], ["Maybe a power surge?", "day2.power_surge"]]
+
+[day2.accusing_me]
+speaker = "marcus"
+text = "No, of course not. \n It's just, you and Alex are the only ones with access to the security feed. \n And Alex wouldn't do that unless you told him to."
+flag = ["human_sad"]
+options = [["Could anyone hack them?", "day2.hack"], ["Maybe a power surge?", "day2.power_surge"]]
+
+[day2.hack]
+speaker = "marcus"
+text = "The cameras you mean? John, maybe."
+flags = ["heard_john_hacker"]
+options = [["Why would he do that?", "day2.why_john"]]
+
+[day2.why_john]
+speaker = "marcus"
+text = "How should I know? Go ask him."
+options = [["Ok. Thanks for telling me.", "day2.marcus_leaves"]]
+
+[day2.power_surge]
+speaker = "marcus"
+text = "Nah. Not unless someone tampered with the electronics."
+options = [["Who would be capable of that?", "day2.capable"]]
+
+[day2.capable]
+speaker = "marcus"
+text = "Psychologically? Psssh, who knows."
+options = [["And technically?", "day2.technically"]]
+
+[day2.capable]
+speaker = "marcus"
+text = "Just me. \n And I didn't do it."
+options = [["Ok. Thanks for telling me.", "day2.marcus_leaves"]]
+
+[day2.marcus_leaves]
+speaker = ""
+text = ""
+options = [["", "to_be_continued"]]
 
 
 [to_be_continued]

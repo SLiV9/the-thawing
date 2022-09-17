@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/characters/parker.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://assets/world/tiled_floor.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "walk"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5, 5, 5.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -57, 43 ), Vector2( -7, 18 ), Vector2( 53, -12 ), Vector2( 65, -18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "walking" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Snow" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+hint_tooltip = "You walk the empty halls of the facility."
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Parker" type="AnimatedSprite" parent="Units"]
+position = Vector2( 65, -18 )
+frames = ExtResource( 2 )
+animation = "walking"
+frame = 1
+playing = true
+offset = Vector2( 0, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Units/Parker"]
+autoplay = "walk"
+anims/walk = SubResource( 1 )
