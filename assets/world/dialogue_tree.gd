@@ -169,6 +169,8 @@ func save_history():
 
 func load_history():
 	var file = File.new()
+	if not file.file_exists("user://progress.save"):
+		return
 	file.open("user://progress.save", File.READ)
 	var line = file.get_line()
 	file.close()
